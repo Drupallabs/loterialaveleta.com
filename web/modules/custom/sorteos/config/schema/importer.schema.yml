@@ -1,0 +1,68 @@
+sorteos.importer.*:
+  type: config_entity
+  label: "Importer config"
+  mapping:
+    id:
+      type: string
+      label: "ID"
+    label:
+      type: label
+      label: "Etiqueta"
+    uuid:
+      type: string
+    plugin:
+      type: string
+      label: Plugin ID
+    update_existing:
+      type: boolean
+      label: Whether to update existing sorteos
+    param_fecha:
+      type: boolean
+      label: Pone el parametro fecha en la peticion
+    active:
+      type: boolean
+      label: Is Active
+    source:
+      type: string
+      label: The source of the sorteos
+    bundle:
+      type: string
+      label: The sorteo bundle
+    plugin_configuration:
+      type: sorteos.importer.plugin.[%parent.plugin]
+
+sorteos.sorteo_type.*:
+  type: config_entity
+  label: "Product type config"
+  mapping:
+    id:
+      type: string
+      label: "ID"
+    label:
+      type: label
+      label: "Label"
+    uuid:
+      type: string
+
+sorteos.importer.plugin.*:
+  type: mapping
+  label: "Plugin configuration"
+
+sorteos.importer.plugin.json:
+  type: mapping
+  label: Plugin configuration for the Json importer plugin
+  mapping:
+    url:
+      type: uri
+      label: Uri
+
+sorteos.importer.plugin.csv:
+  type: mapping
+  label: Plugin configuration for the CSV importer plugin
+  mapping:
+    file:
+      type: sequence
+      label: File IDs
+      sequence:
+        type: integer
+        label: CSV File ID

@@ -1,0 +1,26 @@
+uuid: 818a6a6b-22e3-4894-9b06-0478b897b719
+langcode: es
+status: true
+dependencies:
+  module:
+    - botes
+    - system
+  theme:
+    - veletaled
+id: veletaled_boteshorizontalblock
+theme: veletaled
+region: sidebar_first
+weight: -6
+provider: null
+plugin: botes_horizontal_block
+settings:
+  id: botes_horizontal_block
+  label: 'Botes horizontal block'
+  provider: botes
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

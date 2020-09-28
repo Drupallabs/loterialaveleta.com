@@ -1,0 +1,7 @@
+contacto.form:
+ path: '/contacto/formulario'
+ defaults:
+   _title: 'Contacto Loteria La Veleta Madrid'
+   _form: '\Drupal\contacto\Form\ContactoForm'
+ requirements:
+   _permission: 'access content'

@@ -1,0 +1,31 @@
+uuid: 553357ed-b04e-4de9-b148-5a2fc2f86c96
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.decimo_loteria
+    - core.entity_view_mode.commerce_product_variation.cart
+    - field.field.commerce_product_variation.decimo_loteria.field_existencias
+    - field.field.commerce_product_variation.decimo_loteria.weight
+id: commerce_product_variation.decimo_loteria.cart
+targetEntityType: commerce_product_variation
+bundle: decimo_loteria
+mode: cart
+content:
+  product_id:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: decimo_checkout
+      link: false
+    third_party_settings: {  }
+hidden:
+  field_existencias: true
+  langcode: true
+  list_price: true
+  price: true
+  sku: true
+  title: true
+  weight: true

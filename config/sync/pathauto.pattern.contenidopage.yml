@@ -1,0 +1,22 @@
+uuid: fcacc0b7-7fe0-4201-8687-0ead66f198d4
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: contenidopage
+label: contenido
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  f033124e-b920-4987-abfb-0ea1a367aa17:
+    id: node_type
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: f033124e-b920-4987-abfb-0ea1a367aa17
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,10 @@
+uuid: 36ae0fa2-d583-4451-8c06-6418c77f6572
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.decimo_checkout
+label: 'Decimo Checkout'
+targetEntityType: commerce_product
+cache: true

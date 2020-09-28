@@ -1,0 +1,48 @@
+<div id="comprobar-resultados">
+  <div class="row">
+      <div class="col-2 text-center resultados-heading">
+        <img alt="Loteria Nacional" src="{{ base_path }}themes/custom/laveleta/images/sorteos/loteria-nacional.jpg" />
+      </div>
+      <div class="col text-center">
+        <h3>COMPROBAR d&Eacute;cimos <br> LOTERIA NACIONAL</h3>
+      </div>
+  </div>
+  <div class="row">
+        <div class="row">
+          <div class="col-md-8">
+            {{ form.sorteo }}
+          </div>
+          <div class="w-100"></div>
+          <div class="col-md-8">
+            {{ form.decimo }}
+          </div>
+
+          <div class="w-100"></div>
+          <div class="col-md-6 text-right">
+            <a href="{{ url('resultados.comprobar') }}">Probar otro numero</a>
+          </div>
+          <div class="col-md-3 text-right">
+            {{ form.submit }}
+          </div>
+          <div class="w-100"></div>
+          <div class="col-md-6">
+          </div>
+          {{ form.form_id }}
+          {{ form.form_build_id }}
+          {{ form.form_token }}
+          <div class="row">
+            <div class="col-md-8">
+              <div class="imagen_decimo"></div>
+              {{ form.comprobacion }}
+            </div>
+          </div>
+        </div>
+   </div>
+   <div class="text-center">
+   <pre class="compruebe"></pre>
+    </div>
+  <div class="text-center">
+     <a title="Jugar al Loteria Nacional en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LNAC" target="_blank">
+       <img src="{{ base_path }}themes/custom/laveleta/images/btn-venta-juegos/Loteria_nacional.png" alt="Juega a la Loteria Nacional" /></a>
+   </div>
+</div>

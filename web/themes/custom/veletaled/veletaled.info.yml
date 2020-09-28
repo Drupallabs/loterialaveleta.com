@@ -1,0 +1,9 @@
+name: veletaled
+type: theme
+description: 'Tema para las pantallas led y no led'
+package: Other
+core: 8.x
+libraries:
+  - veletaled/global
+ 
+base theme: false

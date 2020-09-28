@@ -1,0 +1,22 @@
+uuid: d7bb1d9f-aa7e-4baa-88f4-bf8b38eec070
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - veletaled
+_core:
+  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
+id: veletaled_content
+theme: veletaled
+region: content
+weight: -1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

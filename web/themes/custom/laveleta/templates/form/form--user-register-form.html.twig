@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' eleme
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+<div class="col-md-12">
+  <div id="registro-usuario" class="comment-area">
+   <h2>Registro de Usuario</h2>
+        <form{{ attributes }}>
+          {{ children }}
+        </form>
+</div></div>

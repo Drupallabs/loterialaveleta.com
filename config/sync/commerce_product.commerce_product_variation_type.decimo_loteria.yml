@@ -1,0 +1,11 @@
+uuid: 9fd5e35b-1e5e-495a-858b-fbc5b4e6744a
+langcode: es
+status: true
+dependencies: {  }
+id: decimo_loteria
+label: 'Decimo Loteria'
+orderItemType: default
+generateTitle: false
+traits:
+  - purchasable_entity_shippable
+locked: false

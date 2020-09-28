@@ -1,0 +1,23 @@
+uuid: 3b6ac098-29cc-470f-9e14-8046a65dd1c5
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cdc_sorteo
+    - node.type.sorteo
+id: node.sorteo.field_cdc_sorteo
+field_name: field_cdc_sorteo
+entity_type: node
+bundle: sorteo
+label: 'Cdc Sorteo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

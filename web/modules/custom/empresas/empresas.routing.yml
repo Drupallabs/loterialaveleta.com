@@ -1,0 +1,24 @@
+empresas.empresas_index:
+  path: '/loteria/empresas'
+  defaults:
+    _controller: '\Drupal\empresas\Controller\EmpresasController::index'
+    _title: 'Loteria para Empresas Digital y Física'
+  requirements:
+    _permission: 'access content'
+
+empresas.empresas_contacto:
+  path: '/loteria/empresas/contacto'
+  defaults:
+    _form: '\Drupal\empresas\Form\EmpresasContactoForm'
+    _title: 'Contacta para Informacion sobre Loteria de Empresas Digital y Física'
+  requirements:
+    _permission: 'access content'
+
+empresas.empresas_acceso:
+  path: '/loteria/empresas/acceso'
+  defaults:
+    #_controller: '\Drupal\empresas\Controller\EmpresasController::contacto'
+    _form: '\Drupal\empresas\Form\EmpresasAccesoForm'
+    _title: 'Pagina privada de tu empresa en Loteria La Veleta'
+  requirements:
+    _permission: 'access content'

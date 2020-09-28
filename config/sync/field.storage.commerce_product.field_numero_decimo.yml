@@ -1,0 +1,21 @@
+uuid: 6510f279-3082-411d-bfc9-1f58ac42c69d
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_numero_decimo
+field_name: field_numero_decimo
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 5
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

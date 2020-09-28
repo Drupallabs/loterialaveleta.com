@@ -1,0 +1,17 @@
+# Abonado routing definition
+
+entity.abonado.canonical:
+  route_name: entity.abonado.canonical
+  base_route: entity.abonado.canonical
+  title: "Ver"
+
+entity.abonado.edit_form:
+  route_name: entity.abonado.edit_form
+  base_route: entity.abonado.canonical
+  title: "Editar"
+
+entity.abonado.delete_form:
+  route_name: entity.abonado.delete_form
+  base_route: entity.abonado.canonical
+  title: Eliminar
+  weight: 10

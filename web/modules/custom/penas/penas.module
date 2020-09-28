@@ -1,0 +1,13 @@
+<?php
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function penas_theme() {
+  return [
+    'penas' => [
+      'render element' => 'children',
+    ],
+  ];
+}

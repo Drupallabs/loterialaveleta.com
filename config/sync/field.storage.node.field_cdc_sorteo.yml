@@ -1,0 +1,20 @@
+uuid: d456717f-7517-44a4-a484-a62a5c629bc8
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_cdc_sorteo
+field_name: field_cdc_sorteo
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

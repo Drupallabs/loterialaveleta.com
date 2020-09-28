@@ -1,0 +1,24 @@
+uuid: 2dcdbe17-8455-4331-93c1-8bb73c04037e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_codigo_postal
+  module:
+    - user
+id: user.user.field_codigo_postal
+field_name: field_codigo_postal
+entity_type: user
+bundle: user
+label: 'Código Postal'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

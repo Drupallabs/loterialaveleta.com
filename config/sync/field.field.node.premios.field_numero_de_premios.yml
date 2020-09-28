@@ -1,0 +1,23 @@
+uuid: e904a2c4-36f9-4af9-bf0c-5407ce10f025
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_numero_de_premios
+    - node.type.premios
+id: node.premios.field_numero_de_premios
+field_name: field_numero_de_premios
+entity_type: node
+bundle: premios
+label: 'Numero de Premios'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

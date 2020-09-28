@@ -1,0 +1,12 @@
+services:
+  sorteos.importer_manager:
+    class: Drupal\sorteos\Plugin\ImporterManager
+    parent: default_plugin_manager
+    arguments: ["@entity_type.manager"]
+    tags:
+      - {name: laveleta}
+  sorteos.sorteosbbdd:
+    class: Drupal\sorteos\SorteosBbdd 
+    arguments: ["@database"]
+    tags:
+      - {name: laveleta}

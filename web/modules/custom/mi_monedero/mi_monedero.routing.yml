@@ -1,0 +1,51 @@
+mi_monedero.monedero:
+  path: "/user/{user}/mi-monedero"
+  defaults:
+    _controller: '\Drupal\mi_monedero\Controller\MonederoController::monederoUser'
+    _title: "Mi Monedero"
+    link_id: "mi_monedero.monedero"
+  requirements:
+    _custom_access: '\Drupal\mi_monedero\Access\MiMonederoMethodAccessCheck::checkAccess'
+  options:
+    no_cache: "TRUE"
+    parameters:
+      user:
+        type: entity:user
+
+mi_monedero.depositar:
+  path: "/user/{user}/mi-monedero/depositar"
+  defaults:
+    _form: '\Drupal\mi_monedero\Form\MiMonederoDepositarForm'
+    _title: "Añadir Saldo a Mi Monedero"
+    link_id: "mi_monedero.depositar"
+  requirements:
+    _custom_access: '\Drupal\mi_monedero\Access\MiMonederoMethodAccessCheck::checkAccess'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+mi_monedero.depositar_back_ok:
+  path: "/user/monedero/depositar/back/ok"
+  defaults:
+    _controller: '\Drupal\mi_monedero\Controller\MonederoController::depositarBackOk'
+  methods: [GET]
+  requirements:
+    _access: "TRUE"
+
+mi_monedero.depositar_back_nook:
+  path: "/user/monedero/depositar/back/nook"
+  defaults:
+    _controller: '\Drupal\mi_monedero\Controller\MonederoController::depositarBackNoOk'
+  methods: [GET]
+  requirements:
+    _access: "TRUE"
+
+mi_monedero.tpv_virtual:
+  path: "/mi_monedero/tpv-virtual"
+  defaults:
+    _form: '\Drupal\mi_monedero\Form\MiMonederoTpvVirtualForm'
+    title: "Redireccion a la pasarela de pago con tarjeta"
+  methods: [GET]
+  requirements:
+    _access: "TRUE"

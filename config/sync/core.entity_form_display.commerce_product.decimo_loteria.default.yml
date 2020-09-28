@@ -1,0 +1,68 @@
+uuid: 2656040c-3076-4ba0-9bec-feafcc96c504
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.decimo_loteria
+    - field.field.commerce_product.decimo_loteria.body
+    - field.field.commerce_product.decimo_loteria.field_existencias_decimo
+    - field.field.commerce_product.decimo_loteria.field_numero_decimo
+    - field.field.commerce_product.decimo_loteria.field_sorteo
+  module:
+    - commerce_stock_field
+    - inline_entity_form
+id: commerce_product.decimo_loteria.default
+targetEntityType: commerce_product
+bundle: decimo_loteria
+mode: default
+content:
+  field_existencias_decimo:
+    weight: 2
+    settings:
+      custom_transaction_note: false
+      default_transaction_note: 'Transaction issued by stock level field.'
+      step: '1'
+    third_party_settings: {  }
+    type: commerce_stock_level_simple_transaction
+    region: content
+  field_numero_decimo:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_sorteo:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  stores:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  variations:
+    type: inline_entity_form_simple
+    weight: 1
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  created: true
+  langcode: true
+  path: true
+  status: true
+  title: true
+  uid: true

@@ -1,0 +1,22 @@
+uuid: 88f6cb72-54fd-4e01-8838-389a27ee5bb2
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: contenidoblog
+label: contenido
+type: 'canonical_entities:node'
+pattern: 'blog/[node:title]'
+selection_criteria:
+  e4793606-097f-4c2b-8e69-67fc6b9b2e92:
+    id: node_type
+    bundles:
+      article: article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: e4793606-097f-4c2b-8e69-67fc6b9b2e92
+selection_logic: and
+weight: -5
+relationships: {  }

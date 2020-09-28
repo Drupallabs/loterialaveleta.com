@@ -1,0 +1,53 @@
+uuid: d06a1b3f-bc13-4be4-92e7-d7aa991b7dcd
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_apellidos
+    - field.field.user.user.field_codigo_postal
+    - field.field.user.user.field_domicilio
+    - field.field.user.user.field_fecha_nacimiento
+    - field.field.user.user.field_indentificador
+    - field.field.user.user.field_nombre
+    - field.field.user.user.field_numero_documento
+    - field.field.user.user.field_poblacion
+    - field.field.user.user.field_provincia
+    - field.field.user.user.field_telefono
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: '-cLsS3M3JycipXQt9rEb81_HxKneReoGuRh8ijcOPXs'
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  commerce_remote_id: true
+  customer_profiles: true
+  field_apellidos: true
+  field_codigo_postal: true
+  field_domicilio: true
+  field_fecha_nacimiento: true
+  field_indentificador: true
+  field_nombre: true
+  field_numero_documento: true
+  field_poblacion: true
+  field_provincia: true
+  field_telefono: true
+  langcode: true
+  member_for: true

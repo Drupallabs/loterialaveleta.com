@@ -1,0 +1,17 @@
+<div class="dropdown shop__item">
+            <span class="countcart">{{ count_text|replace({'elemento': '','elementos': ''}) }}</span>
+            <a href="#mini-cart" class="site-header__btn dropdown__trigger"><span class="site-header__icon icon-local_grocery_storeshopping_cart">
+            </span></a>
+						<aside id="mini-cart" class="dropdown__panel mini-cart">
+							<div class="scroll-container">
+								<div class="scroll-container__content">
+                  {{ content }}
+                  </div>
+							</div>
+							<div class="mini-cart__summary">
+              <div class="cart-block--contents__links">
+                {{ links }}
+              </div>
+							</div>
+						</aside>
+					</div>

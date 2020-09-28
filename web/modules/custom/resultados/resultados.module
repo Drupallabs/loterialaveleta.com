@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+
+function resultados_theme($existing, $type, $theme, $path)
+{
+  return [
+    'page_resultados' => [
+      'variables' => ['resultados' => null],
+    ],
+    'page-comprobar-resultados' => [
+      'render element' => 'form',
+    ],
+    'resultados_lnac' => [
+      'variables' => ['lnacs' => null],
+      'template' => 'resultados/resultados-lnac'
+    ],
+    'resultados_emil' => [
+      'variables' => ['emils' => null],
+      'template' => 'resultados/resultados-emil'
+    ],
+    'resultados_lapr' => [
+      'variables' => ['laprs' => null],
+      'template' => 'resultados/resultados-lapr'
+    ],
+    'resultados_elgr' => [
+      'variables' => ['elgrs' => null],
+      'template' => 'resultados/resultados-elgr'
+    ],
+    'resultados_bono' => [
+      'variables' => ['bonos' => null],
+      'template' => 'resultados/resultados-bono'
+    ],
+    'resultados_laqu' => [
+      'variables' => ['laqus' => null],
+      'template' => 'resultados/resultados-laqu'
+    ],
+    'resultados_qgol' => [
+      'variables' => ['qgols' => null],
+      'template' => 'resultados/resultados-qgol'
+    ],
+    'resultados_lotu' => [
+      'variables' => ['lotus' => null],
+      'template' => 'resultados/resultados-lotu'
+    ],
+    'resultados_qupl' => [
+      'variables' => ['qupls' => null],
+      'template' => 'resultados/resultados-qupl'
+    ],
+  ];
+}

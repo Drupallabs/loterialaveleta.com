@@ -1,0 +1,20 @@
+add empresa entities:
+  title: 'Create new Empresa entities'
+
+administer empresa entities:
+  title: 'Administer Empresa entities'
+  description: 'Allow to access the administration form to configure Empresa entities.'
+  restrict access: true
+
+delete empresa entities:
+  title: 'Delete Empresa entities'
+
+edit empresa entities:
+  title: 'Edit Empresa entities'
+
+view published empresa entities:
+  title: 'View published Empresa entities'
+
+view unpublished empresa entities:
+  title: 'View unpublished Empresa entities'
+

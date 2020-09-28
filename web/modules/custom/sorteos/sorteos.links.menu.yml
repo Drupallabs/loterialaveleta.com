@@ -1,0 +1,33 @@
+entity.sorteo.collection:
+  title: "Sorteos Listado"
+  route_name: entity.sorteo.collection
+  description: "List Sorteos entities"
+  parent: veleta.admin_veleta
+  weight: 100
+
+# Product type entity menu items
+entity.sorteo_type.collection:
+  title: "Tipos de Sorteo"
+  route_name: entity.sorteo_type.collection
+  description: "List Sorteo bundles"
+  parent: veleta.admin_veleta
+  weight: 99
+
+# Importer entity menu items
+entity.importer.collection:
+  title: "Importadores"
+  route_name: entity.importer.collection
+  description: "List Importer entities"
+  parent: veleta.admin_veleta
+  weight: 50
+
+entity.sorteo.edit_form:
+  route_name: entity.sorteo.edit_form
+  base_route: entity.sorteo.canonical
+  title: "Editar Sorteo"
+
+entity.sorteo.delete_form:
+  route_name: entity.sorteo.delete_form
+  base_route: entity.sorteo.canonical
+  title: Eliminar
+  weight: 10

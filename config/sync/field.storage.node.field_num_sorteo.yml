@@ -1,0 +1,20 @@
+uuid: bffad3c0-9d38-4e5e-b653-1fdb66df75ec
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_num_sorteo
+field_name: field_num_sorteo
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

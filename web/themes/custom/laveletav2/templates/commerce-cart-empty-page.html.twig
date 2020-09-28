@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ *
+ * Empty cart page template.
+ *
+ * @ingroup themeable
+ */
+#}
+<section id="empty-card" class="empty-card">
+  <div class="wrapper">
+    <div class="card cart-empty-page">
+      <div class="row">
+        <div class="col-md-2">
+            <img src="{{ base_path }}themes/custom/laveletav2/images/empty-card.svg" alt="Cesta de Compra" />
+        </div>
+        <div class="col">   
+            <h4>Su cesta de compra esta Vac&iacute;a.</h4>
+            <a href="{{ url('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--primary cta__btn">Comprar décimos</a>	
+        </div>
+        </div>
+    </div>
+   </div>
+</section>

@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_theme().
+ */
+function contacto_theme() {
+  return [
+    'contacto' => [
+       'render element' => 'form',
+       ],
+  ];
+}
+
+/**
+ * Implementation of hook_mail().
+ */
+function contacto_mail($key, &$message, $params) {
+  // print_r($params); die;
+  switch($key) {
+
+    default:
+      $text[] = 'Hola,';
+      $text[] = 'Alguien ha enviado un mensaje en la seccion de contacto de loterialaveleta.com.';
+      $text[] = 'Nombre: '.$params['nombre'];
+      $text[] = 'Telefono: '.$params['telefono'];
+      $text[] = 'Email: '.$params['email'];
+      $text[] = 'Mensaje: '.$params['mensaje'];
+
+      $message['subject'] = t('Contacto en loterialaveleta.com');
+      $message['body'] = $text;
+      break;
+    }
+
+}

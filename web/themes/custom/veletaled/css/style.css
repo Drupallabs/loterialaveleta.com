@@ -1,0 +1,274 @@
+@font-face {
+  font-family: 'Lemon/Milk Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Milk Regular'), url('../laveleta/fonts/LemonMilk/LemonMilk.woff') format('woff');}
+
+body {
+    background: #faeede;
+    color: #616569;
+    font-family: "Poppins", Arial, sans-serif !important;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+.led-main .bloque {
+  padding:0 2%;
+}
+.collogo {
+  padding: 0 90px !important;
+}
+.collogo img {
+  width: 600px;
+  text-align: center;
+}
+.collogo4 img {
+  width: 550px;
+  text-align: center;
+  padding-top:2%;
+}
+.bloque-botes {
+  z-index: 100;
+}
+.card {
+    background: white;
+    border-radius: 5px;
+    padding: 1.1rem;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.card .col img {
+  padding: 18px;
+}
+.botenum{
+  margin-top:6px;
+  font-size: 2em;
+  width: 100%;
+  font-weight: 900;
+}
+.botenum span{ /* no hay bote */
+  font-size: 18px;
+}
+.cuenta-atras {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.emil .botenum, .emil caption{
+  color: #153f69;
+  background-color: #153f69;
+}
+.lanc .botenum, .lnac caption{
+  color: #3378B3;
+  background-color: #3378B3;
+}
+.lapr .botenum, .lapr caption{
+  color: #008547;
+  background-color: #008547;
+}
+.bono .botenum, .bono caption{
+  color: #7a8634;
+  background-color: #7a8634;
+}
+.elgr .botenum, .elgr caption{
+  color: #dc3f47;
+  background-color: #dc3f47;
+}
+.laqu .botenum, .laqu caption{
+  color: #CB1517;
+  background-color: #CB1517;
+}
+.qgol .botenum, .qgol caption{ 
+  color: #79CFDD;
+  background-color: #79CFDD;
+}
+.lotu .botenum, .lotu caption{
+  color: #d16929;
+  background-color: #d16929;
+}
+.qupl .botenum, .qupl caption{
+  color: #eab842;
+  background-color: #eab842;
+}
+
+#resultados-led{
+  margin:0;
+}
+
+#resultados-led .bruja{
+  width:300px;
+}
+.table-resultados {
+  margin: 30px 0;
+  border-collapse: collapse;
+  border-radius: 5px;
+  width: 100%;
+  border-width: 1px;
+  background-color: #fff;
+}
+.table-resultados caption {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 4px;
+  border-top-left-radius: 4px; border-top-right-radius: 4px;
+}
+
+.table-resultados th,.table-resultados td {
+  padding: 8px;
+  text-align: left;
+}
+.table-resultados tr {
+  padding: 9px 0;
+}
+.table-resultados th {
+  height: 35px;
+}
+.lapr .complementario, .elgr .clave, .lotu .caballo, .bono .complementario {
+  padding-left: 20px;
+}
+.circulo span {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: white;
+    font-weight: 600;
+  }
+
+.star{
+    background: url("../images/stars.svg") no-repeat scroll 0 0 transparent;
+    width: 48px;
+    height: 50px;
+    text-align: center;
+    color: #001367;
+    font-weight: bold;
+    display: inline-block;
+    float: none;
+    line-height: 2.25rem;
+    padding: 7px 0 0 0;
+    font-size: 19px;
+}
+.lapr .complementario span, .bono .complementario span {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: #008547;
+  background-color: rgba(0,133,71,0.31);
+  font-weight: 700;
+}
+.bono .complementario span{
+  background-color: rgba(118,136,40,0.31);
+  color: #7a8634;
+}
+.lotu .caballo span {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(236,105,32,0.31);
+  color: #d16929;
+  font-weight: 700;
+}
+.emil .circulo span {
+  background-color: #153f69;
+}
+.bono .circulo span {
+  background-color: #7a8634;
+}
+.lapr .circulo span{
+  background-color: #008547;
+}
+.elgr .circulo span{
+  background-color: #dc3f47;
+}
+.lotu .circulo span{
+  background-color: #d16929;
+}
+.qupl .circulo span{
+  background-color: #eab842;
+}
+.nombre-sorteo {
+  margin-bottom: 0px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #3378B3;
+}
+.lnac .col img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.primerpremio {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: -4px 0;
+}
+.lnac .premio {
+  display: inline-block;
+  margin:10px 0;
+  font-size: 29px;
+  color: #999;
+  font-weight: 700;
+}
+.dia-sorteo {
+  font-weight: 600;
+  margin: 0 10px;
+
+}
+.table-futbol {
+  width: 100%;
+  font-size: 13px;
+}
+.laqu .table-futbol tr.odd {
+  background-color: rgba(227,6,19,0.05);
+}
+.qgol .table-futbol tr.odd {
+  background-color: rgba(64,186,206,0.08);
+}
+.table-futbol td {
+  font-weight: 600;
+  padding:3px !important;
+}
+.center {
+  text-align: center
+}
+.imagejoker {
+  max-width: 50px;
+}
+.joker {
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-top: 3px;
+}

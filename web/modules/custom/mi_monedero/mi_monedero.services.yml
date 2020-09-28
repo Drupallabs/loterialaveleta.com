@@ -1,0 +1,6 @@
+services:
+  mi_monedero.monedero_manager:
+    class: Drupal\mi_monedero\MonederoManager
+    arguments: ["@entity_type.manager", "@database", "@current_user"]
+    tags:
+      - {name: laveleta}

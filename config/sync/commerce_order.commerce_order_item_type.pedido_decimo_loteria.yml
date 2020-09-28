@@ -1,0 +1,15 @@
+uuid: d1c59e49-ff7c-4582-86b4-e02e9495b8cb
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: digital_goods
+label: 'Pedido Decimo Loteria'
+id: pedido_decimo_loteria
+purchasableEntityType: commerce_product_variation
+orderType: pedido_loteria_nacional
+traits: {  }
+locked: false

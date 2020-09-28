@@ -1,0 +1,10 @@
+uuid: 2de23b24-1bb9-49c2-99aa-b272927198ea
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.decimo_cart
+label: 'Decimo Cart'
+targetEntityType: commerce_product
+cache: true

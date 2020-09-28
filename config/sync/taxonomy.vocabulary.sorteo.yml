@@ -1,0 +1,8 @@
+uuid: 81149a18-2372-40f1-a80b-f7da5efe8347
+langcode: es
+status: true
+dependencies: {  }
+name: Sorteo
+vid: sorteo
+description: 'Tipos de sorteo que hay en selae'
+weight: 0

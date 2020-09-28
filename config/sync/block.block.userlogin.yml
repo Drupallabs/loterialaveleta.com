@@ -1,0 +1,20 @@
+uuid: c27c75c1-3f0f-4b92-9426-fc41bf92cca5
+langcode: es
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - laveletav2
+id: userlogin
+theme: laveletav2
+region: login_header
+weight: -5
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,13 @@
+# Empresa menu items definition
+entity.empresa.collection:
+  title: "Empresas"
+  route_name: entity.empresa.collection
+  description: "List Empresa entities"
+  parent: veleta.admin_veleta
+  weight: 100
+
+empresa.admin.structure.settings:
+  title: "Empresa Configuracion"
+  description: "Configure Empresa entities"
+  route_name: empresa.settings
+  parent: veleta.admin_veleta.config

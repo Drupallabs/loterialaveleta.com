@@ -1,0 +1,11 @@
+uuid: 98ef05cb-667e-4e50-8e11-35918d953aa2
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sorteo
+id: taxonomy_term.sorteo
+target_entity_type_id: taxonomy_term
+target_bundle: sorteo
+default_langcode: site_default
+language_alterable: false

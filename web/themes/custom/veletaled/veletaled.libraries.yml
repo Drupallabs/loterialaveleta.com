@@ -1,0 +1,26 @@
+global:
+  css:
+    theme:
+      css/bootstrap-grid.min.css: {}
+      css/style.css: {}
+  js:
+    js/main.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - jquery_ui/core
+    - jquery_ui_effects/blind
+    - jquery_ui_effects/clip
+    - jquery_ui_effects/drop
+    - jquery_ui_effects/explode
+    - jquery_ui_effects/slide
+    - jquery_ui_effects/bounce
+    - jquery_ui_effects/fold
+    - jquery_ui_effects/fade
+    - jquery_ui_effects/highlight
+    - jquery_ui_effects/puff
+    - jquery_ui_effects/pulsate
+    - jquery_ui_effects/scale
+    - jquery_ui_effects/shake
+    - jquery_ui_effects/size
+    - jquery_ui_effects/transfer

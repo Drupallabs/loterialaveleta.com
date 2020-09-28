@@ -1,0 +1,673 @@
+<section id="results" class="section results">
+  <div class="wrapper">
+    <div class="section__main">
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+          <div class="grid grid--3-cols"> {% set lnac =  resultados.lnac|first %}
+            <article id="loteria-nacional" class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" alt="Lotería Nacional" class="game__logo">
+                </h3>
+                <p class="card__date">{{ lnac.dia_semana }}, {{ lnac.fecha_sorteo|date('d/m/Y') }}</p>
+              </header> 
+
+              <div class="card__main">
+                <p class="nombre-sorteo">{{ lnac.nombre }}</p>
+                <ul class="draw__list draw__list--lottery">
+                  <li class="draw__item draw__item--lottery">
+                    <span class="draw__text draw__text--lottery">Primer premio</span>
+                    <span class="draw__number--lottery">{{ lnac.primerpremio }}</span>
+             
+                  </li>
+                  <li class="draw__item draw__item--lottery">
+                    <span class="draw__text draw__text--lottery">Segundo premio</span>
+                    <span class="draw__number--lottery">{{ lnac.segundopremio }}</span>
+                  </li>
+                </ul>
+                 <img class="image-block" src="{{ resultados.lnac.0.decimo | image_style('medium') }}" />
+              </div>
+              <div class="card__footer">
+                <a  title="Jugar al Loteria Nacional en la Veleta" href="{{ path('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-lnac" class="pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+              <a title="Ultimos Resultados de Loteria Nacional" href="{{ url('resultados.loterianacional') }}">Sorteos Anteriores</a>
+            </article>
+            {% set emil =  resultados.emil|first %}
+            <article id="euromillones" class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/euromillones.svg" alt="Euromillones" class="game__logo">
+                </h3>
+                <p class="card__date">{{ emil.dia_semana }}, {{ emil.fecha_sorteo|date('d/m/Y') }}</p>
+              </header>
+              <div class="card__main">
+                <ul class="draw__list">
+                      <li class="draw__item"><span class="draw__number">{{ emil.bola1 }}</span></li>
+                      <li class="draw__item"><span class="draw__number">{{ emil.bola2 }}</span></li>
+                      <li class="draw__item"><span class="draw__number">{{ emil.bola3 }}</span></li>
+                      <li class="draw__item"><span class="draw__number">{{ emil.bola4 }}</span></li>
+                      <li class="draw__item"><span class="draw__number">{{ emil.bola5 }}</span></li>
+                      <li class="draw__item--break"></li>
+                            <li class="draw__item">
+                              <span class="draw__star icon-stargrade"><span>{{ emil.estrella1 }}</span></span>
+                              </li>
+                              <li class="draw__item">
+                               <span class="draw__star icon-stargrade"><span>{{ emil.estrella2 }}</span></span>
+                            </li>
+                </ul>
+              </div>
+              <div class="card__footer">
+                <a title="Jugar al Euromillones en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/EMIL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-emil" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+                <a title="Ultimos Resultados de Euromillones" href="{{ url('resultados.euromillones') }}">Sorteos Anteriores</a>
+              
+            </article>
+                {% set lapr =  resultados.lapr|first %}
+            <article class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/primitiva.svg" alt="La Primitiva" class="game__logo">
+                </h3>
+                <p class="card__date">{{ lapr.dia_semana }}, {{ lapr.fecha_sorteo|date('d/m/Y') }}</p>
+              </header>
+
+              <div class="card__main">
+                <ul class="draw__list">
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola1 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola2 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola3 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola4 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola5 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lapr.bola6 }}</span></li>
+                  <li class="draw__item--break"></li>
+                  <li class="draw__item">
+                    <span class="draw__number draw__number--secondary">{{ lapr.complementario }}</span>
+                    <span class="draw__text">Comp.</span>
+                  </li>
+                  <li class="draw__item">
+                    <span class="draw__number draw__number--secondary">{{ lapr.reintegro }}</span>
+                    <span class="draw__text">Reint.</span>
+                  </li>
+                </ul>
+                <div class="draw__extra">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/LogoJoker.svg" alt="Joker de la Primitiva" class="draw__extra-logo">
+                  <p class="draw__extra-number draw__extra-number--joker">{{ lapr.joker }}</p>
+                </div>
+              </div>
+              <div class="card__footer">
+                <a title="Jugar al La Primitiva en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LAPR" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-lapr" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+              <a title="Ultimos Resultados de La Primitiva" href="{{ url('resultados.primitiva') }}">Sorteos Anteriores</a>
+            </article>
+            {% set elgr =  resultados.elgr|first %}
+            <article class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/gordo.svg" alt="El Gordo de la Primitiva" class="game__logo">
+                </h3>
+                <p class="card__date">{{ elgr.dia_semana }}, {{ elgr.fecha_sorteo|date('d/m/Y') }}</p>
+              </header>
+              <div class="card__main">
+                <ul class="draw__list">
+                    <li class="draw__item"><span class="draw__number">{{ elgr.bola1 }}</span><li>
+                    <li class="draw__item"><span class="draw__number">{{ elgr.bola2 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ elgr.bola3 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ elgr.bola4 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ elgr.bola5 }}</span></li>
+
+                  <li class="draw__item--break"></li>
+                  <li class="draw__item">
+                    <span class="draw__number draw__number--secondary">{{ elgr.clave }}</span>
+                    <span class="draw__text">Reint.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="card__footer">
+                <a title="Jugar al Gordo de la Primitiva en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/ELGR" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-elgr" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+               <a title="Ultimos Resultados de El Gordo La Primitiva" href="{{ url('resultados.elgordo') }}">Sorteos Anteriores</a>
+            
+            </article>
+              {% set bono =  resultados.bono|first %}
+            <article class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/bonoloto.svg" alt="Bonoloto" class="game__logo">
+                </h3>
+                <p class="card__date">{{ bono.dia_semana }}, {{ bono.fecha_sorteo|date('d/m/Y') }}</p>
+              </header>
+              <div class="card__main">
+                <ul class="draw__list">
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola1 }}</span><li>
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola2 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola3 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola4 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola5 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ bono.bola6 }}</span></li>
+                  <li class="draw__item--break"></li>
+                  <li class="draw__item">
+                    <span class="draw__number draw__number--secondary">{{ bono.complementario }}</span>
+                    <span class="draw__text">Comp</span>
+                  </li>
+                  <li class="draw__item">
+                    <span class="draw__number draw__number--secondary">{{ bono.reintegro }}</span>
+                    <span class="draw__text">Reint</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="card__footer">
+                <a title="Jugar a la Bonoloto en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/BONO" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-bono" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+                <a title="Ultimos Resultados de Bonoloto" href="{{ url('resultados.bonoloto') }}">Sorteos Anteriores</a>
+             
+            </article>
+          </div>
+          </div>
+        </div>
+      </section>
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+            <div class="grid grid--lg-align-start">
+            	<article class="card draw">
+               {% set laqu =  resultados.laqu|first %}
+            		<header class="card__header">
+            			<h3 class="card__title">
+            				<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quiniela.svg" alt="La Quiniela" class="game__logo">
+            			</h3>
+            			<p class="card__date">{{ laqu.dia_semana }}, {{ laqu.fecha_sorteo|date('d/m/Y') }}</p>
+            		</header>
+            		<div class="card__main">
+            			<table class="draw__table">
+            				<thead>
+            					<tr>
+            						<th>
+            							<span>Local</span>
+            							<span>Visitante</span>
+            						</th>
+            						<th>Signo</th>
+            						<th>Res.</th>
+            					</tr>
+            				</thead>
+            				<tbody>
+             
+                    {{ laqu.partidos|jsonDecode }}
+                    {% for partido in laqu.partidos | jsonDecode %}
+                      <tr>
+                      <td>
+                        <span>{{ partido.local }}</span><span>{{ partido.visitante }}</span>
+                      </td>
+                      {% if partido.fecha %}
+                          <td colspan="2">{{ partido.fecha }}</td>
+                      {% else %}
+                        <td>{{ partido.signo }}</td>
+                        <td>{{ partido.marcador }}</td>
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+              				</tbody>
+            			</table>
+            		</div>
+            		<footer class="card__footer">
+            			<a title="Jugar a La Quiniela en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LAQU" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+            			<a href="#results-pop-up-laqu" class="card__btn-secondary pop-up-trigger">Detalle premios</a>
+            		</footer>
+                <a title="Ultimos Resultados de La Quiniela" href="{{ url('resultados.quiniela') }}">Sorteos Anteriores</a>
+            	</article>
+                {% set qgol = resultados.qgol|first %}
+            	<article class="card draw">
+            		<header class="card__header">
+            			<h3 class="card__title">
+            				<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quinigol.svg" alt="Quinigol" class="game__logo">
+            			</h3>
+            			<p class="card__date">{{ qgol.dia_semana }}, {{ qgol.fecha_sorteo|date('d/m/Y') }}</p>
+            		</header>
+            		<div class="card__main">
+            			<table class="draw__table">
+            				<thead>
+            					<tr>
+            						<th>
+            							<span>Local</span><span>Visitante</span>
+            						</th>
+            						<th>Signo</th>
+            						<th>Res.</th>
+            					</tr>
+            				</thead>
+            				<tbody>
+                    {{ qgol.partidos|jsonDecode }}
+                    {% for partido in qgol.partidos | jsonDecode %}
+                      <tr>
+                      <td>
+                        <span>{{ partido.local }}</span><span>{{ partido.visitante }}</span>
+                      </td>
+                      {% if partido.fecha %}
+                          <td colspan="2">{{ partido.fecha }}</td>
+                      {% else %}
+                        <td>{{ partido.signo }}</td>
+                        <td>{{ partido.marcador }}</td>
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+            				</tbody>
+            			</table>
+            		</div>
+            		<footer class="card__footer">
+            			<a title="Jugar al Quinigol en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/QGOL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+            			<a href="#results-pop-up-qgol" class="card__btn-secondary pop-up-trigger">Detalle premios</a>
+            		</footer>
+                <a title="Ultimos Resultados de Quinigol" href="{{ url('resultados.quinigol') }}">Sorteos Anteriores</a>
+           
+            	</article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+            <div class="grid grid--2-cols grid--lg-align-start"><!-- LOTOTURF -->
+            {% set lotu =  resultados.lotu|first %}
+              <article class="card draw">
+                <header class="card__header">
+                  <h3 class="card__title">
+                    <img src="{{ base_path }}themes/custom/laveletav2/images/logos/lototurf.svg" alt="Lototurf" class="game__logo">
+                  </h3>
+                  <p class="card__date">{{ lotu.dia_semana }}, {{ lotu.fecha_sorteo|date('d/m/Y') }}</p>
+                </header>
+                <div class="card__main">
+                  <ul class="draw__list">
+                                      <li class="draw__item"><span class="draw__number">{{ lotu.bola1 }}</span><li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola2 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola3 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola4 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola5 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola6 }}</span></li>
+                    <li class="draw__item--break"></li>
+                    <li class="draw__item">
+                      <span class="draw__number draw__number--secondary">{{ lotu.caballo }}</span>
+                      <span class="draw__text">Caballo</span>
+                    </li>
+                    <li class="draw__item">
+                      <span class="draw__number draw__number--secondary">{{ lotu.reintegro }}</span>
+                      <span class="draw__text">Reintegro</span>
+                    </li>
+                  </ul>
+                </div>
+                <footer class="card__footer">
+                  <a title="Jugar al Lototurf en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LOTU" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                  <a href="#results-pop-up-lotu" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+                </footer>
+                <a title="Ultimos Resultados de Lototurf" href="{{ url('resultados.lototurf') }}">Sorteos Anteriores</a>
+           
+              </article>
+              {% set qupl =  resultados.qupl|first %}
+              <article class="card draw">
+                <header class="card__header">
+                  <h3 class="card__title">
+                    <img src="{{ base_path }}themes/custom/laveletav2/images/logos/quintuple.svg" alt="Quintuple Plus" class="game__logo">
+                  </h3>
+                  <p class="card__date">{{ qupl.dia_semana }}, {{ qupl.fecha_sorteo|date('d/m/Y') }}</p>
+                </header>
+                <div class="card__main">
+                  <table class="draw__table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span>Carrera</span>
+                        </th>
+                        <th>Ganador</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                             <td><span>Carrera 1</span></td><td>{{ qupl.bola1 }}</td>
+                          </tr>
+                          <tr>
+                             <td><span>Carrera 2</span></td><td>{{ qupl.bola2 }}</td>
+                          </tr>
+                          <tr>
+                             <td><span>Carrera 3</span></td><td>{{ qupl.bola3 }}</td>
+                          </tr>
+                          <tr>
+                             <td><span>Carrera 4</span></td><td>{{ qupl.bola4 }}</td>
+                          </tr>
+                          <tr>
+                             <td><span>Carrera 5</span></td><td>{{ qupl.bola5 }}</td>
+                          </tr>
+                        <tr><td><span>Carrera 5 (2º)</span></td><td>{{ qupl.bola6 }}</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <footer class="card__footer">
+                  <a title="Jugar al Quintuple Plus en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/QUPL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                  <a href="#results-pop-up-qupl" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+                </footer>
+                 <a title="Ultimos Resultados de Quintuple Plus" href="{{ url('resultados.quintupleplus') }}">Sorteos Anteriores</a>
+                        </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+    </div>
+  </div>
+
+  <aside id="results-pop-up-lnac" class="pop-up"> <!-- detalle loteria nacional -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+           {% set escrutinio = lnac.escrutinio | unserialize %}
+            <table class="table"><thead>
+                <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+              </thead>
+              <tbody>
+                        {% for escru in escrutinio %}
+                                {% for e in escru %}
+              <tr>
+                  <td>{{ e.tipo }}</td>
+                  <td>{{ e.premio|number_format }}</td>
+                  <td>{{ e.ganadores }}</td>
+              </tr>
+               {% endfor %}{% endfor %}
+              </tbody></table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+
+  <aside id="results-pop-up-emil" class="pop-up"> <!-- detalle euromillones -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+                     {% set escrutinio = emil.escrutinio | unserialize %}
+                              
+                              <table class="table"><thead>
+                                  <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th><th>Ganadores EU</th></tr>
+                                </thead>
+                                <tbody>
+                                {% for escru in escrutinio %}
+                                {% for e in escru %}
+                                <tr>
+                                    <td>{{ e.tipo }}</td>
+                                    <td>{{ e.premio|number_format }}</td>
+                                    <td>{{ e.ganadores|number_format }}</td>
+                                    <td>{{ e.ganadores_eu|number_format }}</td>
+                                </tr>
+                                {% endfor %}{% endfor %}
+                                </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.emil.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.emil.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.emil.0.recaudacion|number_format }}</td>
+                  <th>Premios</th><td>{{ resultados.emil.0.premios|number_format }}</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-lapr" class="pop-up">
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+                            {% set escrutinio = lapr.escrutinio | unserialize %}
+                              
+                              <table class="table"><thead>
+                                  <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                                </thead>
+                                <tbody>
+                                {% for escru in escrutinio %}
+                                {% for e in escru %}
+                                <tr>
+                                    <td>{{ e.tipo }}</td>
+                                    <td>{{ e.premio|number_format }}</td>
+                                    <td>{{ e.ganadores|number_format }}</td>
+                                </tr>
+                                {% endfor %}{% endfor %}
+                                </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.lapr.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.lapr.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.lapr.0.recaudacion|number_format }}</td>
+                  <th>Premios</th><td>{{ resultados.lapr.0.premios|number_format }}</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-elgr" class="pop-up">
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+                   {% set escrutinio = elgr.escrutinio | unserialize %}
+                              <table class="table"><thead>
+                                  <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                                </thead>
+                                <tbody>
+                                {% for escru in escrutinio %}
+                                {% for e in escru %}
+                                <tr>
+                                    <td>{{ e.tipo }}</td>
+                                    <td>{{ e.premio|number_format }}</td>
+                                    <td>{{ e.ganadores|number_format }}</td>
+                                </tr>
+                                {% endfor %}{% endfor %}
+                                </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.elgr.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.elgr.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.elgr.0.recaudacion|number_format }}</td>
+                  <th>Premios</th><td>{{ resultados.elgr.0.premios|number_format }}</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-bono" class="pop-up"> <!-- BONOLOTO -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+                     {% set escrutinio = bono.escrutinio | unserialize %}
+                              <table class="table"><thead>
+                                  <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                                </thead>
+                                <tbody>
+                                {% for escru in escrutinio %}
+                                {% for e in escru %}
+                                <tr>
+                                    <td>{{ e.tipo }}</td>
+                                    <td>{{ e.premio|number_format }}</td>
+                                    <td>{{ e.ganadores|number_format }}</td>
+                                </tr>
+                                {% endfor %}{% endfor %}
+                                </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.bono.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.bono.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.bono.0.recaudacion|number_format }}€</td>
+                  <th>Premios</th><td>{{ resultados.bono.0.premios|number_format }}€</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-laqu" class="pop-up"> <!-- QUINIELA -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+            <table class="table"><thead>
+                <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+              </thead>
+              <tbody>
+             {% set escrutinio = laqu.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+              <tr>
+                  <td>{{ e.tipo }}</td>
+                  <td>{{ e.categoria }}</td>
+                  <td>{{ e.premio|number_format }}</td>
+                  <td>{{ e.ganadores|number_format }}</td>
+              </tr>
+              {% endfor %}{% endfor %}
+              </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.laqu.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.laqu.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.laqu.0.recaudacion|number_format }}€</td>
+                  <th>Premios</th><td>{{ resultados.laqu.0.premios|number_format }}€</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-qgol" class="pop-up"> <!-- QUINIGOL -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+            <table class="table"><thead>
+                <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+              </thead>
+             {% set escrutinio = laqu.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+              <tr>
+                  <td>{{ e.tipo }}</td>
+                  <td>{{ e.categoria }}</td>
+                  <td>{{ e.premio|number_format }}</td>
+                  <td>{{ e.ganadores|number_format }}</td>
+              </tr>
+              {% endfor %}{% endfor %}
+              </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.qgol.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.qgol.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.qgol.0.recaudacion|number_format }}€</td>
+                  <th>Premios</th><td>{{ resultados.qgol.0.premios|number_format }}€</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-lotu" class="pop-up"> <!-- LOTOTURF -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+            <table class="table"><thead>
+                <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+              </thead>
+              <tbody>
+                       {% set escrutinio = lotu.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+              <tr>
+                  <td>{{ e.tipo }}</td>
+                  <td>{{ e.categoria }}</td>
+                  <td>{{ e.premio|number_format }}</td>
+                  <td>{{ e.ganadores|number_format }}</td>
+              </tr>
+              {% endfor %}{% endfor %}
+              </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.lotu.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.lotu.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.lotu.0.recaudacion|number_format }}€</td>
+                  <th>Premios</th><td>{{ resultados.lotu.0.premios|number_format }}€</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+  <aside id="results-pop-up-qupl" class="pop-up"> <!-- QUINTUPLE PLUS -->
+    <div class="pop-up__wrapper"><div class="pop-up__content">
+      <article class="card">
+          <header class="card__header"></header>
+          <div class="card__main">
+            <table class="table"><thead>
+                <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+              </thead>
+              <tbody>
+                       {% set escrutinio = qupl.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+              <tr>
+                  <td>{{ e.tipo }}</td>
+                  <td>{{ e.categoria }}</td>
+                  <td>{{ e.premio|number_format }}</td>
+                  <td>{{ e.ganadores|number_format }}</td>
+              </tr>
+              {% endfor %}{% endfor %}
+              </tbody></table>
+              <table class="tabla-recaudacion">
+                <tr>
+                  <th>Apuestas Recibidas</th><td>{{ resultados.qupl.0.apuestas|number_format }}</td>
+                  <th>Bote Ofrecido</th><td>{{ resultados.qupl.0.premio_bote|number_format }}€</td>
+                </tr>
+                <tr>
+                  <th>Recaudaci&oacute;n</th><td>{{ resultados.qupl.0.recaudacion|number_format }}€</td>
+                  <th>Premios</th><td>{{ resultados.qupl.0.premios|number_format }}€</td>
+                </tr>
+              </table>
+          </div>
+        </article>
+      </div>
+      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+    </div>
+  </aside>
+</section>

@@ -1,0 +1,27 @@
+uuid: 416984c5-e0a9-4b93-8698-52ba1ddb6f95
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lista_oficial
+    - node.type.sorteo
+  module:
+    - file
+id: node.sorteo.field_lista_oficial
+field_name: field_lista_oficial
+entity_type: node
+bundle: sorteo
+label: 'Lista Oficial'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'listas-oficiales/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

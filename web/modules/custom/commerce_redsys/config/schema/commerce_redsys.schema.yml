@@ -1,0 +1,12 @@
+commerce_payment.commerce_payment_gateway.plugin.offsite_redsys:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    signatureversion:
+      type: string
+      label: 'Ds_SignatureVersion'
+    url_pruebas:
+      type: string
+      label: 'URL Pruebas'
+    url_real:
+      type: string
+      label: 'URL real'

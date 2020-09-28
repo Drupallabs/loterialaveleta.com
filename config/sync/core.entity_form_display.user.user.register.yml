@@ -1,0 +1,118 @@
+uuid: 46a989a7-e94b-4e20-98d2-7d2a6b964a5b
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.register
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_apellidos
+    - field.field.user.user.field_codigo_postal
+    - field.field.user.user.field_domicilio
+    - field.field.user.user.field_fecha_nacimiento
+    - field.field.user.user.field_indentificador
+    - field.field.user.user.field_nombre
+    - field.field.user.user.field_numero_documento
+    - field.field.user.user.field_poblacion
+    - field.field.user.user.field_provincia
+    - field.field.user.user.field_telefono
+    - field.field.user.user.user_picture
+  module:
+    - commerce_store
+    - user
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.register
+targetEntityType: user
+bundle: user
+mode: register
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  contact:
+    weight: 5
+    region: content
+  field_apellidos:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_codigo_postal:
+    weight: 9
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_domicilio:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_fecha_nacimiento:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: commerce_store_datetime
+    region: content
+  field_indentificador:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_nombre:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_numero_documento:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_poblacion:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_provincia:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_telefono:
+    weight: 10
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  commerce_remote_id: true
+  customer_profiles: true
+  langcode: true
+  language: true
+  path: true
+  timezone: true
+  user_picture: true

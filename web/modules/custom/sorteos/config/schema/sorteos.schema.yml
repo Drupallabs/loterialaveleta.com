@@ -1,0 +1,7 @@
+views.field.sorteo_importer:
+  type: views_field
+  label: "Sorteo Importer"
+  mapping:
+    importer:
+      type: string
+      label: "Which importer label to use: entity or plugin"

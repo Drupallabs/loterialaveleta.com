@@ -1,0 +1,84 @@
+<section id="results" class="section results">
+  <div class="wrapper">
+    <div class="section__main">
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+          <div class="grid grid--3-cols">
+          {% for lotu in lotus %}
+              <article class="card draw">
+                <header class="card__header">
+                  <h3 class="card__title">
+                    <img src="{{ base_path }}themes/custom/laveletav2/images/logos/lototurf.svg" alt="Lototurf" class="game__logo">
+                  </h3>
+                  <p class="card__date">{{ lotu.dia_semana }}, {{ lotu.fecha_sorteo|date('d/m/Y') }}</p>
+                </header>
+                <div class="card__main">
+             <ul class="draw__list">
+                                      <li class="draw__item"><span class="draw__number">{{ lotu.bola1 }}</span><li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola2 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola3 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola4 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola5 }}</span></li>
+                    <li class="draw__item"><span class="draw__number">{{ lotu.bola6 }}</span></li>
+                    <li class="draw__item--break"></li>
+                    <li class="draw__item">
+                      <span class="draw__number draw__number--secondary">{{ lotu.caballo }}</span>
+                      <span class="draw__text">Caballo</span>
+                    </li>
+                    <li class="draw__item">
+                      <span class="draw__number draw__number--secondary">{{ lotu.reintegro }}</span>
+                      <span class="draw__text">Reintegro</span>
+                    </li>
+                  </ul>
+                </div>
+                <footer class="card__footer">
+                  <a title="Jugar al Lototurf en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LOTU" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                  <a href="#results-pop-up-lotu-{{ loop.index }}" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+                </footer>
+              </article>
+
+          <aside id="results-pop-up-lotu-{{ loop.index }}" class="pop-up"> <!-- LOTOTURF -->
+            <div class="pop-up__wrapper"><div class="pop-up__content">
+              <article class="card">
+                  <header class="card__header"></header>
+                  <div class="card__main">
+                    <table class="table"><thead>
+                        <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                      </thead>
+                      <tbody>
+                                       {% set escrutinio = lotu.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+                      <tr>
+                          <td>{{ e.tipo }}</td>
+                          <td>{{ e.categoria }}</td>
+                          <td>{{ e.premio|number_format }}</td>
+                          <td>{{ e.ganadores|number_format }}</td>
+                      </tr>
+                      {% endfor %} {% endfor %}
+                      </tbody></table>
+                      <table class="tabla-recaudacion">
+                        <tr>
+                          <th>Apuestas Recibidas</th><td>{{ lotu.apuestas|number_format }}</td>
+                          <th>Bote Ofrecido</th><td>{{ lotu.premio_bote|number_format }}€</td>
+                        </tr>
+                        <tr>
+                          <th>Recaudaci&oacute;n</th><td>{{ lotu.recaudacion|number_format }}€</td>
+                          <th>Premios</th><td>{{ lotu.premios|number_format }}€</td>
+                        </tr>
+                      </table>
+                  </div>
+                </article>
+              </div>
+              <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+            </div>
+          </aside>
+          {% endfor %}
+          </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

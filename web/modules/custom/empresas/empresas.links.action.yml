@@ -1,0 +1,5 @@
+entity.empresa.add_form:
+  route_name: entity.empresa.add_form
+  title: "Nueva Empresa"
+  appears_on:
+    - entity.empresa.collection

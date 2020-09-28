@@ -1,0 +1,55 @@
+<footer class="site-footer">
+    <section class="site-footer__menus">
+      <div class="wrapper">
+        <nav class="site-footer__menu menu">
+          <h3 class="menu__title">Navegación</h3>
+          <ul class="menu__list">
+            <li class="menu__item"><a title="Pagina de usuario" href="{{ url('user.page') }}">Perfil de Usuario</a></li>
+            <li class="menu__item"><a title="Resultados de Loterias y apuestas" href="{{ url('resultados.content') }}">Resultados</a></li>
+            <li class="menu__item"><a title="Blog de la veleta" href="{{ url('view.blog.page_1') }}">Blog</a></li>
+            <li class="menu__item"><a title="Contacta con nosotros" href="{{ url('contacto.form') }}">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__menu menu">
+          <h3 class="menu__title">Información</h3>
+          <ul class="menu__list">
+            <li class="menu__item"><a title="Aviso Legal" href="{{ path('entity.node.canonical', {'node': 6}) }}">Aviso Legal</a></li>
+            <li class="menu__item"><a title="Texto de Politica de Privacidad" href="{{ path('entity.node.canonical', {'node': 7}) }}">Política de Privacidad</a></li>
+            <li class="menu__item"><a title="Texto de Politica de Compras" href="{{ path('entity.node.canonical', {'node': 615}) }}">Política de Compras</a></li>
+            <li class="menu__item"><a title="Texto de Politica de Cookies" href="{{ path('entity.node.canonical', {'node': 614 }) }}">Política de Cookies</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__menu menu">
+          <h3 class="menu__title">&nbsp;</h3>
+          <ul class="menu__list">
+            <li class="menu__item"><a href="https://www.loteriasyapuestas.es/es/centro-de-ayuda/informacion-sobre/jugar-responsable" target="_blank">Juego Responsable</a></li>
+            <li class="menu__item"><a href="http://www.jugarbien.es/" target="_blank">Jugar Bien</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <section class="full-size site-footer__logos">
+      <div class="wrapper">
+        <div class="logos">
+          <h3 class="logos__title">Sitio web seguro</h3>
+          <img src="{{ base_path }}themes/custom/laveletav2/images/credit-cards.svg" alt="tarjeta de credito" class="logos__image">
+        </div>
+        <div class="logos">
+          <h3 class="logos__title">Juego responsable</h3>
+          <img src="{{ base_path }}themes/custom/laveletav2/images/warning.svg" alt="Peligro menores" class="logos__image">
+          <img src="{{ base_path }}themes/custom/laveletav2/images/major18.svg" alt="Solo para mayores de 18 años" class="logos__image">
+          <a href="http://www.juegoseguro.es/" title="Juego Seguro" taget="_blank">
+            <img src="{{ base_path }}themes/custom/laveletav2/images/juego_seguro.svg" alt="" class="logos__image">
+          </a>
+          <a href="http://www.jugarbien.es/" title="Jugar Bien" target="_blank">
+            <img src="{{ base_path }}themes/custom/laveletav2/images/jugar_bien.svg" alt="" class="logos__image">
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="site-footer__copyright">
+      <div class="wrapper">
+        <p class="copyright">Loteria La Veleta - Av. de la Institucion Libre de Enseñanza 1, 28037 Madrid - Espa&ntilde;a - <a href="mailto:hola&commat;loterialaveleta&period;com">hola&commat;loterialaveleta&period;com</a></p>
+      </div>
+    </section>
+</footer>

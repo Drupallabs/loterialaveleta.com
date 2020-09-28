@@ -1,0 +1,17 @@
+name: La Veleta
+type: theme
+description: Tema para loterialaveleta.com
+core: 8.x
+libraries:
+  - laveleta/global
+
+regions:
+  header: Header
+  carrito: Carrito de Compra Header
+  primary_menu: Primary menu_u
+  slideshow: Slideshow
+  home: Home Horizontal
+  content: Content
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  footer: Footer

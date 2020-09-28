@@ -1,0 +1,23 @@
+uuid: deae4931-ec3f-4d1b-8a6f-977a6415572f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_num_sorteo
+    - node.type.sorteo
+id: node.sorteo.field_num_sorteo
+field_name: field_num_sorteo
+entity_type: node
+bundle: sorteo
+label: 'Numero Sorteo'
+description: 'Numero de Sorteo de Loteria Nacional'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,89 @@
+<div class="company-hero">
+	<div class="wrapper">
+		<div class="company-hero__texts">
+			<h1 class="company-hero__title">Lotería para empresas La Veleta</h1>
+			<p class="company-hero__excerpt">Simplifica la gestión, reserva y compra de la Lotería de Navidad de tu empresa con nuestro servicio de Lotería para Empresas</p>
+			<div class="company-hero__buttons">
+				<a href="#register" class="btn btn--primary">Contratar</a>
+				<a href="{{ url('empresas.empresas_acceso') }}" class="btn btn--outline btn--negative">Acceder</a>
+			</div>
+		</div>
+		<img src="{{ base_path }}themes/custom/laveletav2/images/bg-company.png" alt="Lotería para empresas" class="company-hero__image">
+	</div>
+</div>
+<section id="empresas" class="section company">
+	<div class="wrapper">
+		<header class="section__header">
+			<h2 class="section__title company__title">¿Cómo funciona la lotería para empresas?</h2>
+		</header>
+
+		<div class="section__main">
+			<section class="how-it-works">
+				<ul class="how-it-works__list">
+					<li class="how-it-works__item">
+						<h3 class="how-it-works__title">Reserva tu número o serie</h3>
+					 <p class="how-it-works__text">Tenemos numeros completos para tu empresa&nbsp;</p>
+					</li>
+					<li class="how-it-works__item">
+						<h3 class="how-it-works__title">Accede a tu web personalizada</h3>
+						<p class="how-it-works__text">Los empleados acceden a una seccion personalizada de esta pagina para comprar online, lo numeros reservados&nbsp;</p>
+					</li>
+					<li class="how-it-works__item">
+						<h3 class="how-it-works__title">Cada empleado puede reservar sus décimos o participaciones</h3>
+						<p class="how-it-works__text">Pueden comprar los decimos que desee&nbsp;</p>
+					</li>
+					<li class="how-it-works__item">
+						<h3 class="how-it-works__title">Compra los décimos</h3>
+						<p class="how-it-works__text">Los empeleados hacen la compra y reciben un décimo virtual por email.&nbsp;</p>
+      		</li>
+					<li class="how-it-works__item">
+						<h3 class="how-it-works__title">Cobra tu premio</h3>
+						<p class="how-it-works__text">Si ha sido premiado puedes cobrarlo en nuestra administracion.&nbsp;</p>
+					</li>
+				</ul>
+
+				<div class="how-it-works__aside">
+				<figure class="how-it-works__video">
+					<img src="{{ base_path }}themes/custom/laveletav2/images/sabemos-sopla-suerte.png" alt="Sabemos hacia donde sopla la suerte" class="">
+				</figure>
+					<blockquote class="how-it-works__claim">
+						<p>Gestiona la lotería de tu empresa de forma fácil con La Veleta</p>
+					</blockquote>
+				</div>
+			</section>
+			<section id="register" class="full-size register">
+				<div class="wrapper">
+					<h3 class="register__title">Inscribirse en el servicio para empresas</h3>
+					<div class="register__grid">
+						<div class="register__image">
+
+						</div>
+						<div class="register__form">
+								<div class="form__item">
+									{{ form.nombre }}
+								</div>
+								<div class="form__item">
+									{{ form.empresa }}
+								</div>
+								<div class="form__item">
+									{{ form.email }}
+								</div>
+								<div class="form__item">
+						        {{ form.telefono }}
+								</div>
+								<div class="form__item form__item--textarea">
+									{{ form.comentarios }}
+								</div>
+								<div class="form__item form__item--buttons">
+									<button type="submit" class="btn btn--primary">Contacta con nosotros</button>
+								</div>
+						</div>
+					</div>
+          {{ form.form_build_id }}
+          {{ form.form_token }}
+          {{ form.form_id }}
+				</div>
+			</section>
+		</div>
+	</div>
+</section>

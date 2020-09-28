@@ -1,0 +1,23 @@
+uuid: ef551e52-1a45-4a6d-b017-97c590f737e1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.slideshow
+  module:
+    - text
+id: node.slideshow.body
+field_name: body
+entity_type: node
+bundle: slideshow
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

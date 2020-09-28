@@ -1,0 +1,32 @@
+<?php
+/**
+* Implements hook_mail().
+*/
+function commerce_redsys_mail($key, &$message, $params) {
+ $options = array(
+   'langcode' => $message['langcode'],
+ );
+ $precio = number_format((integer)$params['amount']/100, 2, ',', '.');
+ if($params['response'] == '0000'){
+   $mensaje = 'Transacción autorizada para pagos y preautorizaciones';
+ } else { $mensaje = 'ERROR - Pago no recibido'; }
+ $body = 'Hola!!
+    El TPV Virtual de loterialaveletea.com devuelve la siguiente informacion
+    Numero de pedido: '.$params['order'].'
+    Total euros: '.$precio.'
+    Fecha: '.$params['date'].'
+    Hora: '.$params['hour'].'
+    Codigo de Respuesta: '.$params['response'].': '.$mensaje.'
+    Pago seguro: '.$params['securepayment'].'
+    Tipo tarjeta: '.$params['cardtype'].'
+    Marca de tarjeta: '.$params['cardbrand'].'
+ ';
+ switch ($key) {
+   case 'pago_recibido':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Notificacion del TPV Virtual: @order', array('@order' => $params['order']), $options);
+     $message['body'][] = $body;
+     break;
+ }
+}
+

@@ -1,0 +1,37 @@
+services:
+  veleta.twig_extension.quitaParentesis:
+    arguments: ['@renderer']
+    class: Drupal\veleta\TwigExtension\QuitaParentesis
+    tags:
+      - { name: twig.extension }
+  veleta.twig_extension.unserialize:
+    arguments: ['@renderer']
+    class: Drupal\veleta\TwigExtension\Unserialize
+    tags:
+      - { name: twig.extension }
+  veleta.twig_extension.jsonDecode:
+    arguments: ['@renderer']
+    class: Drupal\veleta\TwigExtension\JsonDecode
+    tags:
+      - { name: twig.extension }
+  veleta.twig_extension_botes:
+    arguments: ['@renderer']
+    class: Drupal\veleta\TwigExtension\DiasBote
+    tags:
+      - { name: twig.extension }
+  theme.negotiator.veleta:
+    class: Drupal\veleta\Theme\VeletaNegotiator
+    tags:
+      - { name: theme_negotiator, priority: 0 }
+  veleta.logger.channel.veleta:
+    parent: logger.channel_base
+    arguments: ['veleta']
+  veleta.logger.veleta:
+    class: Drupal\veleta\Logger\MailLogger
+    arguments: ['@logger.log_message_parser', '@config.factory']
+    tags:
+      - { name: logger }
+  veleta_event_subscriber:
+    class: Drupal\veleta\EventSubscriber\VeletaEventSubscriber
+    tags:
+        - { name: event_subscriber }

@@ -1,0 +1,16 @@
+# Product entity task items
+entity.sorteo.canonical:
+  route_name: entity.sorteo.canonical
+  base_route: entity.sorteo.canonical
+  title: "Ver"
+
+entity.sorteo.edit_form:
+  route_name: entity.sorteo.edit_form
+  base_route: entity.sorteo.canonical
+  title: "Editar"
+
+entity.sorteo.delete_form:
+  route_name: entity.sorteo.delete_form
+  base_route: entity.sorteo.canonical
+  title: Borrar
+  weight: 10

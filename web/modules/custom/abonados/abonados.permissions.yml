@@ -1,0 +1,54 @@
+administer abonados configuration:
+  title: "Administer abonados configuration"
+  description: "Optional description."
+  restrict access: true
+
+abonarse numero:
+  title: "Abonarse a un sorteo"
+
+administer commerce product abonado:
+  title: "Administer commerce product abonado"
+  restrict access: TRUE
+
+add abonado entities:
+  title: "Create new Abonado entities"
+
+administer abonado entities:
+  title: "Administer Abonado entities"
+  description: "Allow to access the administration form to configure Abonado entities."
+  restrict access: true
+
+delete abonado entities:
+  title: "Delete Abonado entities"
+
+edit abonado entities:
+  title: "Edit Abonado entities"
+
+view enabled abonado entities:
+  title: "View enabled Abonado entities"
+
+view disabled abonado entities:
+  title: "View disabled Abonado entities"
+#subscribe abonado:
+#  title: 'Subscribe a abonado'
+
+add abonado entities:
+  title: 'Create new Abonado entities'
+
+administer abonado entities:
+  title: 'Administer Abonado entities'
+  description: 'Allow to access the administration form to configure Abonado entities.'
+  restrict access: true
+
+delete abonado entities:
+  title: 'Delete Abonado entities'
+
+edit abonado entities:
+  title: 'Edit Abonado entities'
+
+view published abonado entities:
+  title: 'View published Abonado entities'
+
+view unpublished abonado entities:
+  title: 'View unpublished Abonado entities'
+

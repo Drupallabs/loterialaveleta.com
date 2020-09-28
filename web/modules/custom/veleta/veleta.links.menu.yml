@@ -1,0 +1,13 @@
+veleta.admin_veleta:
+  title: 'La Veleta'
+  route_name: 'veleta.admin'
+  parent: 'system.admin'
+  description: 'Administer and configure La Veleta.'
+  weight: -9
+
+veleta.admin_veleta.config:
+  title: 'Configuracion'
+  route_name: 'veleta.config'
+  parent: 'veleta.admin_veleta'
+  description: 'Configure La Veleta.'
+  weight: 2

@@ -1,0 +1,23 @@
+uuid: f924e8bf-59c9-429f-aecf-60d1fb613d61
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_premios
+    - node.type.premios
+id: node.premios.field_total_premios
+field_name: field_total_premios
+entity_type: node
+bundle: premios
+label: 'Total Premios'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

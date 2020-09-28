@@ -1,0 +1,19 @@
+uuid: 7784262c-7d9b-4e8c-82d1-51410baacf5d
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_game_id
+    - node.type.sorteo
+id: node.sorteo.field_game_id
+field_name: field_game_id
+entity_type: node
+bundle: sorteo
+label: 'Game id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

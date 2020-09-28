@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <article class="card draw">
+  primitiva
+    <span>{{ sorteo.id_sorteo }}</span>
+    <span>{{ sorteo.nombre }}</span>
+    <span>{{ sorteo.fecha }}</span>
+    <span>{{ sorteo.dia_semana }}</span>
+    <span>{{ sorteo.field_combinacion_primitiva }}</span>
+    <span>{{ sorteo.premio_bote }}</span>
+    <span>{{ sorteo.apuestas }}</span>
+    <span>{{ sorteo.recaudacion }}</span>
+    <span>{{ sorteo.premios }}</span>
+    <span>{{ sorteo.fondo_bote }}</span>
+    <span>{{ sorteo.field_bola1 }}</span>
+    <span>{{ sorteo.field_bola2 }}</span>
+    <span>{{ sorteo.field_bola3 }}</span>
+    <span>{{ sorteo.field_bola4 }}</span>
+    <span>{{ sorteo.field_bola5 }}</span>
+    <span>{{ sorteo.field_bola6 }}</span>
+    <span>{{ sorteo.field_complementario }}</span>
+    <span>{{ sorteo.field_reintegro }}</span>
+    <span>{{ sorteo.field_joker }}</span>
+    <h6>Escrutinio</h6>
+    <span>{% for escru in sorteo.escrutinio %}
+         {% for es in escru %}
+         <p> {{ es.tipo }} - {{ es.categoria }} - {{ es.premio }} - {{ es.ganadores }}</p>
+        {% endfor %}
+        {% endfor %}
+    </span>
+    <h6>Escrutinio Joker</h6>
+    <span>{% for escru in sorteo.escrutinio_joker %}
+         {% for es in escru %}
+         <p> {{ es.tipo }} - {{ es.categoria }} - {{ es.premio }} - {{ es.ganadores }}</p>
+        {% endfor %}
+        {% endfor %}
+    </span>
+  </article>
+</div>

@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+<aside class="sidebar">
+		<div class="side">
+				<h2>Categorias Blog</h2>
+						<ul class="list">
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 8 }) }}">Loteria Nacional<i class="icon-check"></i></a></li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 9 }) }}">Loteria Navidad<i class="icon-check"></i> </li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 11 }) }}">Primitiva<i class="icon-check"></i></li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 12 }) }}">Bonoloto<i class="icon-check"></i></li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 10 }) }}">Euromillones<i class="icon-check"></i></li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 13 }) }}">Quiniela<i class="icon-check"></i></li>
+								<li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': 14 }) }}">Quinigol<i class="icon-check"></i></li>
+					</ul>
+			</div>
+</aside>

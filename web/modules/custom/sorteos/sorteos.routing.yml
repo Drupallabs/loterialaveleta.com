@@ -1,0 +1,10 @@
+sorteos.proximosorteo:
+  path: "/sorteos/proximosorteo/{gameid}"
+  defaults:
+    _controller: '\Drupal\sorteos\Controller\SorteosController::proximoSorteo'
+  requirements:
+    _access: "TRUE"
+  options:
+    parameters:
+      gameid:
+        type: string

@@ -1,0 +1,179 @@
+<div class="container-fluid">
+  <div class="row">
+     <div class="col-lg-4 collogo4">
+       <img alt="Logotipo Loteria La Veleta" src="{{ base_path }}themes/custom/veletaled/images/laveleta-blanco2.png" />
+     
+        <table class="table-resultados laqu">
+          <caption>QUINIELA</caption>
+           <tr>
+              <td>
+                  <table class="table-futbol">
+                     <tbody>
+                     {% for e in resultados.laqu.0.partidos %}
+                     <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                           <td>{{ e.local }}</td>
+                           <td>{{ e.visitante }}</td>
+                           <td class="center">{{ e.signo }}</td>
+                           <td class="center">{{ e.marcador }}</td>
+                     </tr>
+                     {% endfor %}
+                     </tbody></table>
+              </td>
+           </tr> 
+        </table>
+        <table class="table-resultados qgol">
+          <caption>QUINIGOL</caption>
+           <tr>
+              <td>
+                  <table class="table-futbol">
+                  <tbody>
+                  {% for e in resultados.qgol.0.partidos %}
+                  <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                           <td>{{ e.local }}</td>
+                           <td>{{ e.visitante }}</td>
+                           <td class="center">{{ e.signo }}</td>
+                           <td class="center">{{ e.marcador }}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody></table>
+              </td>
+           </tr> 
+        </table>
+     </div>
+    
+     <div class="col-lg-4">
+        <table class="table-resultados lnac">
+          <caption>LOTERIA NACIONAL</caption>
+           {% for res in resultados.lnac %}
+           <tr>
+              <td>
+                <div class="row">
+                  <div class="col">
+                    <p class="nombre-sorteo">{{ res.nombre }}</p>
+                    <p><img class="image-block" src="{{ res.decimo | image_style('decimo_led') }}" /></p>
+                  </div>
+                  <div class="col">
+                      <p class="primerpremio">Primer premio</p>
+                      <p class="premio">{{ res.primerpremio }}</p>
+                      <p class="primerpremio">Segundo premio</p>
+                      <p class="premio">{{ res.segundopremio }}</p>
+               </div>
+               <div class="row">
+                    <div class="col">
+            
+                    </div>
+                 </div>
+              </td>
+           </tr> 
+           {% endfor %} 
+        </table>
+        <table class="table-resultados bono">
+          <caption>BONOLOTO</caption>
+           {% for res in resultados.bono %}
+           <tr>
+              <td><span class="dia-sorteo">{{ res.dia_semana|capitalize }} {{ res.dia }}</span></td>{% set complementario = 0 %}{% set reintegro = 0 %}
+                  {% for i in res.combinacion|split('-') %}
+                      {% if loop.index == 6 %}
+                               <td class="circulo"><span>{{ i|slice(1,2) }}</span></td>
+                               {% set com = i|quitaParentesis %}
+                               {% set complementario = com[0] %}{% set reintegro = com[1] %}
+                       {% else %}
+                             <td class="circulo"><span>{{ i }}</span></td>
+                      {% endif %}
+                  {% endfor %}
+                  <td class="complementario"><span>{{ complementario }}</span></td><td class="circulo"><span>{{ reintegro }}</span></td>
+           </tr> 
+           {% endfor %}
+        </table>
+     </div>
+     <div class="col-lg-4">
+        <table class="table-resultados emil">
+         <caption>EUROMILLONES</caption>
+          <tr>
+             <td><span class="dia-sorteo">{{ resultados.emil.0.dia_semana|capitalize }} {{ resultados.emil.0.dia }}</span></td>
+             {% for i in resultados.emil.0.combinacion|split('-') %}
+             {% if loop.index < 6 %}
+                      <td class="circulo"><span>{{ i }}</span></td>
+                      {% else %} 
+                        <td>
+                             <span class="star">{{ i }}</span> 
+                        </td>
+                      {% endif %}
+              {% endfor %}
+          </tr>
+       </table>
+      <table class="table-resultados lapr">
+         <caption>LA PRIMITIVA</caption>
+          {% for res in resultados.lapr %}
+            <tr>
+               <td><span class="dia-sorteo">{{ res.dia_semana|capitalize }} {{ res.dia }}</span></td>{% set complementario = 0 %}{% set reintegro = 0 %}
+                  {% for i in res.combinacion|split('-') %}
+                        {% if loop.index == 6 %}
+                                 <td class="circulo"><span>{{ i|slice(1,2) }}</span></td>
+                                 {% set com = i|quitaParentesis %}
+                                 {% set complementario = com[0] %}{% set reintegro = com[1] %}
+                        {% else %}
+                              <td class="circulo"><span>{{ i }}</span></td>
+                        {% endif %}
+                  {% endfor %}
+                  <td class="complementario"><span>{{ complementario }}</span></td><td class="circulo"><span>{{ reintegro }}</span></td>
+            </tr>
+            <tr>
+               <td colspan="6" style="padding-left: 280px;"><img src="{{ base_path }}themes/custom/laveletav2/images/logos/LogoJoker.svg" alt="Joker de la Primitiva" class="imagejoker"></td>
+               <td colspan="3"><span class="joker">{{ res.joker }}</span></td>
+            </tr>
+            {% endfor %}
+       </table>
+       <table class="table-resultados elgr">
+         <caption>EL GORDO DE LA PRIMITIVA</caption>
+          <tr>
+             <td><span class="dia-sorteo">{{ resultados.elgr.0.dia_semana|capitalize }} {{ resultados.elgr.0.dia }}</span></td>
+                   {% set clave = 0 %}
+                         {% for i in resultados.elgr.0.combinacion|split('-') %}
+                           {% if loop.index == 5 %}
+                           <td class="circulo"><span>{{ i|slice(1,2) }}</span><td>
+                               {% set com = i|quitaParentesis %}{% set clave = com[0] %}
+                           {% else %}
+                           <td class="circulo"><span>{{ i }}</span></td>
+                           {% endif %}
+                  {% endfor %}
+                 <td class="clave circulo"><span>{{ clave }}</span></td>
+          </tr>
+       </table>
+       <table class="table-resultados lotu">
+         <caption>LOTOTURF</caption>
+          {% for res in resultados.lotu %}
+            <tr>
+               <td><span class="dia-sorteo">{{ res.dia_semana|capitalize }} {{ res.dia }}</span></td>{% set complementario = 0 %}{% set reintegro = 0 %}
+                  {% for i in res.combinacion|split('-') %}
+                        {% if loop.index == 6 %}
+                                 <td class="circulo"><span>{{ i|slice(1,2) }}</span></td>
+                                 {% set com = i|quitaParentesis %}
+                                 {% set complementario = com[0] %}{% set reintegro = com[1] %}
+                        {% else %}
+                              <td class="circulo"><span>{{ i }}</span></td>
+                        {% endif %}
+                  {% endfor %}
+                  <td class="caballo"><span>{{ complementario }}</span></td><td class="circulo"><span>{{ reintegro }}</span></td>
+            </tr>
+            {% endfor %}
+       </table>
+        <table class="table-resultados qupl">
+         <caption>QUINTUPLE PLUS</caption>
+          <tr>
+             <td><span class="dia-sorteo">{{ resultados.qupl.0.dia_semana|capitalize }} {{ resultados.qupl.0.dia }}</span></td>
+                   {% set clave = 0 %}
+                         {% for i in resultados.qupl.0.combinacion|split('-') %}
+                           {% if loop.index == 5 %}
+                           <td class="circulo"><span>{{ i|slice(1,2) }}</span><td>
+                               {% set com = i|quitaParentesis %}{% set clave = com[0] %}
+                           {% else %}
+                           <td class="circulo"><span>{{ i }}</span></td>
+                           {% endif %}
+                  {% endfor %}
+                 <td class="circulo"><span>{{ clave }}</span></td>
+          </tr>
+       </table>
+     </div>
+  </div>
+</div>

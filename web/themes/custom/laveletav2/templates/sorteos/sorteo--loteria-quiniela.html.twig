@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <article class="card draw">
+  <h5>Quiniela</h5>
+    <span>{{ sorteo.sorteo_url }}</span>
+    <span>{{ sorteo.id_sorteo }}</span>
+    <span>{{ sorteo.nombre }}</span>
+    <span>{{ sorteo.fecha }}</span>
+    <span>{{ sorteo.dia_semana }}</span>
+    <span>{{ sorteo.premio_bote }}</span>
+    <span>{{ sorteo.apuestas }}</span>
+    <span>{{ sorteo.recaudacion }}</span>
+    <span>{{ sorteo.premios }}</span>
+    <span>{{ sorteo.fondo_bote }}</span>
+    <span>{{ sorteo.field_primer_premio }}</span>
+    <span>{{ sorteo.field_segundo_premio }}</span>
+    <span>{{ sorteo.field_decimo_imagen }}</span>
+    {{ dump(sorteo.field_partidos) }}
+    <span>{% for escru in sorteo.field_partidos %}
+         11 {{ dump(escru) }} 22
+        {% endfor %}
+    </span>
+  </article>
+</div>

@@ -1,0 +1,10 @@
+uuid: 444f1207-83fb-4163-919e-46463a73d458
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.decimo_cart
+label: 'Decimo Cart'
+targetEntityType: node
+cache: true

@@ -1,0 +1,14 @@
+  {% include '@laveletav2/layout/header.html.twig' %}
+<main class="site-main">
+    {{ page.home_horizontal }}
+    {% if not is_front %}
+      {% if page.page_title %}
+          {{ page.page_title }}
+      {% endif %}
+      {{ page.content }}
+    {% endif %}
+
+  {% include '@laveletav2/layout/sections/empresas.html.twig' %}
+  {% include '@laveletav2/layout/sections/jugar-a.html.twig' %}
+</main>
+  {% include '@laveletav2/layout/footer.html.twig' %}

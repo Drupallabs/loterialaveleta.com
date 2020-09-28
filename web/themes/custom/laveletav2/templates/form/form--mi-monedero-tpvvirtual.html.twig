@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+<div class="wrapper">
+    <div class="card">
+        <form{{ attributes }}>
+        {{ children }}
+        </form>
+        <p>
+            <a href="#" onclick="window.history.back();">Regresar a la página anterior</a>
+        </p>
+    </div>
+</div>

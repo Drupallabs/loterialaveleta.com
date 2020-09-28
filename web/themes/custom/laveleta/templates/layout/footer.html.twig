@@ -1,0 +1,50 @@
+<footer id="colorlib-footer" role="contentinfo">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row row-pb-md">
+      <div class="col-md-3 col-md-push-1 colorlib-widget">
+        <h3>Navegación</h3>
+        <ul class="colorlib-footer-links">
+          <li><a href="{{ url('<front>') }}" title="Inicio de la pagina"><i class="icon-check"></i> Inicio</a></li>
+          <li><a href="{{ path('entity.node.canonical', {'node': 3}) }}" title="Quienes somos"><i class="icon-check"></i> Quienes Somos</a></li>
+          <li><a href="{{ url('resultados.content') }}" title="Resultados de Loteria"><i class="icon-check"></i> Resultados</a></li>
+          <li><a href="{{ url('view.blog.page_1') }}" title="Blog"><i class="icon-check"></i> Blog</a></li>
+          <li><a href="{{ url('contacto.form') }}" title="Contacta con nosotros"><i class="icon-check"></i> Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 colorlib-widget">
+        <h3>Informaci&oacute;n</h3>
+        <ul class="colorlib-footer-links">
+          <li><a title="Texto de Aviso Legal" href="{{ path('entity.node.canonical', {'node': 6}) }}"><i class="icon-check"></i> Aviso Legal </a></li>
+          <li><a title="Texto de Politica de Privacidad" href="{{ path('entity.node.canonical', {'node': 7}) }}"><i class="icon-check"></i>Política de Privacidad</a></li>
+          <li><a title="Enlace externo a juego responsable" href="https://www.loteriasyapuestas.es/es/centro-de-ayuda/informacion-sobre/jugar-responsable" target="_blank"><i class="icon-check"></i>Juego Responsable</a></li>
+          <li><a title="Enlace externo a Jugar Bien" href="https://www.jugarbien.es/" target="_blank"><i class="icon-check"></i>Jugar Bien</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 colorlib-widget">
+        <h3>Sitio web Seguro</h3>
+        <img alt="Pago seguro con tarjeta Redsys" style="width:120px;" src="{{ base_path }}themes/custom/laveleta/images/redsys-tarjetas.png" />
+        <img alt="Sitio Web Seguro" style="width:120px;" src="{{ base_path }}themes/custom/laveleta/images/sitio-web-seguro.jpg" />
+
+      </div>
+      <div class="col-md-2 colorlib-widget">
+        <h3>Juego Responsable</h3>
+        <div class="row">
+          <a href="http://www.juegoseguro.es/" target="_blank"><img alt="Juego Seguro" src="{{ base_path }}themes/custom/laveleta/images/JuegoSeguro.png" /></a>
+          <a href="http://www.jugarbien.es/" target="_blank"><img alt="Jugar Bien" src="{{ base_path }}themes/custom/laveleta/images/JugarBien.png" /></a>
+        </div>
+        <div class="row">
+          <img alt="Autoexclusion" src="{{ base_path }}themes/custom/laveleta/images/autoexclusion.png" />
+          <img alt="Mayores de 18" src="{{ base_path }}themes/custom/laveleta/images/18.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row copyright">
+    <div class="col-md-12 text-center">
+      <p> <small class="block">Loteria La Veleta - Avda Garcia Noblejas 1, 28039 Madrid - <a href="mailto:hola&commat;loterialaveleta&period;com">
+      hola&commat;loterialaveleta&period;com</a></small></p>
+    </div>
+  </div>
+</footer>

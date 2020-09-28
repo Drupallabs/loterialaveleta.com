@@ -1,0 +1,49 @@
+uuid: e08a6ad7-59c0-4ae5-b0af-1c77f4c3bb2b
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.decimo_cart
+    - field.field.node.sorteo.body
+    - field.field.node.sorteo.field_ano_sorteo
+    - field.field.node.sorteo.field_cdc_sorteo
+    - field.field.node.sorteo.field_decimo_sorteo
+    - field.field.node.sorteo.field_fecha_sorteo
+    - field.field.node.sorteo.field_game_id
+    - field.field.node.sorteo.field_id_sorteo
+    - field.field.node.sorteo.field_lista_oficial
+    - field.field.node.sorteo.field_num_sorteo
+    - field.field.node.sorteo.field_selae
+    - field.field.node.sorteo.field_sorteo
+    - image.style.decimo_cart
+    - node.type.sorteo
+  module:
+    - image
+    - user
+id: node.sorteo.decimo_cart
+targetEntityType: node
+bundle: sorteo
+mode: decimo_cart
+content:
+  field_decimo_sorteo:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: decimo_cart
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  body: true
+  field_ano_sorteo: true
+  field_cdc_sorteo: true
+  field_fecha_sorteo: true
+  field_game_id: true
+  field_id_sorteo: true
+  field_lista_oficial: true
+  field_num_sorteo: true
+  field_selae: true
+  field_sorteo: true
+  langcode: true
+  links: true

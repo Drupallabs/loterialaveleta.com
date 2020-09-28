@@ -1,0 +1,11 @@
+uuid: 2e1460e7-85fd-4f5b-9fd4-e3aaf54bc854
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.premios
+id: node.premios
+target_entity_type_id: node
+target_bundle: premios
+default_langcode: site_default
+language_alterable: false

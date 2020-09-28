@@ -1,0 +1,9 @@
+# Custom module library for general purposes.
+abonados:
+  js:
+    js/abonados.js: {}
+  css:
+    component:
+      css/abonados.css: {}
+  dependencies:
+    - core/drupalSettings

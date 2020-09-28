@@ -1,0 +1,15 @@
+uuid: 04d861d8-8fa4-4941-b369-e15b718e43da
+langcode: es
+status: true
+dependencies: {  }
+name: slideshow_home
+label: 'Slideshow Home'
+effects:
+  301e8951-3317-4a1d-91d1-17921298417a:
+    uuid: 301e8951-3317-4a1d-91d1-17921298417a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1100
+      height: 480
+      anchor: center-center

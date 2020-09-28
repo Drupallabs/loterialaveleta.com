@@ -1,0 +1,7 @@
+name: Jugar Loteria
+description: Muestra el bloque de jugar a la loteria.
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - drupal:block

@@ -1,0 +1,20 @@
+uuid: 64be12b2-7d8d-4e77-bb5b-6c9d7a933d89
+langcode: es
+status: false
+dependencies:
+  theme:
+    - veletaled
+_core:
+  default_config_hash: 1TQP4b3ZnlzvIH9bj6cpCz_SyUHdJjLQkZnHpikjjhw
+id: veletaled_page_title
+theme: veletaled
+region: header
+weight: -4
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

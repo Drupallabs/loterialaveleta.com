@@ -1,0 +1,11 @@
+uuid: 19afd2b7-1e8b-4061-a35b-0a9f9d51942e
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.sorteo
+id: node.sorteo
+target_entity_type_id: node
+target_bundle: sorteo
+default_langcode: site_default
+language_alterable: false

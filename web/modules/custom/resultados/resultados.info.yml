@@ -1,0 +1,5 @@
+name: Resultados Loteria
+description: Muestra los resultados de la loteria en vivo.
+package: Custom
+type: module
+core: 8.x

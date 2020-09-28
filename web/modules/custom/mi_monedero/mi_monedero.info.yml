@@ -1,0 +1,11 @@
+name: "mi_monedero"
+type: module
+description: "Mi Monedero para loterialaveleta.com"
+core: 8.x
+package: "Custom"
+dependencies:
+  - Commerce:commerce
+  - Commerce:commerce_checkout
+  - Commerce:commerce_order
+  - Commerce:commerce_payment
+  - Commerce:commerce_store

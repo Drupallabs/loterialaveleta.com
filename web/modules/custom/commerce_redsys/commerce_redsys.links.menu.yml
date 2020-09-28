@@ -1,0 +1,6 @@
+veleta.admin_veleta.commerce_redsys.config:
+  title: 'Pasarela de Pago Redsys'
+  route_name: 'commerce_redsys.configuracion'
+  parent: 'veleta.admin_veleta.config'
+  description: 'Pasarela de Pago.'
+  weight: 2

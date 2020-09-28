@@ -1,0 +1,15 @@
+uuid: 72690443-0fa1-4adb-b1f8-09d436233f2f
+langcode: es
+status: true
+dependencies: {  }
+name: decimo_cart
+label: 'Decimo Cart'
+effects:
+  4f7c7908-aca3-4f59-8ba6-8e03bf659f82:
+    uuid: 4f7c7908-aca3-4f59-8ba6-8e03bf659f82
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 83
+      height: 49
+      anchor: center-center

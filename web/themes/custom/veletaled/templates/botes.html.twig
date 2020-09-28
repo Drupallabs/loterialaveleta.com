@@ -1,0 +1,144 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm bloque collogo">
+      <img alt="Logotipo Loteria La Veleta" class="img-fluid bruja effect" src="{{ base_path }}themes/custom/veletaled/images/laveleta-blanco.png" />
+  </div>
+  <div class="col-sm bloque bloque-botes">
+
+        <article>
+            <div class="card emil">
+                <div class="row">
+                <div class="col"><img alt="Euromillones" src="{{ base_path }}themes/custom/laveletav2/images/logos/euromillones.svg" /></div>
+                <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.emil.0.premio_bote != 0 %}
+                {{ botes.emil.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.emil.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </div>
+        </article>
+       
+        <article>
+            <div class="card lanc">
+                <div class="row">
+                <div class="col"><img alt="Loteria Nacional" src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" /></div>
+                <div class="col-md-auto">
+                    <div class="botenum">
+                                {{ botes.lnac.0.tenthPrice }}00.000 €
+                    </div>
+                    <span>Primer premio a la serie</span>
+                    <div class="cuenta-atras"><span>{{ botes.lanc.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </div>
+        </article>
+        
+        <article>
+            <div class="card lapr">
+                <div class="row">
+                <div class="col"><img alt="La Primitiva" src="{{ base_path }}themes/custom/laveletav2/images/logos/primitiva.svg" /></div>
+                <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.lapr.0.premio_bote != 0 %}
+                {{ botes.lapr.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.lapr.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </div>
+        </article>
+
+        <article>
+          <div class="card bono">
+              <div class="row">
+                <div class="col"><img alt="Bonoloto" src="{{ base_path }}themes/custom/laveletav2/images/logos/bonoloto.svg" /></div>
+                <div class="col-md-auto">
+                  <div class="botenum">
+                  {% if botes.bono.0.premio_bote != 0 %}
+                {{ botes.bono.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                  </div>
+                  <div class="cuenta-atras"><span>{{ botes.bono.0.fecha_sorteo|diasBote }}</span></div>
+              </div>
+              </div>
+            </div>
+          </article>
+
+         <article>
+           <div class="card elgr">
+                <div class="row">
+                  <div class="col"><img alt="El gordo" src="{{ base_path }}themes/custom/laveletav2/images/logos/gordo.svg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.elgr.0.premio_bote != 0 %}
+                  {{ botes.elgr.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.elgr.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </div>
+         </article>
+
+         <article>
+            <div class="card laqu">
+                <div class="row">
+                  <div class="col"><img alt="Quiniela" src="{{ base_path }}themes/custom/laveletav2/images/logos/quiniela.svg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.laqu.0.premio_bote != 0 %}
+                  {{ botes.laqu.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.laqu.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+               </div>
+            </article>
+
+            <article>
+               <div class="card qgol">
+                <div class="row">
+                  <div class="col"><img alt="Quinigol" src="{{ base_path }}themes/custom/laveletav2/images/logos/quinigol.svg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.qgol.0.premio_bote != 0 %}
+                  {{ botes.qgol.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.qgol.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+               </div>
+            </article>
+
+            <article>
+              <div class="card lotu">
+                <div class="row">
+                  <div class="col"><img alt="Lototurf" src="{{ base_path }}themes/custom/laveletav2/images/logos/lototurf.svg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.lotu.0.premio_bote != 0 %}
+                  {{ botes.lotu.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.lotu.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+              </div>
+            </article>
+
+            <article>
+              <div class="card qupl">
+                <div class="row">
+                  <div class="col"><img alt="Quintuple plus" src="{{ base_path }}themes/custom/laveletav2/images/logos/quintuple.svg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.qupl.0.premio_bote != 0 %}
+                  {{ botes.qupl.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.qupl.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+              </div>
+            </article>
+      </div>
+    </div>
+</div>

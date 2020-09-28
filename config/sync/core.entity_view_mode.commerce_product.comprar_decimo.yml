@@ -1,0 +1,10 @@
+uuid: 925e2246-924c-4ec5-b956-6ce476f0df68
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.comprar_decimo
+label: 'Comprar Decimo'
+targetEntityType: commerce_product
+cache: true

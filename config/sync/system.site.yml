@@ -1,0 +1,15 @@
+uuid: 59459815-18a5-41d3-a1dc-22464d559704
+name: 'Loteria La Veleta'
+mail: hola@loterialaveleta.com
+slogan: 'Sabemos hacia donde sopla la suerte'
+page:
+  403: ''
+  404: ''
+  front: /node/428
+admin_compact_mode: false
+weight_select_max: 100
+langcode: es
+default_langcode: es
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+mail_notification: hola@loterialaveleta.com

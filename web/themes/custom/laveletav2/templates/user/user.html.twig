@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+    <article{{ attributes }}>
+        {% if content %}
+          <ol class="user-details">
+              <li>
+                <span class="lab">Nombre de Usuario</span><span class="value">{{ username }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Email</span><span class="value">{{ email }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Nombre</span><span class="value">{{ content.field_nombre }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Apellidos</span><span class="value">{{ content.field_apellidos }}&nbsp;</span>
+              </li>
+               <li>
+                <span class="lab">Direccion</span><span class="value">{{ content.field_domicilio }}&nbsp;</span>
+              </li>
+               <li>
+                <span class="lab">C&oacute;digo Postal</span><span class="value">{{ content.field_codigo_postal }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Provincia</span><span class="value">{{ content.field_provincia }}&nbsp;</span>
+              </li>
+               <li>
+                <span class="lab">Documento</span><span class="value">{{ content.field_identificador }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">N&uacute;mero Documento</span><span class="value">{{ content.field_numero_documento }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Fecha de Nacimiento</span><span class="value">{{ content.field_fecha_nacimiento }}&nbsp;</span>
+              </li>
+              <li>
+                <span class="lab">Tel&eacute;fono</span><span class="value">{{ content.field_telefono }}&nbsp;</span>
+              </li>
+          </ol>
+        {% endif %}
+    </article>

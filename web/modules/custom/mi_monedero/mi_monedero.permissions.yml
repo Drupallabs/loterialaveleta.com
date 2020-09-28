@@ -1,0 +1,33 @@
+add monedero entities:
+  title: "Create new Monedero entities"
+
+administer monedero entities:
+  title: "Administer Monedero entities"
+  description: "Allow to access the administration form to configure Monedero entities."
+  restrict access: true
+
+delete monedero entities:
+  title: "Delete Monedero entities"
+
+edit monedero entities:
+  title: "Edit Monedero entities"
+
+view published monedero entities:
+  title: "View published Monedero entities"
+
+view unpublished monedero entities:
+  title: "View unpublished Monedero entities"
+
+view all monedero revisions:
+  title: "View all Monedero revisions"
+
+revert all monedero revisions:
+  title: "Revert all Monedero revisions"
+  description: "Role requires permission <em>view Monedero revisions</em> and <em>edit rights</em> for monedero entities in question or <em>administer monedero entities</em>."
+
+delete all monedero revisions:
+  title: "Delete all revisions"
+  description: "Role requires permission to <em>view Monedero revisions</em> and <em>delete rights</em> for monedero entities in question or <em>administer monedero entities</em>."
+
+administrar mi propio monedero:
+  title: "Administrar mi propio monedero"

@@ -1,0 +1,49 @@
+uuid: 4ffb09bc-80d5-4ea3-92d2-19808dac3586
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.comprar_decimo_loteria
+    - field.field.node.sorteo.body
+    - field.field.node.sorteo.field_ano_sorteo
+    - field.field.node.sorteo.field_cdc_sorteo
+    - field.field.node.sorteo.field_decimo_sorteo
+    - field.field.node.sorteo.field_fecha_sorteo
+    - field.field.node.sorteo.field_game_id
+    - field.field.node.sorteo.field_id_sorteo
+    - field.field.node.sorteo.field_lista_oficial
+    - field.field.node.sorteo.field_num_sorteo
+    - field.field.node.sorteo.field_selae
+    - field.field.node.sorteo.field_sorteo
+    - image.style.medium
+    - node.type.sorteo
+  module:
+    - image
+    - user
+id: node.sorteo.comprar_decimo_loteria
+targetEntityType: node
+bundle: sorteo
+mode: comprar_decimo_loteria
+content:
+  field_decimo_sorteo:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_ano_sorteo: true
+  field_cdc_sorteo: true
+  field_fecha_sorteo: true
+  field_game_id: true
+  field_id_sorteo: true
+  field_lista_oficial: true
+  field_num_sorteo: true
+  field_selae: true
+  field_sorteo: true
+  langcode: true
+  links: true

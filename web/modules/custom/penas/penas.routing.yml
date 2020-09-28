@@ -1,0 +1,8 @@
+
+penas.penas_controller_index:
+  path: '/loteria/apuestas/grupales'
+  defaults:
+    _controller: '\Drupal\penas\Controller\PenasController::index'
+    _title: 'Apuestas grupales de loteria La veleta'
+  requirements:
+    _permission: 'access content'

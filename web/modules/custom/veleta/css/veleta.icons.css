@@ -1,0 +1,17 @@
+/* Bar styling (first row), currently unused. */
+.toolbar-bar .toolbar-icon-veleta-admin-veleta:before {
+    background-image: url("../icons/bebebe/drupal-cart.svg");
+  }
+  .toolbar-bar .toolbar-icon-veleta-admin-veleta:active:before {
+    background-image: url("../icons/ffffff/drupal-cart.svg");
+  }
+   
+  /* Tray styling (second row) */
+  .toolbar-tray .toolbar-icon.toolbar-icon-veleta-admin-veleta:before {
+    background-image: url("../icons/veleta-000.svg");
+  }
+  .toolbar-tray .toolbar-icon.toolbar-icon-veleta-admin-veleta:active:before,
+  .toolbar-tray .toolbar-icon.toolbar-icon-veleta-admin-veleta.is-active:before {
+    background-image: url("../icons/000000/drupal-cart.svg");
+  }
+  

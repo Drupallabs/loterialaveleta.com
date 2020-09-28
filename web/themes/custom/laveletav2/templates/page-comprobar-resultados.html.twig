@@ -1,0 +1,31 @@
+
+<section id="comprar" class="section check">
+	<div class="wrapper">
+		<div class="section__main">
+			<div class="grid grid--2-cols">
+				<form action="" method="GET" class="form form-check">
+					<div class="card">
+						<div class="form__item">
+							{{ form.sorteo }}
+						</div>
+
+						<div class="form__item">
+			           {{ form.decimo }}
+						</div>
+						<div class="form__item">{{ form.submit }}
+						</div>
+						<div class="form__item">
+							<a href="{{ url('resultados.comprobar') }}">Comprobar otro número</a>
+						</div>
+					</div>
+          {{ form.form_id }}
+          {{ form.form_build_id }}
+          {{ form.form_token }}
+
+				<div class="check__messages">
+					   {{ form.comprobacion }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

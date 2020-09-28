@@ -1,0 +1,10 @@
+uuid: 99f0ec99-bf3d-4634-96fe-59680209c834
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.foto_decimo_lnac
+label: 'Foto Decimo LNAC'
+targetEntityType: commerce_product
+cache: true

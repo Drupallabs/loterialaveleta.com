@@ -1,0 +1,21 @@
+uuid: 1f1eca0f-5a11-48d0-8c67-34ec239a88e8
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_cart
+  theme:
+    - veletaled
+id: veletaled_cestadelacompra
+theme: veletaled
+region: sidebar_first
+weight: 0
+provider: null
+plugin: commerce_cart
+settings:
+  id: commerce_cart
+  label: Cesta
+  provider: commerce_cart
+  label_display: visible
+  dropdown: true
+visibility: {  }

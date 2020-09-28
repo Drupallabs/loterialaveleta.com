@@ -1,0 +1,10 @@
+services:
+  resultados.resultados:
+    class: Drupal\resultados\Resultados
+    tags:
+      - {name: laveleta}
+  resultados.resultadosbbdd:
+    class: Drupal\resultados\ResultadosBbdd
+    arguments: ["@database"]
+    tags:
+      - {name: laveleta}

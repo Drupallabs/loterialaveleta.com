@@ -1,0 +1,26 @@
+{% set image = content.field_image %}
+<article class="blog-article">
+  <a href="{{ url }}" class="blog-article__wrapper">
+    <h2 class="blog-article__title">{{ label }}</h2>
+    <ul class="blog-article__copy">
+    	<li class="blog-article__author">{{ content.field_categoria }}</li>
+      <li class="blog-article__date">{{ node.createdtime|format_date('medium') }}</li>
+    </ul>
+    <p class="blog-article__excerpt">{{ node.body.value|trim|striptags|truncate(155, true, ' ....') }}</p>
+
+    <div class="blog-article__fake-link">
+      <span class="btn btn--primary">Leer más</span>
+    </div>
+    {% for img in image['#items'] %}
+      {% set image_file_path = img.entity.uri.value %}
+      {% set image_file_alt = img.alt %}
+    {% set imagestyle = {
+            '#theme':      'image_style',
+            '#style_name': 'blog_listado',
+            '#uri':        img.entity.uri.value,
+          }
+        %}
+    <img src="{{ image_file_path | image_style('blog_listado') }}" alt="{{ image_file_alt }}" class="blog-article__image">
+  {% endfor %}
+ </a>
+</article>

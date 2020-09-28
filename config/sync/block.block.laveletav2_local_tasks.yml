@@ -1,0 +1,22 @@
+uuid: 3bbacb00-5f63-4874-943b-84752e17b4c8
+langcode: es
+status: false
+dependencies:
+  theme:
+    - laveletav2
+_core:
+  default_config_hash: qHdtze2DZ2mFfaJadxjZz6epm92_SN9SAFY4yJGl8Fo
+id: laveletav2_local_tasks
+theme: laveletav2
+region: content
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

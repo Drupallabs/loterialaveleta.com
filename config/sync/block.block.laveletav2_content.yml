@@ -1,0 +1,22 @@
+uuid: b5756243-b3e4-4891-9509-b8e4eb306bf3
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - laveletav2
+_core:
+  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
+id: laveletav2_content
+theme: laveletav2
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

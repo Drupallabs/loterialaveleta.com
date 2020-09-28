@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Contains mi_monedero.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\commerce_price\Calculator;
+
+/**
+ * Implements hook_help().
+ */
+function mi_monedero_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+      // Main module help for the mi_monedero module.
+    case 'help.page.mi_monedero':
+      $output = '';
+      $output .= '<h3>Sobre </h3>';
+      $output .= '<p>Funcionalidad de Mi Monedero para loterialaveleta.com</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mi_monedero_theme()
+{
+  return [
+    'mi_monedero' => [
+      'render element' => 'children',
+    ],
+    'monedero_user' => [
+      'render element' => 'children',
+      'variables' => [
+        'monedero' => 0,
+        'user' => []
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Implements a new callback for payment validation.
+ *
+ */
+function mi_monedero_form_commerce_checkout_flow_multistep_default_alter(&$form, &$form_state, $form_id)
+{
+  $form['#validate'][] = 'mi_monedero_payment_validate';
+  $form['actions']['continue_shopping'] = array(
+    '#type' => 'button',
+    '#value' => '<< Continuar Comprando',
+    '#weight' => -999,
+  );
+  if (isset($_SERVER['HTTP_REFERER']) && strlen($_SERVER['HTTP_REFERER'])) {
+    // if user comes from product detail page, redirect user to previous page
+    $form['actions']['continue_shopping']['#attributes'] = array('ONCLICK' => "history.go(-1); return false;");
+  } else {
+    // redirect user to product list page 'store' by default
+    $form['actions']['continue_shopping']['#attributes'] = array('ONCLICK' => "window.location.href='htps://loterialaveleta.com'; return false;");
+  }
+}
+
+function mi_monedero_payment_validate(&$form, &$form_state)
+{
+
+  if ($form['#step_id'] == 'order_information' || $form['#step_id'] == 'review') {
+    $order = \Drupal::service('current_route_match')->getParameter('commerce_order');
+
+    $paym = reset($form_state->getValue('payment_information'));
+    //dump($paym);
+    if (isset($paym) && $paym === 'mi_monedero') {
+      // Sacamos lo que hay en el monedero del usuario
+      $monedero = \Drupal::service('mi_monedero.monedero_manager')->loadAccountBalance($order->getCustomer());
+
+      if (!$monedero) {
+        $form_state->setErrorByName('payment_information', t('No tienes suficiente dinero en Mi Monedero para completar el pedido, por favor <a href="@url">haz un depóstio </a> primero.', [
+          '@url' => Url::fromRoute('mi_monedero.monedero', array('user' => $order->getCustomer()->get('uid')->value))->toString(),
+        ]));
+      } else {
+        //0 if both numbers are equal, 1 if the first one is greater, -1 otherwise.
+        if (Calculator::compare($monedero->cantidad, $order->getTotalPrice()->getNumber(), 2) > 0) {
+        } else {
+          $form_state->setErrorByName('payment_information', t('No tienes suficiente dinero en Mi Monedero para completar el pedido, por favor <a href="@url">haz un depóstio </a> primero.', [
+            '@url' => Url::fromRoute('mi_monedero.monedero', array('user' => $order->getCustomer()->get('uid')->value))->toString(),
+          ]));
+        }
+      }
+    }
+  }
+}

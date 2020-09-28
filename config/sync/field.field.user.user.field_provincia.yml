@@ -1,0 +1,20 @@
+uuid: f6b28c74-8ff5-4326-92e6-d69521d3cf6e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_provincia
+  module:
+    - user
+id: user.user.field_provincia
+field_name: field_provincia
+entity_type: user
+bundle: user
+label: Provincia
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

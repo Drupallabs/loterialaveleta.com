@@ -1,0 +1,6 @@
+services:
+  sorteos.commands:
+    class: Drupal\sorteos\Commands\SorteoCommands
+    arguments: ["@sorteos.importer_manager", "@lock"]
+    tags:
+      - { name: drush.command }

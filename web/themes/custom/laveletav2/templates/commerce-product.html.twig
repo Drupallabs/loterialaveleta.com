@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+<article class="buy">
+					<p class="buy__excerpt">
+					 	<span class="buy__item buy__item--date">{{ product.field_sorteo }}</span>
+						<span class="buy__item buy__item--price"><strong>{{ product.variation_price }}</strong></span>
+					</p>
+					<div class="buy__header">
+						<h3 class="buy__item buy__item--number">{{ product.field_numero_decimo }}</h3>
+						<img src="{{ file_url(decimo_url) }}" alt="{{ product.field_sorteo }} - {{ product.field_numero_decimo }}" class="buy__image">
+					</div>
+				
+					<div class="buy__button">
+							{{ product.variations }}
+					
+					</div>
+						<span>{{ product.abonado_form }}</span>
+
+</article>

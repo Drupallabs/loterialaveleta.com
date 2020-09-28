@@ -1,0 +1,23 @@
+uuid: 9ff0d499-84f2-4158-adee-2a12ac955231
+langcode: es
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_lista_oficial
+field_name: field_lista_oficial
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

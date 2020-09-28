@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function empresas_theme() {
+  return [
+    'empresas' => [
+      'render element' => 'children',
+    ],
+    'empresas-contacto' => [
+       'render element' => 'form',
+       ],
+    'empresas-acceso-form' => [
+        'render element' => 'form',
+      ],
+  ];
+}
+
+/**
+ * Implementation of hook_mail().
+ */
+function empresas_mail($key, &$message, $params) {
+  // print_r($params); die;
+  switch($key) {
+
+    case'contacto':
+      $text[] = 'Hola,';
+      $text[] = 'Alguien ha enviado un mensaje en la seccion de contacto de Empresas loterialaveleta.com.';
+      $text[] = 'Nombre: '.$params['nombre'];
+      $text[] = 'Telefono: '.$params['telefono'];
+      $text[] = 'Email: '.$params['email'];
+      $text[] = 'Comentarios: '.$params['comentarios'];
+
+      $message['subject'] = t('Contacto de Empresas en loterialaveleta.com');
+      $message['body'] = $text;
+      break;
+    }
+
+}

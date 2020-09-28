@@ -1,0 +1,17 @@
+name: laveletav2
+type: theme
+description: 'Tema para loterialaveleta.com'
+package: Other
+core: 8.x
+libraries:
+  - laveletav2/global
+
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  carrito: 'Carrito de la compra'
+  login_header: 'Login Header'
+  home_horizontal: 'Home Horizontal'
+  page_title: 'Page Title'
+  content: 'Content'
+  right: 'Col Right'

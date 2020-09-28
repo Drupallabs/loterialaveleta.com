@@ -1,0 +1,149 @@
+uuid: f5e0b790-1270-4743-a7de-40b687f46811
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.sorteo.body
+    - field.field.node.sorteo.field_ano_sorteo
+    - field.field.node.sorteo.field_cdc_sorteo
+    - field.field.node.sorteo.field_decimo_sorteo
+    - field.field.node.sorteo.field_fecha_sorteo
+    - field.field.node.sorteo.field_game_id
+    - field.field.node.sorteo.field_id_sorteo
+    - field.field.node.sorteo.field_lista_oficial
+    - field.field.node.sorteo.field_num_sorteo
+    - field.field.node.sorteo.field_selae
+    - field.field.node.sorteo.field_sorteo
+    - image.style.thumbnail
+    - node.type.sorteo
+  module:
+    - datetime
+    - file
+    - image
+    - json_field
+    - path
+    - text
+id: node.sorteo.default
+targetEntityType: node
+bundle: sorteo
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 5
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ano_sorteo:
+    weight: 32
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_cdc_sorteo:
+    weight: 28
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_decimo_sorteo:
+    weight: 33
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_fecha_sorteo:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_game_id:
+    weight: 30
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_id_sorteo:
+    weight: 27
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_lista_oficial:
+    weight: 34
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_num_sorteo:
+    weight: 31
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_selae:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: json_textarea
+    region: content
+  field_sorteo:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  promote: true
+  uid: true

@@ -1,0 +1,7 @@
+name: 'botes'
+type: module
+description: 'Muestra los botes de loterias'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - drupal:block

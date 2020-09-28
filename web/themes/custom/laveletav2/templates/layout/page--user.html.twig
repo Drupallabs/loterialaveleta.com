@@ -1,0 +1,15 @@
+  {% include '@laveletav2/layout/header.html.twig' %}
+<main class="site-main">
+    <section id="usuario-section" class="wrapper">
+        <div class="card">
+            {% if page.page_title %}
+               {{ page.page_title }}
+            {% endif %}
+
+           {{ page.content }}
+        </div>
+    </section>
+  {% include '@laveletav2/layout/sections/empresas.html.twig' %}
+  {% include '@laveletav2/layout/sections/jugar-a.html.twig' %}
+</main>
+  {% include '@laveletav2/layout/footer.html.twig' %}

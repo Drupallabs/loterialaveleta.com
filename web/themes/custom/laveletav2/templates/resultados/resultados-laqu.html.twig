@@ -1,0 +1,94 @@
+<section id="results" class="section results">
+  <div class="wrapper">
+    <div class="section__main">
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+          <div class="grid grid--2-cols">
+            {% for laqu in laqus %}
+            <article class="card draw">
+            		<header class="card__header">
+            			<h3 class="card__title">
+            				<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quiniela.svg" alt="La Quiniela" class="game__logo">
+            			</h3>
+            			<p class="card__date">{{ laqu.dia_semana }}, {{ laqu.fecha_sorteo|date('d/m/Y') }}</p>
+            		</header>
+            		<div class="card__main">
+            			<table class="draw__table">
+            				<thead>
+            					<tr>
+            						<th>
+            							<span>Local</span>
+            							<span>Visitante</span>
+            						</th>
+            						<th>Signo</th>
+            						<th>Res.</th>
+            					</tr>
+            				</thead>
+            				<tbody>
+                    {% for partido in laqu.partidos | jsonDecode %}
+                      <tr>
+                                        <td>
+                        <span>{{ partido.local }}</span><span>{{ partido.visitante }}</span>
+                      </td>
+                      {% if partido.fecha %}
+                          <td colspan="2">{{ partido.fecha }}</td>
+                      {% else %}
+                        <td>{{ partido.signo }}</td>
+                        <td>{{ partido.marcador }}</td>
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+              				</tbody>
+            			</table>
+            		</div>
+            		<footer class="card__footer">
+            			<a title="Jugar a La Quiniela en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LAQU" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+            			<a href="#results-pop-up-laqu-{{ loop.index }}" class="card__btn-secondary pop-up-trigger">Detalle premios</a>
+            		</footer>
+            	</article>
+
+                <aside id="results-pop-up-laqu-{{ loop.index }}" class="pop-up"> <!-- QUINIELA -->
+                    <div class="pop-up__wrapper"><div class="pop-up__content">
+                      <article class="card">
+                          <header class="card__header"></header>
+                          <div class="card__main">
+                            <table class="table"><thead>
+                                <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                              </thead>
+                              <tbody>
+             {% set escrutinio = laqu.escrutinio | unserialize %}
+             {% for escru in escrutinio %}
+                                {% for e in escru %}
+                              <tr>
+                                  <td>{{ e.tipo }}</td>
+                                  <td>{{ e.categoria }}</td>
+                                  <td>{{ e.premio|number_format }}</td>
+                                  <td>{{ e.ganadores|number_format }}</td>
+                              </tr>
+                              {% endfor %}{% endfor %}
+                              </tbody></table>
+                              <table class="tabla-recaudacion">
+                                <tr>
+                                  <th>Apuestas Recibidas</th><td>{{ laqu.apuestas|number_format }}</td>
+                                  <th>Bote Ofrecido</th><td>{{ laqu.premio_bote|number_format }}€</td>
+                                </tr>
+                                <tr>
+                                  <th>Recaudaci&oacute;n</th><td>{{ laqu.recaudacion|number_format }}€</td>
+                                  <th>Premios</th><td>{{ laqu.premios|number_format }}€</td>
+                                </tr>
+                              </table>
+                          </div>
+                        </article>
+                      </div>
+                      <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+                    </div>
+                  </aside>
+            {% endfor %}
+          </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

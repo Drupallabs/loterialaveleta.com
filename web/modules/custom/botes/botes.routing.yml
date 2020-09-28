@@ -1,0 +1,22 @@
+botes.botes_todos:
+  path: "/botes"
+  defaults:
+    _controller: '\Drupal\botes\Controller\BotesController::botes'
+    _title: "Botes de Loteria Nacional"
+  requirements:
+    _permission: "access content"
+
+botes.config_form:
+  path: "/admin/config/botes"
+  defaults:
+    _form: '\Drupal\botes\Form\BotesConfigurationForm'
+    _title: "Botes configuration"
+  requirements:
+    _permission: "administer site configuration"
+
+botes.damebotes:
+  path: "/botes/damebotes"
+  defaults:
+    _controller: '\Drupal\botes\Controller\BotesController::dameBotes'
+  requirements:
+    _access: "TRUE"

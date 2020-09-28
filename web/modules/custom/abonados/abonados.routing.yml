@@ -1,0 +1,7 @@
+abonados.settings_form:
+  path: "/admin/laveleta/config/abonados"
+  defaults:
+    _title: "abonados settings"
+    _form: 'Drupal\abonados\Form\SettingsForm'
+  requirements:
+    _permission: "administer abonados configuration"

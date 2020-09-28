@@ -1,0 +1,21 @@
+# Empresa routing definition
+empresa.settings_tab:
+  route_name: empresa.settings
+  title: "Configuracion"
+  base_route: empresa.settings
+
+entity.empresa.canonical:
+  route_name: entity.empresa.canonical
+  base_route: entity.empresa.canonical
+  title: "Ver"
+
+entity.empresa.edit_form:
+  route_name: entity.empresa.edit_form
+  base_route: entity.empresa.canonical
+  title: "Editar"
+
+entity.empresa.delete_form:
+  route_name: entity.empresa.delete_form
+  base_route: entity.empresa.canonical
+  title: Eliminar
+  weight: 10

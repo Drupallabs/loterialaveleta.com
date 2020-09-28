@@ -1,0 +1,152 @@
+<section id="jackpot" class="section jackpot">
+	<div class="wrapper">
+		<div class="section__main"> 
+			<div class="grid grid--3-cols">
+  
+				<article class="card"> 
+					<header class="card__header"> 
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" alt="Lotería Nacional" class="game__logo">
+						</h3> 
+						<p class="card__date">{{ botes.lnac.fecha_sorteo|diasBote }}</p>
+					</header> 
+ 
+					<div class="card__main">
+						<p class="jackpot__quantity">{{ botes.lnac.tenthPrice }}00.000<span>primer premio a la serie</span></p>
+					</div>
+ 
+					<footer class="card__footer">
+						<a href="" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer> 
+				</article>
+
+				<article class="card"> <!-- EUROMILLONES -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/euromillones.svg" alt="Euromillones" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.emil.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+						<p class="jackpot__quantity">
+						{% if botes.emil.premio_bote != 0 %}
+					{{ botes.emil.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+
+					<footer class="card__footer">
+						<a title="Jugar al Euromillones en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/EMIL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"><!-- PRIMITIVA -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/primitiva.svg" alt="La Primitiva" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.lapr.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+						<p class="jackpot__quantity">		{% if botes.lapr.premio_bote != 0 %}
+					{{ botes.lapr.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+						</p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al La Primitiva en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LAPR" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"> <!-- BONOLOTO -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/bonoloto.svg" alt="Bonoloto" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.bono.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+				<p class="jackpot__quantity">    {% if botes.bono.premio_bote != 0 %} {{ botes.bono.premio_bote|number_format }}<span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}
+			      </p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al Bonoloto en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/BONO" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"><!-- EL GORDO DE LA PRIMITIVA -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/gordo.svg" alt="El Gordo de la Primitiva" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.elgr.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+						<p class="jackpot__quantity">{% if botes.elgr.premio_bote != 0 %}{{ botes.elgr.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al Gordo de la Primitiva en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/ELGR" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"> <!-- QUINIELA -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quiniela.svg" alt="Quiniela" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.laqu.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+				<p class="jackpot__quantity">{% if botes.laqu.premio_bote != 0 %}{{ botes.laqu.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+					<footer class="card__footer">
+						<a href="#" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"> <!-- QUINIGOL -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quinigol.svg" alt="Quinigol" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.qgol.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+			      <p class="jackpot__quantity">{% if botes.qgol.premio_bote != 0 %}{{ botes.qgol.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al Quinigol en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/QGOL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"> <!-- LOTOTURF -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/lototurf.svg" alt="Lototurf" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.lotu.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+				<p class="jackpot__quantity">{% if botes.lotu.premio_bote != 0 %}{{ botes.lotu.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al Lototurf en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/LOTU" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+				<article class="card"><!-- QUINTUPLE PLUS -->
+					<header class="card__header">
+						<h3 class="card__title">
+							<img src="{{ base_path }}themes/custom/laveletav2/images/logos/quintuple.svg" alt="Quintuple Plus" class="game__logo">
+						</h3>
+						<p class="card__date">{{ botes.qupl.fecha_sorteo|diasBote }}</p>
+					</header>
+					<div class="card__main">
+				    <p class="jackpot__quantity">{% if botes.qupl.premio_bote != 0 %}{{ botes.qupl.premio_bote|number_format }} <span>Euros</span> {% else %}<span>No hay bote</span>{% endif %}</p>
+					</div>
+					<footer class="card__footer">
+						<a title="Jugar al Quintuple Plus en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/QUPL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+					</footer>
+				</article>
+
+			</div>
+		</div>
+	</div>
+</section>

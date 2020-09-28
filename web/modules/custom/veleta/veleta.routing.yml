@@ -1,0 +1,23 @@
+veleta.admin:
+  path: '/admin/laveleta'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'La Veleta'
+  requirements:
+    _permission: 'access veleta administration pages'
+
+veleta.config:
+  path: '/admin/laveleta/config'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'
+
+veleta.led:
+  path: '/led'
+  defaults:
+    _controller: '\Drupal\veleta\Controller\VeletaController::led'
+    _title: 'Loteria La Veleta'
+  requirements:
+    _permission: 'access content'

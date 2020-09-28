@@ -1,0 +1,30 @@
+uuid: 2076804d-81d3-48d5-9495-960f6f43aacb
+langcode: es
+status: false
+dependencies:
+  config:
+    - views.view.categorias_blog
+  module:
+    - system
+    - views
+  theme:
+    - laveletav2
+id: laveletav2_views_block__categorias_blog_block_1
+theme: laveletav2
+region: header
+weight: -6
+provider: null
+plugin: 'views_block:categorias_blog-block_1'
+settings:
+  id: 'views_block:categorias_blog-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/blog\r\n/taxonomy/term/*"
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,298 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\node\Entity\Node;
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+
+  // If not the view we are looking, move on
+  if ($form['#id'] != 'views-exposed-form-comprar-loteria-nacional-page-comprar-loteria') {
+    return FALSE;
+  }
+  // Query nodes
+  $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('node');
+  $nids = $storage->getQuery();
+
+  // Gather published artist nodes and sort by title
+  $hoy = new \DateTime();
+  $nids = $nids->condition('type', 'sorteo')
+    ->condition('status', 1)
+    ->condition('field_fecha_sorteo', $hoy->format('Y-m-d'), '>=')
+    //->condition('tags.entity:taxonomy_term.name','Loteria Nacional')
+    ->sort('title')
+    ->execute();
+
+  if (!$nids) {
+    return FALSE;
+  }
+
+  $options = [];
+  $nodes = $storage->loadMultiple($nids);
+  foreach ($nodes as $node) {
+    $options[$node->id()] = $node->getTitle();
+  }
+
+  // Start building out our new form element
+  $sorteo_field = 'field_sorteo_target_id';
+  $form[$sorteo_field]['#type'] = 'select';
+  $form[$sorteo_field]['#multiple'] = FALSE;
+
+  // Specify the empty option for our select list
+  $form[$sorteo_field]['#empty_option'] = t('Sorteo');
+
+  // Add the $options from above to our select list
+  $form[$sorteo_field]['#options'] = $options;
+  unset($form[$sorteo_field]['#size']);
+}
+/**
+ * Implements hook_mail().
+ */
+function veleta_mail($key, &$message, $params)
+{
+  switch ($key) {
+    case 'veleta_log':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = 'Hay un error en loterialaveleta.com';
+      $message['body'][] = $params['message'];
+
+      break;
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function veleta_theme()
+{
+  return [
+    'veleta' => [
+      'render element' => 'children',
+    ],
+    'led' => [
+      'variables' => [
+        'botes' => [], 'resultados' => [],
+      ],
+      'render element' => 'children',
+    ],
+    'botes' => [
+      'variables' => [
+        'botes' => [],
+      ],
+    ],
+    'resultados' => [
+      'variables' => [
+        'resultados' => [],
+      ],
+    ],
+    'commerce_order_receipt' => [
+      'template' => 'veleta-order-receipt',
+      'base hook' => 'commerce_order_receipt',
+    ],
+  ];
+}
+
+
+function veleta_preprocess_commerce_order_receipt(&$variables)
+{
+  $order = $variables['order_entity'];
+  $newitems = array();
+  $count = 0;
+
+
+  foreach ($order->getItems() as $item => $order_item) {
+    $qu = $order_item->get('quantity')->getValue();
+    $tp = $order_item->get('total_price')->getValue();
+    $newitems[$count]['cantidad'] = $qu[0]['value'];
+    $newitems[$count]['precio_total'] = $tp[0]['number'];
+    $product_variation = $order_item->getPurchasedEntity();
+    $product_id = $product_variation->get('product_id')->getValue();
+    $pid = $product_id[0]['target_id'];
+    $product = \Drupal::entityTypeManager()->getStorage('commerce_product')->load($pid);
+    $item = $product->get('field_sorteo')->get(0);
+    $numero = $product->get('field_numero_decimo')->get(0);
+    $value = FALSE;
+    if (!empty($item)) {
+      $value = $item->getValue();
+    }
+    $sorteoid = $value['target_id'];
+    $node = Node::load($sorteoid);
+
+    $newitems[$count]['decimo'] = file_create_url($node->field_decimo_sorteo->entity->getFileUri());
+
+    $numeroarr = $numero->getValue();
+    $newitems[$count]['numero'] = $numeroarr['value'];
+    $count++;
+  }
+  $variables['newitems'] = $newitems;
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function veleta_mail_alter(&$message)
+{
+
+  $titulo = 'Loteria La Veleta';
+
+  switch ($message['key']) {
+
+    case 'page_mail':
+    case 'page_copy':
+    case 'cancel_confirm':
+    case 'password_reset':
+      $titulo = 'Cambio de Contraseña';
+      break;
+    case 'register_admin_created':
+      $titulo = 'Nueva Cuenta de usuario';
+      break;
+    case 'register_no_approval_required':
+      $titulo = 'Nueva Cuenta de usuario';
+      break;
+    case 'register_pending_approval':
+      $titulo = 'Nueva Cuenta de usuario';
+      break;
+    case 'register_pending_approval_admin':
+      $titulo = 'Nueva Cuenta de usuario';
+      break;
+    case 'status_activated':
+      $titulo = 'Activacion de cuenta';
+      break;
+    case 'status_blocked':
+      $titulo = 'Bloqueo Cuenta de usuario';
+      break;
+    case 'status_canceled':
+  }
+  switch ($message['key']) {
+
+    case 'page_mail':
+    case 'page_copy':
+    case 'cancel_confirm':
+    case 'password_reset':
+    case 'register_admin_created':
+    case 'register_no_approval_required':
+    case 'register_pending_approval':
+    case 'register_pending_approval_admin':
+    case 'status_activated':
+    case 'status_blocked':
+    case 'status_canceled':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      foreach ($message['body'] as $key => $body) {
+        $html2 = '  <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+             Accion de usuario en Loteria La Veleta sitio web
+             </div>
+             <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+               <tr>
+                 <td align="center" bgcolor="#faeede">
+                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                     <tr>
+                       <td align="center" valign="top" style="padding: 26px 24px;">
+                         <a href="https://loterialaveleta.com" target="_blank" style="display: inline-block;">
+                           <img src="https://loterialaveleta.com/themes/custom/laveletav2/images/logo-loteria-la-veleta-blanco.svg" alt="Logo" border="0" style="display: block; width: 248px;">
+                         </a>
+                       </td>
+                     </tr>
+                   </table>
+                 </td>
+               </tr>
+               <tr>
+                 <td align="center" bgcolor="#faeede">
+                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                     <tr>
+                       <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
+                         <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px; color:#222;">' . $titulo . '</h1>
+                       </td>
+                     </tr>
+                   </table>
+                 </td>
+               </tr>
+               <tr>
+                 <td align="center" bgcolor="#faeede">
+                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                     <tr>
+                       <td align="left" bgcolor="#ffffff" style="padding: 16px; font-family: Helvetica, Arial, sans-serif; color:#222; font-size: 13px; line-height: 24px; word-break: break-all">
+                        ' . strip_tags($body, '<p></p>') . '
+                       </td>
+                     </tr>
+
+                     <tr>
+                       <td align="left" bgcolor="#ffffff" style="color:#222; padding: 24px; font-family:Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
+                         <p style="margin: 0;">Saludos,<br> El Equipo de La Veleta</p>
+                       </td>
+                     </tr>
+
+                   </table>
+                 </td>
+               </tr>
+               <tr>
+                 <td align="center" bgcolor="#faeede" style="padding: 24px;">
+                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                     <tr>
+                       <td align="center" bgcolor="#faeede" style="padding: 12px 24px; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+                         <p style="margin: 0;">Has recibido este email porque has requirido alguna accion de usuario en loterialaveleta.com, puedes borrarlo siempre de forma segura.</p>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td align="center" bgcolor="#faeede" style="padding: 12px 24px; font-family:Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+                       <p style="margin: 0;"><a style="font-weight:bold; color:#666; " href="https://loterialaveleta.com">https://loterialaveleta.com</a> Avda. de la Institucion Libre de Enseñanza 1 - 28037 - Madrid</p>
+                       </td>
+                     </tr>
+                   </table>
+                 </td>
+               </tr>
+
+             </table>';
+        $message['body'][$key] = new FormattableMarkup($html2, []);
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function veleta_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type)
+{
+  if ($entity_type->id() == 'commerce_product') {
+    // Change the title field label.
+    $fields['title']->setLabel(t('Nombre del Producto'));
+  }
+}
+
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function veleta_toolbar_alter(&$items)
+{
+  $items['administration']['#attached']['library'][] = 'veleta/toolbar';
+}
+
+function veleta_user_login($account)
+{
+  /*$current_route = \Drupal::routeMatch()->getRouteName();
+
+  if ($current_route == "entity.node.canonical") { // si es la pagina de inicio
+    // $homeResponse = new RedirectResponse(URL::fromUserInput('/')->toString());
+    $homeResponse = new RedirectResponse('comprar-loteria-nacional');
+    $homeResponse->send();
+  }*/
+  \Drupal::messenger()->addStatus('Hola !! Acabadas de acceder como usuario registrado a loterialaveleta.com.');
+}
+
+/*
+\Drupal::messenger()->addMessage('This is a regular message');
+\Drupal::messenger()->addStatus('This is a status message, meaning status is OK or successful (green).');
+\Drupal::messenger()->addError('This is an error message (red)');
+\Drupal::messenger()->addWarning('This is a warning message (orange)');
+*/
+function veleta_menu_local_tasks_alter(&$data, $route_name)
+{
+  //dump($data["tabs"][0]);
+  $data["tabs"][0]["entity.user.edit_form"]["#weight"] = -9;
+  $data["tabs"][0]["mimonedero.usuario"]["#weight"] = -7; // Mi Monedero
+}

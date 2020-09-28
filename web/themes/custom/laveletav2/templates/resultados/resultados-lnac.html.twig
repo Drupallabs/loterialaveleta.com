@@ -1,0 +1,70 @@
+<section id="results" class="section results">
+  <div class="wrapper">
+    <div class="section__main">
+      <section class="section__subsection">
+        <div class="results__section__container">
+          <div class="results__section__content">
+          <div class="grid grid--3-cols">
+            {% for lnac in lnacs %}
+              <article id="loteria-nacional" class="card draw">
+              <header class="card__header">
+                <h3 class="card__title">
+                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" alt="Lotería Nacional" class="game__logo">
+                </h3>
+                <p class="card__date">{{ lnac.dia_semana }}, {{ lnac.fecha_sorteo|date('d/m/Y') }}</p>
+              </header> 
+
+              <div class="card__main">
+                <p class="nombre-sorteo">{{ lnac.nombre }}</p>
+                <ul class="draw__list draw__list--lottery">
+                  <li class="draw__item draw__item--lottery">
+                    <span class="draw__text draw__text--lottery">Primer premio</span>
+                    <span class="draw__number--lottery">{{ lnac.primerpremio }}</span>
+             
+                  </li>
+                  <li class="draw__item draw__item--lottery">
+                    <span class="draw__text draw__text--lottery">Segundo premio</span>
+                    <span class="draw__number--lottery">{{ lnac.segundopremio }}</span>
+                  </li>
+                </ul>
+                 <img class="image-block" src="{{ lnac.decimo | image_style('medium') }}" />
+              </div>
+              <div class="card__footer">
+                <a  title="Jugar al Loteria Nacional en la Veleta" href="{{ path('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                <a href="#results-pop-up-lnac-{{ loop.index }}" class="pop-up-trigger card__btn-secondary">Detalle premios</a>
+              </div>
+            </article>
+                          
+                <aside id="results-pop-up-lnac-{{ loop.index }}" class="pop-up"> <!-- detalle loteria nacional -->
+                  <div class="pop-up__wrapper"><div class="pop-up__content">
+                    <article class="card">
+                        <header class="card__header"></header>
+                        <div class="card__main">
+                          <table class="table"><thead>
+                              <tr><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
+                            </thead>
+                            <tbody>
+                            {% set escrutinio = lnac.escrutinio | unserialize %}
+                            {% for escru in escrutinio %}
+                                {% for e in escru %}
+                            <tr>
+                                <td>{{ e.tipo }}</td>
+                                <td>{{ e.premio|number_format }}€</td>
+                                <td>{{ e.ganadores }}</td>
+                            </tr>
+                            {% endfor %} {% endfor %}
+                            </tbody></table>
+                        </div>
+                      </article>
+                    </div>
+                    <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
+                  </div>
+                </aside>
+            {% endfor %}
+          </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

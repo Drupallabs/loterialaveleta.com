@@ -1,0 +1,29 @@
+uuid: 681997fb-61ef-4a14-9f4b-8ca85f721934
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sorteo
+    - node.type.sorteo
+    - taxonomy.vocabulary.sorteo
+id: node.sorteo.field_sorteo
+field_name: field_sorteo
+entity_type: node
+bundle: sorteo
+label: Sorteo
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sorteo: sorteo
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

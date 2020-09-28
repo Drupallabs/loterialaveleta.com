@@ -1,0 +1,94 @@
+resultados.content:
+  path: "/resultados"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::content'
+    _title: "Resultados Loteria Nacional, Euromillones, Primitiva, El Gordo de la Primitiva, Bonoloto, Quiniela, Quinigol, Lototurf"
+  requirements:
+    _permission: "access content"
+
+resultados.comprobar:
+  path: "comprobar/resultados/loteria/nacional"
+  defaults:
+    _form: '\Drupal\resultados\Form\ComprobarLnacForm'
+    _title: "Comprobar Resultados de Loteria Nacional"
+  requirements:
+    _permission: "access content"
+
+resultados.loterianacional:
+  path: "/resultados/loteria-nacional"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Lnac'
+    _title: "Resultados Loteria Nacional | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.euromillones:
+  path: "/resultados/euromillones"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Euromillones'
+    _title: "Resultados Euromillones | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.primitiva:
+  path: "/resultados/primitiva"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Primitiva'
+    _title: "Resultados Primitiva | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.bonoloto:
+  path: "/resultados/bonoloto"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Bonoloto'
+    _title: "Resultados Bonoloto | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.elgordo:
+  path: "/resultados/gordo-primitiva"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::ElGordo'
+    _title: "Resultados El Gordo de la Primitiva | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.quiniela:
+  path: "/resultados/quiniela"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Quiniela'
+    _title: "Resultados de La Quiniela | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.quinigol:
+  path: "/resultados/quinigol"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Quinigol'
+    _title: "Resultados de Quinigol | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.lototurf:
+  path: "/resultados/lototurf"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::Lototurf'
+    _title: "Resultados de Lototurf | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.quintupleplus:
+  path: "/resultados/quintuple-plus"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::QuintuplePlus'
+    _title: "Resultados de Quintuple Plus | Loteria La Veleta"
+  requirements:
+    _permission: "access content"
+
+resultados.dameresultados:
+  path: "/resultados/dameresultados"
+  defaults:
+    _controller: '\Drupal\resultados\Controller\ResultadosController::dameResultados'
+  requirements:
+    _access: "TRUE"

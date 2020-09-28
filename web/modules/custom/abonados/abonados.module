@@ -1,0 +1,85 @@
+<?php
+
+use Drupal\commerce_product\Entity\ProductInterface;
+use Drupal\commerce_product\Entity\ProductType;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\abonados\Form\AbonarseForm;
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function abonados_entity_extra_field_info()
+{
+  $extra_fields = [];
+  $product_types = ProductType::loadMultiple();
+  /** @var \Drupal\commerce_product\Entity\ProductType $bundle */
+  foreach ($product_types as $bundle) {
+    $extra_fields['commerce_product'][$bundle->id()]['display']['abonado_form'] = [
+      'label' => 'Abonado Form',
+      'description' => 'Abonarse a este numero?',
+      'weight' => 90,
+      'visible' => FALSE,
+    ];
+  }
+  return $extra_fields;
+}
+
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function abonados_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display)
+{
+  if (!$entity instanceof ProductInterface) {
+    return;
+  }
+  if ($component = $display->getComponent('abonado_form')) {
+    // si ya esta abonado no pintamos el form
+    
+    $form_builder = \Drupal::formBuilder();
+    $build['abonado_form'] = $form_builder->getForm(AbonarseForm::class, $entity->id());
+    // Sólo pueden abonarse los usuario registrados
+    $build['abonado_form']['#access'] = (bool) \Drupal::currentUser()->hasPermission('abonarse numero');
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+/*
+function abonados_theme()
+{
+  
+  $theme = [];
+  $theme['abonado'] = [
+    'render element' => 'elements',
+    'file' => 'abonado.page.inc',
+    'template' => 'abonado',
+  ];
+  $theme['abonado_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'abonado.page.inc',
+  ];
+  return $theme;
+}*/
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+/*
+function abonados_theme_suggestions_abonado(array $variables)
+{
+  $suggestions = [];
+  $entity = $variables['elements']['#abonado'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'abonado__' . $sanitized_view_mode;
+  $suggestions[] = 'abonado__' . $entity->bundle();
+  $suggestions[] = 'abonado__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'abonado__' . $entity->id();
+  $suggestions[] = 'abonado__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+*/

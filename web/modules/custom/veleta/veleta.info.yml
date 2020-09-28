@@ -1,0 +1,5 @@
+name: 'veleta'
+type: module
+description: 'Cosas de loterialaveleta.com'
+core: 8.x
+package: 'Custom'

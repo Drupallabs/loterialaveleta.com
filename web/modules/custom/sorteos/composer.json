@@ -1,0 +1,17 @@
+{
+    "name": "loterialaveleta.com/sorteos",
+    "type": "drupal-module",
+    "description": "Guarda y administra los sorteos de loterias",
+    "autoload": {
+        "psr-4": {
+            "Drupal\\sorteos\\": "src/"
+        }
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
+    }
+}

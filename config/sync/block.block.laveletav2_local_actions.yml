@@ -1,0 +1,20 @@
+uuid: 2cab52fb-773b-469e-8a8d-e5b4ad3fdb37
+langcode: es
+status: false
+dependencies:
+  theme:
+    - laveletav2
+_core:
+  default_config_hash: ffxthelqQF8xcr4GTG4HlaNNsluiHftN0pujmQpW0bQ
+id: laveletav2_local_actions
+theme: laveletav2
+region: content
+weight: -3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

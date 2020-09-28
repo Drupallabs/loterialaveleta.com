@@ -1,0 +1,21 @@
+uuid: 9bff77fb-dbfa-4742-a24c-1d38b8c85fed
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_cart
+  theme:
+    - laveletav2
+id: laveletav2_cestadelacompra
+theme: laveletav2
+region: carrito
+weight: 0
+provider: null
+plugin: commerce_cart
+settings:
+  id: commerce_cart
+  label: Cesta
+  provider: commerce_cart
+  label_display: '0'
+  dropdown: true
+visibility: {  }

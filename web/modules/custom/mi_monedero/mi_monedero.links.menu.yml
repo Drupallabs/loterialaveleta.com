@@ -1,0 +1,13 @@
+# Monedero menu items definition
+entity.monedero.collection:
+  title: "Monederos"
+  route_name: entity.monedero.collection
+  description: "Muestra los Monederos de los usuarios"
+  parent: veleta.admin_veleta
+  weight: 100
+
+monedero.admin.structure.settings:
+  title: "Monedero Configuracion"
+  description: "Configurar la Entidad Monedero"
+  route_name: monedero.settings
+  parent: veleta.admin_veleta.config

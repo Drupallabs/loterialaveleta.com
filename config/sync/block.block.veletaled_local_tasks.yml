@@ -1,0 +1,22 @@
+uuid: 79187177-687e-4c24-b1e7-9a8f4a1dc873
+langcode: es
+status: false
+dependencies:
+  theme:
+    - veletaled
+_core:
+  default_config_hash: qHdtze2DZ2mFfaJadxjZz6epm92_SN9SAFY4yJGl8Fo
+id: veletaled_local_tasks
+theme: veletaled
+region: content
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

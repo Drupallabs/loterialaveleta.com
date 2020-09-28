@@ -1,0 +1,12 @@
+uuid: f07eca49-4009-4179-9220-c86e60bdc184
+langcode: es
+status: true
+dependencies: {  }
+id: decimo_loteria
+label: 'Decimo Loteria'
+description: ''
+variationType: decimo_loteria
+multipleVariations: false
+injectVariationFields: true
+traits: {  }
+locked: false

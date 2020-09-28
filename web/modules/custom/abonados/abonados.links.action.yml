@@ -1,0 +1,15 @@
+#entity.commerce_product_abonado.add_form:
+#  route_name: entity.commerce_product_abonado.add_form
+#  title: "Nuevo Abonado"
+#  appears_on:
+#    - entity.commerce_product_abonado.collection
+entity.abonado.add_form:
+  route_name: entity.abonado.add_page
+  title: "Nuevo Abonado"
+  appears_on:
+    - entity.abonado.collection
+entity.abonado_type.add_form:
+  route_name: entity.abonado_type.add_form
+  title: "Nuevo Tipo de Abonado"
+  appears_on:
+    - entity.abonado_type.collection

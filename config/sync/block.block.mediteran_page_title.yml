@@ -1,0 +1,20 @@
+uuid: 4e910655-d804-4a9c-9f10-02740e113949
+langcode: es
+status: true
+dependencies:
+  theme:
+    - mediteran
+_core:
+  default_config_hash: a3ppMTiqIy20usEz36Kw-wRSQhsj8ckvjdwD-IX6rHk
+id: mediteran_page_title
+theme: mediteran
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

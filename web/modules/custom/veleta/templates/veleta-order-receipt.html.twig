@@ -1,0 +1,176 @@
+{#
+/**
+ * @file
+ * Template for the order receipt.
+ * Available variables:
+ * - order_entity: The order entity.
+ * - billing_information: The billing information.
+ * - shipping_information: The shipping information.
+ * - payment_method: The payment method.
+ * - totals: An array of order totals values with the following keys:
+ *   - subtotal: The order subtotal price.
+ *   - adjustments: An array of adjustment totals:
+ *     - type: The adjustment type.
+ *     - label: The adjustment label.
+ *     - total: The adjustment total price.
+ *     - weight: The adjustment weight, taken from the adjustment type.
+ *   - total: The order total price.
+ * @ingroup themeable
+ */
+#}
+<div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+  Pedido de Loteria Virutal en La Veleta
+ </div>
+ <table border="0" cellpadding="0" cellspacing="0" width="100%">
+   <tr>
+     <td align="center" bgcolor="#faeede">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 650px;">
+         <tr> 
+           <td align="center" valign="top" style="padding: 20px 18px;">
+             <a href="https://loterialaveleta.com" target="_blank" style="display: inline-block;">
+               <img src="https://loterialaveleta.com/themes/custom/laveletav2/images/laveleta-email.png" alt="Logo" border="0" style="display: block; width: 238px;">
+             </a>
+           </td>
+         </tr>
+       </table>
+     </td>
+   </tr>
+   <tr> 
+     <td align="center" bgcolor="#faeede">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+         <tr>
+           <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
+             <h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -1px; line-height: 40px; color:#223;">
+             Tu Pedido de Loteria Nacional</h1>
+           </td>
+         </tr>
+       </table>
+     </td>
+   </tr>
+   <tr>
+     <td align="center" bgcolor="#faeede">
+       <table border="0" cellpadding="0" bgcolor="#ffffff" cellspacing="0" width="100%" style="max-width: 600px;">
+         <tr>
+           <td align="left" bgcolor="#ffffff" style="padding: 22px 20px 0; font-family: Helvetica, Arial, sans-serif;">
+               {% block order_items %}
+                 <table style="padding-top: 15px; padding-bottom:15px; width: 100%">
+                   <tbody style="text-align: left;">
+                   {% for item in newitems %}
+                   <tr>
+                     <td style="vertical-align:middle;">
+                       {{ item.cantidad|number_format }} x
+                     </td>
+                     <td width="250">
+                      <span><img src="{{ item.decimo }}" style="display:block;" width="160" height="100" /></span>
+                     </td>
+                     <td>
+                        <span style="font-size:22px; font-weight:bold;color:#222;">{{ item.numero }}</span>
+                     </td>
+                     <td>
+                       <span style="font-size: 20px;float: right;color:#222;">{{ item.precio_total|number_format }}&euro;</span>
+                     </td>
+                   </tr>
+                   {% endfor %}
+                   </tbody>
+                 </table>
+               {% endblock %}
+           </td>
+         </tr>
+         <tr>
+           <td style="padding-left:450px;">
+             <p style="margin-bottom: 0;color:#222;">
+               {{ 'Subtotal: @subtotal'|t({'@subtotal': totals.subtotal|commerce_price_format}) }}
+             </p>
+           </td>
+         </tr>
+         {% for adjustment in totals.adjustments %}
+         <tr>
+           <td style="padding-left:450px;color:#222;">
+             <p style="margin-bottom: 0;">
+               {{ adjustment.label }}: {{ adjustment.total|commerce_price_format }}
+             </p>
+           </td>
+         </tr>
+         {% endfor %} 
+         <tr>
+           <td style="padding-left:450px;">
+             <p style="font-size: 18px; padding-top: 10px; padding-bottom: 5px; color:#222;">
+               {{ 'Total: @total'|t({'@total': order_entity.getTotalPrice|commerce_price_format}) }}
+             </p>
+           </td>
+         </tr>
+         <tr>
+       </table>
+     </td>
+   </tr>
+   {% if order_entity.field_nombre.value %}
+      <tr>
+        <td align="center" bgcolor="#faeede">
+         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+      <tr>
+         <td align="left" bgcolor="#ffffff"></td>
+      </tr>
+      <tr>
+        <td align="left" bgcolor="#ffffff" style="padding:0 34px; font-family:Helvetica, Arial, sans-serif; font-size: 12px; color:#222;">
+         {% if order_entity.id %}
+           <p><span style="font-weight:bold;">N&uacute;mero de Pedido:</span>&nbsp;{{ order_entity.id }}</p> 
+         {% endif %}
+         {% if order_entity.field_nombre.value %}
+           <p><span style="font-weight:bold;">Nombre:</span>&nbsp;{{ order_entity.field_nombre.value }}</p>
+         {% endif %}
+         <p>El D&eacute;cimo(s) de Loteria Nacional que usted ha comprado, est&aacute; en custodia en la Caja fuerte de Nuestra Administraci&oacute;n asociado a los datos personales que usted nos ha facilitado.</p>
+         <p>Para Cobrar el premio, en caso de  obtenerlo, debe remitirnos un correo electr&oacute;nico a la siguiente direcci&oacute;n (<a href="mailto:pedidos@loterialaveleta.com">pedidos(arroba)loterialaveleta.com</a>) con los siguientes datos: Nombre y apellidos, Numero de Pedido, Dni y n&uacute;mero de la Cuenta Bancaria en la que desea cobrar el premio.</p>
+         <p>Gracias por confiar en nostros y sobre todo.... <strong>¡Mucha Suerte¡</strong></p>
+        </td>
+    </tr>
+    {% endif %} 
+         
+   {% for pay  in payment_method %}
+     {% if pay == 'Transferencia Bancaria' %}
+      <tr style="margin-top:10px;">
+        <td align="center" bgcolor="#faeede">
+         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+      <tr>
+         <td align="left" bgcolor="#ffffff"></td>
+      </tr>
+      <tr>
+        <td align="left" bgcolor="#ffffff" style="padding:0 34px; font-family:Helvetica, Arial, sans-serif; font-size: 12px; color:#222;">
+          <p style="font-family:Helvetica, Arial, sans-serif; font-size: 13px;font-weight:bolder;">Forma de Pago:</p>
+          <p> Por favor, para realizar el pago haga un ingreso en el siguiente nuero de cuenta :  <br/><strong>ES95 2038 1042 7860 0095 6646</strong>
+        </td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    </table>
+  </td>
+</tr>
+
+
+<tr>
+   <tr>
+     <td align="center" bgcolor="#faeede">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+         <tr>
+           <td align="left" bgcolor="#ffffff">
+           </td>
+         </tr>
+         <tr>
+           <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family:Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; border-bottom: 3px solid #d4dadf">
+             <p style="margin: 0; color:#111;">Saludos,<br> El Equipo de La Veleta</p>
+           </td>
+         </tr>
+       </table>
+     </td>
+   </tr>
+   <tr>
+     <td align="center" bgcolor="#faeede" style="padding: 24px;">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+         <tr>
+           <td align="center" bgcolor="#faeede" style="padding: 12px 24px; font-family:Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+           <p style="margin: 0;"><a href="https://loterialaveleta.com" style="color:#222; font-size:14px;" title="Loteria La Veleta">loterialaveleta.com</a> Avda. de la Institucion Libre de Enseñanza 1 - 28037 - Madrid</p>
+           </td>
+         </tr>
+       </table>
+     </td>
+   </tr>
+ </table>

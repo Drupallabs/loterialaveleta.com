@@ -1,0 +1,16 @@
+htmlmail_debug: false
+hmtlmail_theme: ''
+htmlmail_html_with_plain: false
+htmlmail_use_mime_mail: false
+htmlmail_postfilter: full_html
+htmlmail_test:
+  to: davidalvarezcalvo@gmail.com
+  subject: 'subject test'
+  body:
+    value: "<p>body test</p>\r\n"
+    format: basic_html
+  class: swiftmailer
+_core:
+  default_config_hash: Wu3IKMk26-vsOrYw0-gdQelLF90-LJG4ce9mvT9zooE
+langcode: es
+htmlmail_theme: ''

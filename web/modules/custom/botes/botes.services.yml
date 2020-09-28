@@ -1,0 +1,11 @@
+services:
+  botes.botes:
+    class: Drupal\botes\Botes
+    arguments: ['@config.factory']
+    tags:
+      - {name: laveleta}
+  botes.botesbbdd:
+    class: Drupal\botes\BotesBbdd
+    arguments: ["@database"]
+    tags:
+      - {name: laveleta}

@@ -1,0 +1,31 @@
+# Monedero routing definition
+monedero.settings_tab:
+  route_name: monedero.settings
+  title: "Configuracion"
+  base_route: monedero.settings
+
+entity.monedero.canonical:
+  route_name: entity.monedero.canonical
+  base_route: entity.monedero.canonical
+  title: "Ver"
+
+entity.monedero.edit_form:
+  route_name: entity.monedero.edit_form
+  base_route: entity.monedero.canonical
+  title: "Editar"
+
+entity.monedero.version_history:
+  route_name: entity.monedero.version_history
+  base_route: entity.monedero.canonical
+  title: "Revisiones"
+
+entity.monedero.delete_form:
+  route_name: entity.monedero.delete_form
+  base_route: entity.monedero.canonical
+  title: Eliminar
+  weight: 10
+
+mimonedero.usuario:
+  route_name: mi_monedero.monedero
+  base_route: entity.user.canonical
+  title: Mi Monedero

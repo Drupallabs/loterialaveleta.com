@@ -1,0 +1,15 @@
+# Abonado menu items definition
+entity.abonado.collection:
+  title: "Abonados"
+  route_name: entity.abonado.collection
+  description: "Muestra los Abonados"
+  parent: veleta.admin_veleta
+  weight: 100
+
+# Abonado type menu items definition
+entity.abonado_type.collection:
+  title: "Tipos de Abonados"
+  route_name: entity.abonado_type.collection
+  description: "Tipos de Abonados"
+  parent: entity.abonado.collection
+  weight: 99

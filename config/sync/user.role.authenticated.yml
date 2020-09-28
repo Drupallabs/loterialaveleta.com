@@ -1,0 +1,21 @@
+uuid: 685da630-356e-4a63-ac81-646e4e47fa69
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
+id: authenticated
+label: 'Usuario autenticado'
+weight: 1
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'manage own commerce_payment_method'
+  - 'search content'
+  - 'use text format basic_html'
+  - 'view commerce_product'
+  - 'view media'
+  - 'view own commerce_order'

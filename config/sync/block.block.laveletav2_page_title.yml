@@ -1,0 +1,27 @@
+uuid: 2f2e6eda-c234-4f47-a1d4-4071ccc79e36
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - laveletav2
+_core:
+  default_config_hash: 1TQP4b3ZnlzvIH9bj6cpCz_SyUHdJjLQkZnHpikjjhw
+id: laveletav2_page_title
+theme: laveletav2
+region: page_title
+weight: -6
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/blog/*'
+    negate: true
+    context_mapping: {  }

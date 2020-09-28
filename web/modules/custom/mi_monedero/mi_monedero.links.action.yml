@@ -1,0 +1,5 @@
+entity.monedero.add_form:
+  route_name: entity.monedero.add_form
+  title: "Nuevo Monedero"
+  appears_on:
+    - entity.monedero.collection

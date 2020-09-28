@@ -1,0 +1,21 @@
+uuid: 828ed875-6ae5-43ba-b3f6-b2bb45fdd4b9
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fecha_sorteo
+    - node.type.sorteo
+  module:
+    - datetime
+id: node.sorteo.field_fecha_sorteo
+field_name: field_fecha_sorteo
+entity_type: node
+bundle: sorteo
+label: 'Fecha Sorteo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

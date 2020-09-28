@@ -1,0 +1,25 @@
+sorteos.nuevo_sorteo:
+  route_name: node.add
+  route_parameters:
+    node_type: "sorteo"
+  title: "Nuevo Sorteo"
+  appears_on:
+    - view.admin_sorteos.page_1
+
+entity.sorteo.add_page:
+  route_name: entity.sorteo.add_page
+  title: "Nuevo sorteo"
+  appears_on:
+    - entity.sorteo.collection
+
+entity.importer.add_form:
+  route_name: "entity.importer.add_form"
+  title: "Nuevo Importer"
+  appears_on:
+    - entity.importer.collection
+
+entity.sorteo_type.add_form:
+  route_name: "entity.sorteo_type.add_form"
+  title: "Nuevo tipo de sorteo"
+  appears_on:
+    - entity.sorteo_type.collection

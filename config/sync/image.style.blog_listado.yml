@@ -1,0 +1,15 @@
+uuid: 79857f07-9d01-417b-b044-c60a742fb512
+langcode: es
+status: true
+dependencies: {  }
+name: blog_listado
+label: 'Blog Listado'
+effects:
+  414f7a2c-903b-4437-822c-dc649e626c5b:
+    uuid: 414f7a2c-903b-4437-822c-dc649e626c5b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 395
+      height: 211
+      anchor: center-center

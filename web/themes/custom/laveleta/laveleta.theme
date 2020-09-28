@@ -1,0 +1,37 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+
+function laveleta_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook == 'form' & !empty($variables['element']['#id'])) {
+    $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+  }
+}
+/**
+ * Implements hook_preprocess().
+ */
+function laveleta_preprocess(array &$variables, $hook) {
+  $variables['base_path'] = base_path();
+}
+// laveleta_preprocess_form_element
+// laveleta_preprocess_form_element_label
+function laveleta_preprocess_input(&$variables) {
+    if($variables['element']['#type'] ==  'submit') {
+      $variables['attributes']['class'][] = 'btn';
+      $variables['attributes']['class'][] = 'btn-primary';
+    } else {
+    //  $variables['attributes']['class'][] = 'form-control';
+    }
+}
+
+function laveleta_preprocess_form_element(&$variables) {
+ if($variables['element']['#type'] ==  'select') {
+      $variables['attributes']['class'][] = 'form-choose';
+    //  $variables['attributes']['class'][] = 'form-control';
+  }
+}
+
+function laveleta_preprocess_node(&$variables) {
+  //dump($variables); die;
+    $yourDynamicValue = "xyz";
+    $variables['variable_name'] = $yourDynamicValue;
+}
