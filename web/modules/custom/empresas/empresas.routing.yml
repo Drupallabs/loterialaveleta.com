@@ -1,24 +1,40 @@
 empresas.empresas_index:
-  path: '/loteria/empresas'
+  path: "/loteria/empresas"
   defaults:
     _controller: '\Drupal\empresas\Controller\EmpresasController::index'
-    _title: 'Loteria para Empresas Digital y Física'
+    _title: "Loteria para Empresas Digital y Física"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
 
 empresas.empresas_contacto:
-  path: '/loteria/empresas/contacto'
+  path: "/loteria/empresas/contacto"
   defaults:
     _form: '\Drupal\empresas\Form\EmpresasContactoForm'
-    _title: 'Contacta para Informacion sobre Loteria de Empresas Digital y Física'
+    _title: "Contacta para Informacion sobre Loteria de Empresas Digital y Física"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
 
 empresas.empresas_acceso:
-  path: '/loteria/empresas/acceso'
+  path: "/loteria/empresas/acceso"
   defaults:
     #_controller: '\Drupal\empresas\Controller\EmpresasController::contacto'
     _form: '\Drupal\empresas\Form\EmpresasAccesoForm'
-    _title: 'Pagina privada de tu empresa en Loteria La Veleta'
+    _title: "Pagina privada de tu empresa en Loteria La Veleta"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
+
+veleta.admin.empresas.exportar:
+  path: "/admin/laveleta/empresas/exportar"
+  defaults:
+    _controller: '\Drupal\empresas\Controller\EmpresasController::exportarDatos'
+    _title: "Empresas Exportar Datos"
+  requirements:
+    _permission: "access veleta administration pages"
+
+veleta.admin.empresas.exportarcsv:
+  path: "/admin/laveleta/empresas/exportarcsv"
+  defaults:
+    _controller: '\Drupal\empresas\Controller\CSVController::descargarDatos'
+    _title: "Empresa Exportar Datos Csv"
+  requirements:
+    _permission: "access veleta administration pages"

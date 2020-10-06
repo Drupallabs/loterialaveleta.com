@@ -3,38 +3,43 @@
 /**
  * Implements hook_theme().
  */
-function empresas_theme() {
+function empresas_theme()
+{
   return [
     'empresas' => [
       'render element' => 'children',
     ],
     'empresas-contacto' => [
-       'render element' => 'form',
-       ],
+      'render element' => 'form',
+    ],
     'empresas-acceso-form' => [
-        'render element' => 'form',
-      ],
+      'render element' => 'form',
+    ],
+    'empresas-exportar-datos' => [
+      'variables' => ['form' => NULL, 'header_data' => NULL, 'pedidos' => NULL],
+      'render element' => 'form'
+    ],
   ];
 }
 
 /**
  * Implementation of hook_mail().
  */
-function empresas_mail($key, &$message, $params) {
+function empresas_mail($key, &$message, $params)
+{
   // print_r($params); die;
-  switch($key) {
+  switch ($key) {
 
-    case'contacto':
+    case 'contacto':
       $text[] = 'Hola,';
       $text[] = 'Alguien ha enviado un mensaje en la seccion de contacto de Empresas loterialaveleta.com.';
-      $text[] = 'Nombre: '.$params['nombre'];
-      $text[] = 'Telefono: '.$params['telefono'];
-      $text[] = 'Email: '.$params['email'];
-      $text[] = 'Comentarios: '.$params['comentarios'];
+      $text[] = 'Nombre: ' . $params['nombre'];
+      $text[] = 'Telefono: ' . $params['telefono'];
+      $text[] = 'Email: ' . $params['email'];
+      $text[] = 'Comentarios: ' . $params['comentarios'];
 
       $message['subject'] = t('Contacto de Empresas en loterialaveleta.com');
       $message['body'] = $text;
       break;
-    }
-
+  }
 }

@@ -11,3 +11,10 @@ empresa.admin.structure.settings:
   description: "Configure Empresa entities"
   route_name: empresa.settings
   parent: veleta.admin_veleta.config
+
+empresa.exportar.datos:
+  title: "Exportar Datos"
+  route_name: veleta.admin.empresas.exportar
+  description: "Exportar Datos"
+  parent: entity.empresa.collection
+  weight: 50

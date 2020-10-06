@@ -13,3 +13,11 @@ commerce_redsys.notificacion:
  methods: [POST]
  requirements:
    _access: 'TRUE'
+
+commerce_redsys.notificacionerror:
+ path: '/commerce-redsys/notificacion-error'
+ defaults:
+   _controller: '\Drupal\commerce_redsys\Controller\CommerceRedsysController::NotificacionError'
+ methods: [POST]
+ requirements:
+   _access: 'TRUE'
