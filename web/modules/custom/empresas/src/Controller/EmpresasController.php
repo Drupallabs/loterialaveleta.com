@@ -27,7 +27,7 @@ class EmpresasController extends ControllerBase
 
     if ($request->query->get('empresa') != '') {
       $headers = array('Pedido ', 'Codigo TPV', 'Empresa', 'Usuario', 'Correo electrónico', 'Nombre', 'DNI', 'Producto ID', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'IP', 'Fecha');
-      $query = $this->getQuery($request->query->get('empresa'));
+      $query = $this->getQuery($request->query->get('empresa'), $request->query->get('numero'));
       $result = $query->execute();
 
       foreach ($result as $record) {
@@ -60,7 +60,7 @@ class EmpresasController extends ControllerBase
     return $output;
   }
 
-  private function getQuery($empresa = null)
+  private function getQuery($empresa = null, $numero = null)
   {
 
     $db_connection = Database::getConnection('default');
@@ -105,6 +105,9 @@ class EmpresasController extends ControllerBase
     $query->condition('co.state', 'completed');
     if ($empresa)
       $query->condition('cpe.field_empresa_target_id', $empresa);
+    if ($numero)
+      $query->condition('cpn.field_numero_decimo_value', $numero);
+
     $query->orderBy('co.completed', 'DESC');
 
     $tempstore = \Drupal::service('user.private_tempstore')->get('empresas');

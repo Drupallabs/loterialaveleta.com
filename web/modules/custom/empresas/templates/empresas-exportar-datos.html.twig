@@ -2,8 +2,14 @@
   <div class="exportar-form">
     <h3>Filtar Datos</h3>
       <form name="filtrarDatos" id="filtrarDatos" >
-      {{ form.filtros.empresa }}
-
+      <div class="form--inline clearfix">
+        <div class="form-item">
+          {{ form.filtros.empresa }}
+        </div>
+        <div class="form-item">
+          {{ form.filtros.numero }}
+        </div>
+      </div>
       {{ form.filtros.submit }}
       {{ form.form_build_id }}
       {{ form.form_token }}
@@ -52,7 +58,7 @@
               <td></td>
               <td><td>
               <td></td>
-              <td>{{ sum }}</td>
+              <td>{% if sum != 0 %}{{ sum }}{% endif %}</td>
               <td></td>
               <td></td>
               <td></td>

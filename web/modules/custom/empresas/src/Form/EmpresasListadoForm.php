@@ -64,6 +64,11 @@ class EmpresasListadoForm extends FormBase
             '#title' => 'Empresa',
             '#options' => $options,
         ];
+        $form['filtros']['numero'] = [
+            '#type' => 'textfield',
+            '#title' => 'Numero Decimo',
+            '#size' => 20
+        ];
 
         $form['filtros']['submit'] = [
             '#type' => 'submit',

@@ -8,3 +8,13 @@ sorteos.proximosorteo:
     parameters:
       gameid:
         type: string
+sorteos.ultimossorteos:
+  path: "/sorteos/ultimossorteos/{gameid}"
+  defaults:
+    _controller: '\Drupal\sorteos\Controller\SorteosController::ultimosSorteos'
+  requirements:
+    _access: "TRUE"
+  options:
+    parameters:
+      gameid:
+        type: string

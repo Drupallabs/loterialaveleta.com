@@ -31,7 +31,7 @@ class SorteosController extends ControllerBase
         return new static(
             $container->get('sorteos.sorteosbbdd')
         );
-    } 
+    }
 
     public function proximoSorteo($gameid, Request $request)
     {
@@ -42,5 +42,11 @@ class SorteosController extends ControllerBase
             'method' => 'GET',
         ];
         return new JsonResponse($resarr);
+    }
+
+    public function ultimosSorteos($gameid, Request $request)
+    {
+        $sorteos = $this->sorteosService->ultimosSorteos($gameid);
+        return new JsonResponse($sorteos);
     }
 }
