@@ -101,7 +101,9 @@ interface SorteoInterface extends ContentEntityInterface, EntityChangedInterface
 
     public function getEscrutinioJoker();
     public function setEscrutinioJoker($escrutinio_joker);
-
+    
+    public function getResultados();
+    public function setResultados($resultados);
 
     /**
      * Gets the Fecha source.

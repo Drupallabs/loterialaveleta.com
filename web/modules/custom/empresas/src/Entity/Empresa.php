@@ -399,6 +399,7 @@ class Empresa extends ContentEntityBase implements EmpresaInterface
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 }

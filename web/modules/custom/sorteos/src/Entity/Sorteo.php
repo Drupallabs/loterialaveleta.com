@@ -201,6 +201,16 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
         return $this;
     }
 
+    public function getResultados()
+    {
+        return $this->get('resultados')->entity;
+    }
+    public function setResultados($resultados)
+    {
+        $this->set('resultados', $resultados);
+        return $this;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -350,7 +360,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'type' => 'number',
                 'weight' => 3,
             ])
-            //->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
 
         $fields['premios'] = BaseFieldDefinition::create('string')
@@ -391,15 +400,36 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ->setLabel('Escrutinio')->setDescription('')
             ->setDisplayConfigurable('form', FALSE)
             ->setDisplayConfigurable('view', FALSE)
-            ->setRequired(FALSE)
-            ->setQueryable(FALSE);
+            ->setRequired(FALSE);
 
         $fields['escrutinio_joker'] = BaseFieldDefinition::create('map')
             ->setLabel('Escrutinio Joker')->setDescription('')
             ->setDisplayConfigurable('form', FALSE)
             ->setDisplayConfigurable('view', FALSE)
+            ->setRequired(FALSE);
+
+        $fields['resultados'] = BaseFieldDefinition::create('file')
+            ->setLabel('Resultados')
             ->setRequired(FALSE)
-            ->setQueryable(FALSE);
+            ->setDescription('Introduce el PDF con los resultados para mostrar en la pantalla resultados.')
+            ->setSettings([
+                'uri_scheme' => 'public',
+                'file_directory' => 'resultados/[date:custom:Y]-[date:custom:m]',
+                //'default_value' => '',
+                'file_extensions' => 'pdf',
+                'max_filesize' => '3000 KB',
+            ])
+            ->setDisplayOptions('view', array(
+                'label' => 'hidden',
+                'type' => 'file',
+                'weight' => -3,
+            ))
+            ->setDisplayOptions('form', array(
+                'type' => 'file',
+                'weight' => -1,
+            ))
+            ->setDisplayConfigurable('form', TRUE)
+            ->setDisplayConfigurable('view', TRUE);
 
         $fields['created'] = BaseFieldDefinition::create('created')
             ->setLabel('Creado')

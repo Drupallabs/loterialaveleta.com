@@ -50,6 +50,8 @@ class EmpresasController extends ControllerBase
       }
     }
 
+    $output = \Drupal::service('token.tree_builder')->buildRenderable(['sorteo']);
+    dump($output);
 
     $output[] = [
       '#theme' => 'empresas-exportar-datos',
