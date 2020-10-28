@@ -50,8 +50,6 @@ class EmpresasController extends ControllerBase
       }
     }
 
-    $output = \Drupal::service('token.tree_builder')->buildRenderable(['sorteo']);
-    dump($output);
 
     $output[] = [
       '#theme' => 'empresas-exportar-datos',
@@ -72,6 +70,7 @@ class EmpresasController extends ControllerBase
     $query->join('commerce_order__field_nombre', 'cn', 'co.order_id = cn.entity_id');
     $query->join('commerce_order__field_dni', 'cdni', 'co.order_id = cdni.entity_id');
     $query->join('commerce_order_item', 'coi', 'co.order_id = coi.order_id');
+    $query->join('commerce_order__order_items', 'cois', 'coi.order_item_id = cois.order_items_target_id');
     $query->join('commerce_product_variation_field_data', 'cov', 'coi.purchased_entity = cov.variation_id');
     $query->join('commerce_product', 'cp', 'cov.product_id = cp.product_id');
     $query->join('commerce_product__field_numero_decimo', 'cpn', 'cp.product_id = cpn.entity_id');

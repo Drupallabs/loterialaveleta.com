@@ -71,9 +71,9 @@ function template_preprocess_sorteo(array &$variables)
 
 function sorteos_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form['#entity_type'] == 'sorteo') {
+  /*if ($form['#entity_type'] == 'sorteo') {
     $form['actions']['submit']['#submit'][] = 'renombrar_resultados_archivos';
-  }
+  }*/
 }
 
 
@@ -82,23 +82,29 @@ function renombrar_resultados_archivos($form, &$form_state)
   if ($form_state->hasValue('resultados')) {
     if ($form_state->getValue('resultados')[0]['fids'] != null) {
 
+      $fid_0 = $form_state->getValue('resultados')[0]['fids'][0];
+
       $tiposorteo = $form['form_id']['#value'];
 
-      //$fid_0 = $form_state->getValue('id_sorteo')[0]['value'];
-      $fid_0 = $form_state['values']['id_sorteo'];
-      $file_name = ucfirst($tiposorteo) . '-' . $fid_0;
+      $id_sorteo = $form_state->getValue('id_sorteo')[0]['value'];
+      $file_name = ucfirst($tiposorteo) . '-' . $id_sorteo;
       $file_name = trim(preg_replace("/[^0-9A-Za-z]/", '-', $file_name));
-      $file = \Drupal\file\Entity\File::load($fid_0);
 
-      $old_file_name = $file->getFilename();
-      $old_file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getFilename());
+      try {
+        $file = \Drupal\file\Entity\File::load($fid_0);
 
-      $new_filename_uri = str_replace($old_file_name, $file_name, $file->getFileUri());
+        $old_file_name = $file->getFilename();
+        $old_file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getFilename());
 
-      file_move($file, $new_filename_uri);
-      $file->setFilename($file_name);
-      $file->setFileUri($new_filename_uri);
-      $file->save();
+        $new_filename_uri = str_replace($old_file_name, $file_name, $file->getFileUri());
+        file_move($file, $new_filename_uri);
+        dump($new_filename_uri);
+        $file->setFilename($file_name);
+        $file->setFileUri($new_filename_uri);
+        $file->save();
+      } catch (\Exception $e) {
+        watchdog_exception('sorteos', $e);
+      }
     }
   }
 }
