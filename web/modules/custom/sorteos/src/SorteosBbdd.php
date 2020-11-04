@@ -2,12 +2,13 @@
 
 namespace Drupal\sorteos;
 
-use Drupal\Component\Datetime\DateTimePlus;
-use Drupal\Core\Datetime\DrupalDateTime;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Database\Connection;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+//use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+//use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 
 /**
  * Clase que obtiene sorteos de base de datos
@@ -251,5 +252,26 @@ class SorteosBbdd
         ])->fetchAll();
 
         return $sorteos;
+    }
+
+    /**
+     * Devuelve el pdf de resultados de un sorteo, para la pantalla de resultados
+     */
+    public function dameResultadoPdf($sorteoid)
+    {
+        $sorteo = [];
+
+        if ($sorteoid) {
+            $sorteo = $this->connection->query("SELECT f.fid, f.filename, f.uri FROM sorteo s INNER JOIN file_managed f ON s.resultados__target_id = f.fid
+                                            WHERE id = :sorteoid LIMIT 1", [
+                ':sorteoid' => $sorteoid
+            ])->fetchAll();
+        }
+        $file = File::load($sorteo[0]->fid);
+        if ($file) {
+            return $file->url();
+        } else {
+            return '';
+        }
     }
 }

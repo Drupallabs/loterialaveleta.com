@@ -18,3 +18,13 @@ sorteos.ultimossorteos:
     parameters:
       gameid:
         type: string
+sorteos.dameresultado.pdf:
+  path: "/sorteos/dameresultado-pdf/{sorteoid}"
+  defaults:
+    _controller: '\Drupal\sorteos\Controller\SorteosController::dameResultadoPdf'
+  requirements:
+    _access: "TRUE"
+  options:
+    parameters:
+      sorteoid:
+        type: string
