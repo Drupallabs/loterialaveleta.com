@@ -1,0 +1,789 @@
+@charset "UTF-8";
+/*******************************
+
+COLORES
+
+********************************/
+/* Color Primario */
+/* verde medio */
+/* verde oscuro */
+/* verde claro */
+/* Naranja */
+/* Naranja oscuro */
+/* Amarillo anaranjado */
+/*  */
+/* Tipografía */
+/*******************************
+
+TIPOGRAFÍA
+
+********************************/
+/*******************************
+
+BOTONES, FORMULARIOS, TABLAS
+Si se quiere modificar individualmente alguno de ellos,
+se deben cambiar las variables SASS en los respectivos
+archivos
+
+********************************/
+/*******************************
+
+HOVER (@include hover o transition)
+
+********************************/
+/* 
+LOGGED-USER 
+Icono y desplegable en cabecera para usuarios logados
+*/
+.shop__item--user-is-logged {
+  margin-top: 6px;
+  height: 36px;
+  border: 1px solid #8fc034;
+  border-radius: 18px;
+  padding: 0 9px;
+}
+.shop__item--user-is-logged .site-header__icon {
+  height: auto;
+  border: none;
+  width: auto;
+  transform: translateY(-2px);
+}
+
+.shop__item {
+  display: flex;
+  align-items: center;
+}
+
+.shop__username {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.logged-user__links {
+  display: flex;
+  flex-flow: column;
+}
+.logged-user__links a {
+  text-decoration: none;
+  margin: 8px 0;
+}
+
+.logged-user__logout {
+  margin-top: 24px;
+}
+
+/* 
+FIXED-LOGIN
+Icono con posición fija y formulario desplegable
+*/
+.flc {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 8000;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.flc.is-hidden {
+  opacity: 0;
+}
+
+.flc__btn-container {
+  text-decoration: inherit;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.flc__btn {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+.flc__btn .flc__icon,
+.flc__btn .flc__text {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.flc__btn:hover {
+  color: white;
+}
+.flc__btn:hover .flc__icon,
+.flc__btn:hover .flc__text {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.flc__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  width: 56px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #8fc034;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.flc__text {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: #8fc034;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.flc__login-container {
+  display: none;
+  margin-bottom: 12px;
+  padding: 24px;
+  width: 400px;
+  background: white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.flc__login-container.is-showing {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .flc {
+    display: none;
+  }
+}
+
+/* 
+LATEST-RESULTS-HEADER
+Modifica el estilo de la cabecera para hacerlo más adecuado al diseño general e incluye un link al histórico de resultados
+*/
+.results__header {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.results__header .section__title span {
+  display: block;
+  max-width: 600px;
+  margin: 12px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.history-btn-container {
+  margin: 0 0 1.5rem;
+}
+@media (min-width: 48em) {
+  .history-btn-container {
+    margin: 0 0 3rem;
+  }
+}
+.history-banner {
+  display: flex;
+  justify-content: center;
+}
+
+/*
+SEARCH RESULTS
+Formulario del buscador de resultados (histórico)
+*/
+.results-search {
+  margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+  .results-search {
+    margin-bottom: 48px;
+  }
+}
+.results-search-form {
+  background: white;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 12px 24px;
+}
+@media (min-width: 768px) {
+  .results-search-form {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+  }
+  .results-search-form .form__item:last-of-type {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+  }
+}
+@media (min-width: 1024px) {
+  .results-search-form {
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+  }
+  .results-search-form .form__item:last-of-type {
+    grid-row: 1 / 2;
+    grid-column: 4 / 5;
+  }
+}
+.results-search-form label {
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .results-search-form--per-game {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+  }
+  .results-search-form--per-game .form__item:last-of-type {
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+  }
+}
+
+.results .draw .card__btn-primary {
+  display: none;
+}
+
+/*
+NAVIGATION
+Navegación de páginas en resultados historicos
+*/
+.navigation {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+@media (min-width: 768px) {
+  .navigation {
+    margin: 3rem 0;
+  }
+}
+.nav-page {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 8px;
+  border: 1px solid #7ba42b;
+  text-decoration: inherit;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.nav-page:hover {
+  background: #8fc034;
+  color: white;
+  border: 1px solid #8fc034;
+}
+.nav-page.nav-page--current,
+.nav-page.nav-page--prev,
+.nav-page.nav-page--next {
+  display: inline-flex;
+}
+
+.nav-page--current {
+  background: #7ba42b;
+  color: white;
+}
+
+.nav-page--first-page,
+.nav-page--last-page,
+.nav-page--prev,
+.nav-page--next,
+.nav-page--delimiter {
+  border: none;
+}
+.nav-page--first-page:hover,
+.nav-page--last-page:hover,
+.nav-page--prev:hover,
+.nav-page--next:hover,
+.nav-page--delimiter:hover {
+  background: none;
+  color: #8fc034;
+  border: none;
+}
+
+.nav-page--first-page span:first-of-type {
+  position: relative;
+  transform: translateX(24px);
+}
+
+.nav-page--last-page span:last-of-type {
+  position: relative;
+  transform: translateX(-24px);
+}
+
+@media (min-width: 768px) {
+  .nav-page {
+    display: inline-flex;
+  }
+}
+
+/*
+PROFILE
+Perfil de usuario
+*/
+.visually-hidden {
+  display: none;
+}
+
+.user__header {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+@media (min-width: 1024px) {
+  .user__header {
+    margin: 3rem 0 1.5rem;
+  }
+}
+.user__title {
+  margin: 0;
+}
+
+.user__welcome {
+  display: block;
+  line-height: 1;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.user__icon {
+  order: -1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  margin-right: 24px;
+  border-radius: 50%;
+  border: 1px solid;
+  font-size: 24px;
+  color: #7ba42b;
+}
+
+.card--user {
+  margin-bottom: 48px;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.card__title {
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.user-menu {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.user-menu__active-element {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #ddd;
+  text-decoration: inherit;
+  color: inherit;
+  font-weight: 700;
+}
+@media (min-width: 500px) {
+  .user-menu__active-element {
+    max-width: 50%;
+  }
+}
+.user-menu__active-element:after {
+  content: "\e900";
+  font-family: "icons";
+}
+.user-menu__active-element.is-open {
+  background: #7ba42b;
+  border: 1px solid #7ba42b;
+  color: white;
+}
+
+.user-menu__tasks {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+  background: white;
+}
+.user-menu__tasks a {
+  display: block;
+  color: inherit;
+  text-decoration: inherit;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  transition: 0.3s;
+}
+.user-menu__tasks a.is-active {
+  color: #7ba42b;
+  font-weight: 700;
+}
+.user-menu__tasks a:hover {
+  color: #7ba42b;
+}
+
+.user-menu__tasks.is-showing {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .user-menu__active-element {
+    display: none;
+  }
+  .user-menu__tasks {
+    background: none;
+    display: flex;
+    border-bottom: 1px solid #eee;
+  }
+  .user-menu__tasks a {
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+  }
+  .user-menu__tasks a.is-active {
+    border-bottom: 2px solid #7ba42b;
+  }
+}
+
+.form-container {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid--2-cols .grid__item--full {
+    grid-column: 1 / 3;
+  }
+  .grid--2-cols .grid__item--reverse {
+    grid-column: 2 / 3;
+  }
+}
+
+.user-data {
+  width: 100%;
+}
+
+.user-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/*
+
+User wallet
+
+*/
+.user-wallet__total {
+  font-size: 24px;
+}
+
+.user-wallet--add {
+  margin-top: 24px;
+}
+
+.payment-methods {
+  margin-top: 16px;
+}
+
+.payment-methods small {
+  display: block;
+  font-size: 13px;
+}
+@media (min-width: 768px) {
+  .payment-methods small {
+    display: inline;
+  }
+}
+.payment-method-icon {
+  display: inline-block;
+  width: 40px;
+  height: 25px;
+  background-size: 40px 25px;
+  text-indent: -9999px;
+  box-shadow: 0 0 0.01em black;
+  margin: 10px 10px 0 0;
+  vertical-align: middle;
+}
+@media (min-width: 768px) {
+  .payment-method-icon {
+    margin: 0 5px 0 5px;
+  }
+}
+.payment-method-icon--maestro {
+  background-image: url(../images/maestro.svg);
+}
+
+.payment-method-icon--mastercard {
+  background-image: url(../images/mastercard.svg);
+}
+
+.payment-method-icon--visa {
+  background-image: url(../images/visa.svg);
+}
+
+/*
+TABLAS
+Tablas responsive 
+*/
+.table-container {
+  width: 100%;
+}
+
+th {
+  font-weight: 700;
+}
+
+@media (max-width: 1023px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    border: none;
+    margin: 0;
+  }
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive th,
+  .table-responsive td,
+  .table-responsive tr {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+  .table-responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table-responsive tr {
+    margin-bottom: 16px;
+  }
+  .table-responsive th,
+  .table-responsive td:before {
+    font-weight: 700;
+    padding: 0;
+  }
+  .table-responsive td {
+    /* Behave  like a "row" */
+    padding: 0;
+    border: none;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .table-responsive td p {
+    margin-bottom: 8px;
+  }
+  .table-responsive--horizontal-header td:before {
+    content: attr(data-th);
+  }
+  .table-responsive--horizontal-header td {
+    margin-bottom: 16px;
+  }
+  .table-responsive--horizontal-header tr:nth-of-type(even) {
+    background: #fafafa;
+    width: calc(100% + 48px);
+    transform: translateX(-24px);
+    padding: 16px 24px;
+  }
+}
+.subhome-hero {
+  position: relative;
+  background: white;
+  margin-bottom: 2rem;
+}
+.subhome-hero .wrapper {
+  padding: 48px 16px;
+  background-repeat: no-repeat;
+}
+@media (min-width: 1024px) {
+  .subhome-hero .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 48px;
+    align-items: center;
+    height: 350px;
+    padding: 0 24px;
+  }
+}
+.subhome-hero .btn {
+  color: white;
+}
+.subhome-hero:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom, #cc1517 0%, #b51314 100%);
+  background-repeat: no-repeat;
+  background-position: top left;
+  mix-blend-mode: multiply;
+}
+
+.subhome-hero__texts {
+  position: relative;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  z-index: 100;
+  color: white;
+  text-align: center;
+}
+.subhome-hero__texts .subhome-hero__game {
+  display: inline-flex;
+  height: 122px;
+  width: 256px;
+  margin-bottom: 0;
+  background-color: white;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.subhome-hero__texts .subhome-hero__title {
+  color: white;
+  margin: 0 0 1.5rem;
+}
+.subhome-hero__texts .subhome-hero__title .title-text {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.subhome-hero__texts .subhome-hero__btn {
+  min-width: 256px;
+  border-width: 4px;
+  font-weight: 700;
+}
+
+.subhome-hero--quiniela .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/quiniela.svg");
+  mask-image: url("../images/logos/quiniela.svg");
+}
+
+.subhome-hero--quiniela:before {
+  background: linear-gradient(to bottom, #cc1517 0%, #b51314 100%);
+}
+
+.subhome-hero--quinigol .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/quinigol.svg");
+  mask-image: url("../images/logos/quinigol.svg");
+}
+
+.subhome-hero--quinigol:before {
+  background: linear-gradient(to bottom, #40bcd0 0%, #31b1c6 100%);
+}
+
+.subhome-hero--loteria .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/loteria.svg");
+  mask-image: url("../images/logos/loteria.svg");
+}
+
+.subhome-hero--loteria:before {
+  background: linear-gradient(to bottom, #3378b3 0%, #2d6b9f 100%);
+}
+
+.subhome-hero--euromillones .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/euromillones.svg");
+  mask-image: url("../images/logos/euromillones.svg");
+}
+
+.subhome-hero--euromillones:before {
+  background: linear-gradient(to bottom, #043f65 0%, #03304c 100%);
+}
+
+.subhome-hero--primitiva .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/primitiva.svg");
+  mask-image: url("../images/logos/primitiva.svg");
+}
+
+.subhome-hero--primitiva:before {
+  background: linear-gradient(to bottom, #098342 0%, #076b36 100%);
+}
+
+.subhome-hero--bonoloto .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/bonoloto.svg");
+  mask-image: url("../images/logos/bonoloto.svg");
+}
+
+.subhome-hero--bonoloto:before {
+  background: linear-gradient(to bottom, #7d8c32 0%, #6c792b 100%);
+}
+
+.subhome-hero--gordo .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/gordo.svg");
+  mask-image: url("../images/logos/gordo.svg");
+}
+
+.subhome-hero--gordo:before {
+  background: linear-gradient(to bottom, #dc3f46 0%, #d82931 100%);
+}
+
+.subhome-hero--lototurf .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/lototurf.svg");
+  mask-image: url("../images/logos/lototurf.svg");
+}
+
+.subhome-hero--lototurf:before {
+  background: linear-gradient(to bottom, #eb6c20 0%, #de5f14 100%);
+}
+
+.subhome-hero--quintuple .subhome-hero__game {
+  -webkit-mask-image: url("../images/logos/quintuple.svg");
+  mask-image: url("../images/logos/quintuple.svg");
+}
+
+.subhome-hero--quintuple:before {
+  background: linear-gradient(to bottom, #fcbe42 0%, #fcb529 100%);
+}
+
+@media (min-width: 1024px) {
+  .subhome-hero--quiniela .wrapper {
+    background-image: url("../images/imagenes_hero/futbol.png");
+  }
+  .subhome-hero--quinigol .wrapper {
+    background-image: url("../images/imagenes_hero/futbol.png");
+  }
+  .subhome-hero--loteria .wrapper {
+    background-image: url("../images/imagenes_hero/loteria.png");
+  }
+  .subhome-hero--euromillones .wrapper {
+    background-image: url("../images/imagenes_hero/loteria.png");
+  }
+  .subhome-hero--primitiva .wrapper {
+    background-image: url("../images/imagenes_hero/loteria.png");
+  }
+  .subhome-hero--bonoloto .wrapper {
+    background-image: url("../images/imagenes_hero/loteria.png");
+  }
+  .subhome-hero--gordo .wrapper {
+    background-image: url("../images/imagenes_hero/loteria.png");
+  }
+  .subhome-hero--lototurf .wrapper {
+    background-image: url("../images/imagenes_hero/hipica.png");
+  }
+  .subhome-hero--quintuple .wrapper {
+    background-image: url("../images/imagenes_hero/hipica.png");
+  }
+}

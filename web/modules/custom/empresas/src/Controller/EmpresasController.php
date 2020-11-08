@@ -25,9 +25,13 @@ class EmpresasController extends ControllerBase
 
     $form  = \Drupal::formBuilder()->getForm('Drupal\empresas\Form\EmpresasListadoForm');
 
+
     if ($request->query->get('empresa') != '') {
+
+      //$form->setValue('empresa', $request->query->get('empresa'));
+
       $headers = array('Pedido ', 'Codigo TPV', 'Empresa', 'Usuario', 'Correo electrónico', 'Nombre', 'DNI', 'Producto ID', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'IP', 'Fecha');
-      $query = $this->getQuery($request->query->get('empresa'), $request->query->get('numero'));
+      $query = $this->getQuery($request->query->get('empresa'), $request->query->get('numero'), $request->query->get('codigo'));
       $result = $query->execute();
 
       foreach ($result as $record) {
@@ -60,7 +64,7 @@ class EmpresasController extends ControllerBase
     return $output;
   }
 
-  private function getQuery($empresa = null, $numero = null)
+  private function getQuery($empresa = null, $numero = null, $codigo = null)
   {
 
     $db_connection = Database::getConnection('default');
@@ -108,7 +112,10 @@ class EmpresasController extends ControllerBase
       $query->condition('cpe.field_empresa_target_id', $empresa);
     if ($numero)
       $query->condition('cpn.field_numero_decimo_value', $numero);
+    if ($codigo)
+      $query->condition('co.order_number', $codigo);
 
+    dump($query);
     $query->orderBy('co.completed', 'DESC');
 
     $tempstore = \Drupal::service('user.private_tempstore')->get('empresas');

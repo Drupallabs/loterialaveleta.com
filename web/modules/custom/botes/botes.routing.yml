@@ -2,7 +2,7 @@ botes.botes_todos:
   path: "/botes"
   defaults:
     _controller: '\Drupal\botes\Controller\BotesController::botes'
-    _title: "Botes de Loteria Nacional"
+    _title: "Botes de Loteria Nacional, Euromillones, Primitiva, Gordo de la Primitiva, Quiniela, Quinigol, Lototurf y Quintuple Plus"
   requirements:
     _permission: "access content"
 

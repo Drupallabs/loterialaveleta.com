@@ -1,3 +1,17 @@
+<div class="subhome-hero subhome-hero--loteria">
+	<div class="wrapper">
+		<div class="subhome-hero__texts">
+			
+			<h1 class="subhome-hero__title"><span class="subhome-hero__game game"></span><span class="title-text">Loteria Nacional</span></h1>
+			<div class="subhome-hero__buttons">
+				<a href="{{ path('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--outline subhome-hero__btn">Jugar ya</a>
+			</div>
+      {% if proximo %}
+			<div class="subhome-hero__info"><small>Próximo sorteo: {{ proximo }}</small></div>
+      {% endif %}
+		</div>
+	</div>
+</div>
 <section id="results" class="section results">
   <div class="wrapper">
     <div class="section__main">

@@ -55,19 +55,19 @@ class SorteosBbdd
             $bundle = $this->bundles[$gameid];
             switch ($bundle) {
                 case "loteria_nacional":
-                    //return $this->dameResultadosHoyLnac();
+                    return $this->dameProximoLnac();
                     break;
                 case "euromillones":
-                    //return $this->dameResultadosHoyEmil();
+                    return $this->dameProximoEmil();
                     break;
                 case "primitiva":
-                    //return $this->dameResultadosHoyLapr();
+                    return $this->dameProximoLapr();
                     break;
                 case "bonoloto":
-                    //return $this->dameResultadosHoyBono();
+                    return $this->dameProximoBono();
                     break;
                 case "gordo_primitiva":
-                    //return $this->dameResultadosHoyElgr();
+                    return $this->dameProximoElgr();
                     break;
                 case "quiniela":
                     return $this->dameProximoLaqu();
@@ -76,13 +76,72 @@ class SorteosBbdd
                     return $this->dameProximoQgol();
                     break;
                 case "lototurf":
-                    //return $this->dameResultadosHoyLotu();
+                    return $this->dameProximoLotu();
                     break;
                 case "quintuple_plus":
-                    //return $this->dameResultadosHoyQupl();
+                    return $this->dameProximoQupl();
                     break;
             }
         }
+    }
+
+    /* Obtiene el proximo Loteria Nacional */
+    private function dameProximoLnac()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'loteria_nacional' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
+
+    /* Obtiene el proximo Euromillones */
+    private function dameProximoEmil()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'euromillones' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
+
+    /* Obtiene el proximo Primitiva */
+    private function dameProximoElgr()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'gordo_primitiva' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
+
+    /* Obtiene el proximo Primitiva */
+    private function dameProximoLapr()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'primitiva' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
+
+    private function dameProximoBono()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'bonoloto' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
     }
     /* Obtiene el proximo Quinigol */
     private function dameProximoQgol()
@@ -114,6 +173,26 @@ class SorteosBbdd
         return $sorteo;
     }
 
+    private function dameProximoLotu()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'lototurf' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
+
+    private function dameProximoQupl()
+    {
+        $sorteos = $this->connection->query("SELECT s.* FROM sorteo s WHERE type = 'quintuple_plus' AND fecha >= :fecha ORDER by s.fecha ASC", [
+            ':fecha' => $this->ahora
+        ])->fetchAll();
+
+        $sorteo = reset($sorteos);
+
+        return $sorteo;
+    }
     /**
      * Devuelve los ultimos sorteos hasta 3 meses, 
      * solo devuelve el nombre , el codigo del sorteo y la fecha

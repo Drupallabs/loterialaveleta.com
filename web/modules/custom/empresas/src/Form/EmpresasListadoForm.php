@@ -69,6 +69,12 @@ class EmpresasListadoForm extends FormBase
             '#title' => 'Numero Decimo',
             '#size' => 20
         ];
+        $form['filtros']['codigo'] = [
+            '#type' => 'textfield',
+            '#title' => 'Codigo de TPV',
+            '#required' => false,
+            '#size' => 20
+        ];
 
         $form['filtros']['submit'] = [
             '#type' => 'submit',
@@ -81,12 +87,12 @@ class EmpresasListadoForm extends FormBase
      */
     public function validateForm(array &$form, FormStateInterface $form_state)
     {
-        $empresa = $form_state->getValue('empresa');
-
+        /*$empresa = $form_state->getValue('empresa');
         if ($empresa == '') {
+
             $form_state->setErrorByName('codigo', 'Introduce una empresa');
         }
-
+        */
         parent::validateForm($form, $form_state);
     }
 
@@ -95,5 +101,6 @@ class EmpresasListadoForm extends FormBase
      */
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
+        parent::submitForm($form, $form_state);
     }
 }

@@ -14,39 +14,39 @@ function resultados_theme($existing, $type, $theme, $path)
       'render element' => 'form',
     ],
     'resultados_lnac' => [
-      'variables' => ['lnacs' => null],
+      'variables' => ['lnacs' => null, 'proximo' => null ],
       'template' => 'resultados/resultados-lnac'
     ],
     'resultados_emil' => [
-      'variables' => ['emils' => null],
+      'variables' => ['emils' => null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-emil'
     ],
     'resultados_lapr' => [
-      'variables' => ['laprs' => null],
+      'variables' => ['laprs' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-lapr'
     ],
     'resultados_elgr' => [
-      'variables' => ['elgrs' => null],
+      'variables' => ['elgrs' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-elgr'
     ],
     'resultados_bono' => [
-      'variables' => ['bonos' => null],
+      'variables' => ['bonos' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-bono'
     ],
     'resultados_laqu' => [
-      'variables' => ['laqus' => null],
+      'variables' => ['laqus' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-laqu'
     ],
     'resultados_qgol' => [
-      'variables' => ['qgols' => null],
+      'variables' => ['qgols' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-qgol'
     ],
     'resultados_lotu' => [
-      'variables' => ['lotus' => null],
+      'variables' => ['lotus' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-lotu'
     ],
     'resultados_qupl' => [
-      'variables' => ['qupls' => null],
+      'variables' => ['qupls' =>null, 'proximo' => null, 'bote' => null],
       'template' => 'resultados/resultados-qupl'
     ],
   ];
