@@ -18,10 +18,3 @@ empresa.exportar.datos:
   description: "Exportar Datos"
   parent: entity.empresa.collection
   weight: 50
-
-empresa.exportar.datos2:
-  title: "Exportar Datos 2"
-  route_name: veleta.admin.empresas.exportar2
-  description: "Exportar Datos2"
-  parent: entity.empresa.collection
-  weight: 50

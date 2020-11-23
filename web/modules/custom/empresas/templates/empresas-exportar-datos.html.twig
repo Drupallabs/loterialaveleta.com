@@ -12,6 +12,9 @@
         <div class="form-item">
           {{ form.filtros.codigo }}
         </div>
+        <div class="form-item">
+          {{ form.filtros.email }}
+        </div>
       </div>
       {{ form.filtros.submit }}
       {{ form.form_build_id }}
@@ -23,6 +26,7 @@
     <a href="{{ path('veleta.admin.empresas.exportarcsv') }}" class="btn btn-primary btn-lg square" role="button">Descargar Datos >> </a>
   </div>
   {% set sum = 0 %}
+  <h3>{{ sum }}</h3>
   <table>
       <thead>
           <tr>
@@ -37,25 +41,23 @@
               <td>{{ pedido.pedido }}</td>
               <td>{{ pedido.codigo_tpv }}</td>
               <td>{{ pedido.empresa }}</td>
-              <td>{{ pedido.usuario }}</td>
               <td>{{ pedido.email }}</td>
               <td>{{ pedido.nombre }}</td>
               <td>{{ pedido.dni }}</td>
-              <td>{{ pedido.producto_id }}</td>
               <td>{{ pedido.cantidad|number_format() }}</td>
               <td>{{ pedido.numero }}</td>
               <td>{{ pedido.total_linea|number_format(2,',','.') }} €</td>
               <td>{{ pedido.total|number_format(2,',','.') }} €</td>
-              <td>{{ pedido.ip }}</td>
               <td>{{ pedido.fecha|date('d/m/Y H:m:i') }}</td>
+              <td><a target="_blank" href="{{ path('veleta.admin.empresas.generarpdf', {'pedidoid': pedido.codigo_tpv }) }}">
+              <img style="width:40px;" src="../../../themes/custom/laveletav2/images/icon-pdf.svg" />
+              </a></td>
           </tr>
            {% set sum = sum + pedido.cantidad|number_format() %}  
         {% endfor %}
       </tbody>
       <tfoot>
               <tr>
-              <td></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>

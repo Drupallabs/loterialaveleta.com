@@ -49,7 +49,6 @@ class EmpresasListadoForm extends FormBase
     public function buildForm(array $form, FormStateInterface $form_state)
     {
 
-        //$form['#action'] = '';
         $options = ['' => '-- Seleccione Una Empresa'];
 
         $empresas_ids = \Drupal::entityQuery('empresa')->execute();
@@ -59,6 +58,15 @@ class EmpresasListadoForm extends FormBase
 
             $options[$empresa_id] = $empresa->getNombre();
         }
+
+        $form['filtros'] = [
+            '#type'  => 'fieldset',
+            '#title' => 'Filtros',
+            '#open'  => true,
+            '#attributes' => array(
+                'class' => array('container-inline'),
+            ),
+        ];
         $form['filtros']['empresa'] = [
             '#type' => 'select',
             '#title' => 'Empresa',
@@ -67,19 +75,26 @@ class EmpresasListadoForm extends FormBase
         $form['filtros']['numero'] = [
             '#type' => 'textfield',
             '#title' => 'Numero Decimo',
-            '#size' => 20
+            '#size' => 10
         ];
         $form['filtros']['codigo'] = [
             '#type' => 'textfield',
             '#title' => 'Codigo de TPV',
             '#required' => false,
-            '#size' => 20
+            '#size' => 10
+        ];
+        $form['filtros']['email'] = [
+            '#type' => 'textfield',
+            '#title' => 'Email',
+            '#required' => false,
+            '#size' => 50
         ];
 
         $form['filtros']['submit'] = [
             '#type' => 'submit',
             '#value' => 'Filtrar',
         ];
+        $form['#method'] = 'get';
         return $form;
     }
     /**
@@ -87,13 +102,12 @@ class EmpresasListadoForm extends FormBase
      */
     public function validateForm(array &$form, FormStateInterface $form_state)
     {
-        /*$empresa = $form_state->getValue('empresa');
+        $empresa = $form_state->getValue('empresa');
         if ($empresa == '') {
-
-            $form_state->setErrorByName('codigo', 'Introduce una empresa');
+            $form_state->setErrorByName('empresa', 'Introduce una empresa');
         }
-        */
-        parent::validateForm($form, $form_state);
+
+        // parent::validateForm($form, $form_state);
     }
 
     /**
@@ -101,6 +115,12 @@ class EmpresasListadoForm extends FormBase
      */
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
-        parent::submitForm($form, $form_state);
+        //$field = $form_state->getValues();
+        //$empresa = $field["empresa"];
+        //dump($empresa);
+        //$form_state->setValue(['filtros', 'empresa'], $empresa);
+        //$numero = $field["numero"];
+        //$form_state->set(array('filtros' => 'empresa'), $empresa);
+        //parent::submitForm($form, $form_state);
     }
 }

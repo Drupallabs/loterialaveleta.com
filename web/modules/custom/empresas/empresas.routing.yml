@@ -17,7 +17,6 @@ empresas.empresas_contacto:
 empresas.empresas_acceso:
   path: "/loteria/empresas/acceso"
   defaults:
-    #_controller: '\Drupal\empresas\Controller\EmpresasController::contacto'
     _form: '\Drupal\empresas\Form\EmpresasAccesoForm'
     _title: "Pagina privada de tu empresa en Loteria La Veleta"
   requirements:
@@ -39,10 +38,22 @@ veleta.admin.empresas.exportarcsv:
   requirements:
     _permission: "access veleta administration pages"
 
-veleta.admin.empresas.exportar2:
-  path: "/admin/laveleta/empresas/exportar2"
+#veleta.admin.empresas.exportar2:
+#  path: "/admin/laveleta/empresas/exportar2"
+#  defaults:
+#    _form: '\Drupal\empresas\Form\EmpresasListadoForm'
+#    _title: "Empresa Exportar Datos Csv"
+#  requirements:
+#    _permission: "access veleta administration pages"
+
+veleta.admin.empresas.generarpdf:
+  path: "/admin/laveleta/empresas/pedidopdf/{pedidoid}"
   defaults:
-    _form: '\Drupal\empresas\Form\EmpresasListadoForm'
-    _title: "Empresa Exportar Datos Csv"
+    _controller: '\Drupal\empresas\Controller\PDFController::pedidoPdf'
+    _title: "Pedido PDF"
   requirements:
     _permission: "access veleta administration pages"
+  options:
+    parameters:
+      pedidoid:
+        type: string
