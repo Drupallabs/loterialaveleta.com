@@ -1,6 +1,6 @@
 <div id="empresas-exportar-datos">
   <div class="exportar-form">
-    <h3>Filtar Datos</h3>
+    <h3>Filtar Datos</h3> 
       <form name="filtrarDatos" id="filtrarDatos" >
       <div class="form--inline clearfix">
         <div class="form-item">
@@ -19,14 +19,13 @@
       {{ form.filtros.submit }}
       {{ form.form_build_id }}
       {{ form.form_token }}
-      {{ form.form_id }}
-      </form>
+      {{ form.form_id }} 
+      </form> 
   </div>
   <div class="exportar" style="float:right; padding:10px;">
     <a href="{{ path('veleta.admin.empresas.exportarcsv') }}" class="btn btn-primary btn-lg square" role="button">Descargar Datos >> </a>
   </div>
   {% set sum = 0 %}
-  <h3>{{ sum }}</h3>
   <table>
       <thead>
           <tr>
@@ -49,9 +48,26 @@
               <td>{{ pedido.total_linea|number_format(2,',','.') }} €</td>
               <td>{{ pedido.total|number_format(2,',','.') }} €</td>
               <td>{{ pedido.fecha|date('d/m/Y H:m:i') }}</td>
-              <td><a target="_blank" href="{{ path('veleta.admin.empresas.generarpdf', {'pedidoid': pedido.codigo_tpv }) }}">
+              <td>
+                {% if pedido.pago_premio == '1' %}
+                Transferencia Bancaria
+                {% endif %}
+               {% if pedido.pago_premio == '2' %}
+                  Entrega Décimos
+                {% endif %}
+                {% if pedido.pago_premio == '3' %}
+                  Mi Monedero
+                {% endif %}
+                {% if pedido.pago_premio == '4' %}
+                  Canjeo Premio
+                {% endif %}
+              </td>
+              <td>
+                {% if pedido.pago_premio %}{% else %}
+                <a target="_blank" href="{{ path('veleta.admin.empresas.generarpdf', {'pedidoid': pedido.codigo_tpv }) }}">
               <img style="width:40px;" src="../../../themes/custom/laveletav2/images/icon-pdf.svg" />
-              </a></td>
+              </a>
+                 {% endif %}</td>
           </tr>
            {% set sum = sum + pedido.cantidad|number_format() %}  
         {% endfor %}
@@ -64,6 +80,7 @@
               <td><td>
               <td></td>
               <td>{% if sum != 0 %}{{ sum }}{% endif %}</td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>

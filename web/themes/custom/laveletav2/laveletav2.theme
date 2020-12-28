@@ -2,7 +2,6 @@
 
 use Drupal\node\Entity\Node;
 use Drupal\Core\Url;
-use Drupal\empresas\Entity\Empresa;
 
 /**
  * Implements hook_preprocess().
@@ -33,12 +32,22 @@ function laveletav2_preprocess_page(array &$variables)
   // if user is authenticated
   if ($variables['user']->isAuthenticated()) {
     $user_logged_in_name = $variables['user']->getDisplayName();
+    $variables['user_id'] = $variables['user']->id();
     $variables['user_logged_in_name'] = ucfirst($user_logged_in_name);
     //$user_email = $variables['user']->getEmail();
     //$variables['user_email'] = $user_email;
     $user_logged = $variables['user']->isAuthenticated();
     $variables['user_logged'] = $user_logged;
   }
+}
+
+function laveletav2_preprocess_table(array $variables)
+{
+
+  $request     = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $variables['page_title2'] = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  $variables['page_title'] = 'caca';
 }
 
 /**

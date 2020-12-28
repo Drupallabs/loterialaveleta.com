@@ -16,42 +16,58 @@
  * @see template_preprocess_user()
  */
 #}
-    <article{{ attributes }}>
-        {% if content %}
-          <ol class="user-details">
-              <li>
-                <span class="lab">Nombre de Usuario</span><span class="value">{{ username }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Email</span><span class="value">{{ email }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Nombre</span><span class="value">{{ content.field_nombre }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Apellidos</span><span class="value">{{ content.field_apellidos }}&nbsp;</span>
-              </li>
-               <li>
-                <span class="lab">Direccion</span><span class="value">{{ content.field_domicilio }}&nbsp;</span>
-              </li>
-               <li>
-                <span class="lab">C&oacute;digo Postal</span><span class="value">{{ content.field_codigo_postal }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Provincia</span><span class="value">{{ content.field_provincia }}&nbsp;</span>
-              </li>
-               <li>
-                <span class="lab">Documento</span><span class="value">{{ content.field_identificador }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">N&uacute;mero Documento</span><span class="value">{{ content.field_numero_documento }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Fecha de Nacimiento</span><span class="value">{{ content.field_fecha_nacimiento }}&nbsp;</span>
-              </li>
-              <li>
-                <span class="lab">Tel&eacute;fono</span><span class="value">{{ content.field_telefono }}&nbsp;</span>
-              </li>
-          </ol>
-        {% endif %}
-    </article>
+<div class="card card--user">
+			<header class="card__header">
+				<h2 class="card__title">Ver</h2>
+			</header>
+			<article class="table-container user-data">
+				<table class="table-responsive table-responsive--vertical-header">
+					<tbody>
+						<tr>
+							<th scope="row">Nombre de Usuario</th>
+							<td data-th="Nombre de Usuario">{{ username }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Email</th>
+							<td data-th="Email">{{ email }}</td>
+						</tr>
+						<tr>
+							<th>Nombre</th>
+							<td data-th="Nombre">{{ content.field_nombre }}</td>
+						</tr>
+						<tr>
+							<th>Apellidos</th>
+							<td data-th="Apellidos">{{ content.field_apellidos }}</td>
+						</tr>
+						<tr>
+							<th>Dirección</th>
+							<td data-th="Dirección">{{ content.field_domicilio }}</td>
+						</tr>
+						<tr>
+							<th>Código Postal</th>
+							<td data-th="Código Postal">{{ content.field_codigo_postal }}</td>
+						</tr>
+						<tr>
+							<th>Provincia</th>
+							<td data-th="Provincia">{{ content.field_provincia }}</td>
+						</tr>
+						<tr>
+							<th>Documento</th>
+							<td data-th="Documento">{{ content.field_identificador }}</td>
+						</tr>
+						<tr>
+							<th>Nr. Documento</th>
+							<td data-th="Nr. Documento">{{ content.field_numero_documento }}</td>
+						</tr>
+						<tr>
+							<th>Fecha de nacimiento</th>
+							<td data-th="Fecha de nacimiento">{{ content.field_fecha_nacimiento }}</td>
+						</tr>
+						<tr>
+							<th>Teléfono</th>
+							<td data-th="Teléfono">{{ content.field_telefono }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</div>

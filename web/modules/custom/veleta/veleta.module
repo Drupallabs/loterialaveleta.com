@@ -23,7 +23,6 @@ function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_s
   $nids = $nids->condition('type', 'sorteo')
     ->condition('status', 1)
     ->condition('field_fecha_sorteo', $hoy->format('Y-m-d'), '>=')
-    //->condition('tags.entity:taxonomy_term.name','Loteria Nacional')
     ->sort('title')
     ->execute();
 
@@ -281,7 +280,7 @@ function veleta_user_login($account)
     $homeResponse = new RedirectResponse('comprar-loteria-nacional');
     $homeResponse->send();
   }*/
-  \Drupal::messenger()->addStatus('Hola !! Acabadas de acceder como usuario registrado a loterialaveleta.com.');
+  //\Drupal::messenger()->addStatus('Hola !! Acabadas de acceder como usuario registrado a loterialaveleta.com.');
 }
 
 /*
@@ -292,7 +291,6 @@ function veleta_user_login($account)
 */
 function veleta_menu_local_tasks_alter(&$data, $route_name)
 {
-  //dump($data["tabs"][0]);
   $data["tabs"][0]["entity.user.edit_form"]["#weight"] = -9;
   $data["tabs"][0]["mimonedero.usuario"]["#weight"] = -7; // Mi Monedero
 }

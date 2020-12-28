@@ -38,14 +38,6 @@ veleta.admin.empresas.exportarcsv:
   requirements:
     _permission: "access veleta administration pages"
 
-#veleta.admin.empresas.exportar2:
-#  path: "/admin/laveleta/empresas/exportar2"
-#  defaults:
-#    _form: '\Drupal\empresas\Form\EmpresasListadoForm'
-#    _title: "Empresa Exportar Datos Csv"
-#  requirements:
-#    _permission: "access veleta administration pages"
-
 veleta.admin.empresas.generarpdf:
   path: "/admin/laveleta/empresas/pedidopdf/{pedidoid}"
   defaults:

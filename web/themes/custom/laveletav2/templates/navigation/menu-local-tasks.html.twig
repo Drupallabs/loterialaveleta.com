@@ -12,7 +12,9 @@
  */
 #}
 {% if primary %}
-  <ul class="menu-local-tasks">{{ primary }}</ul>
+<div class="user-menu">
+  <ul class="user-menu__tasks">{{ primary }}</ul>
+</div>
 {% endif %}
 {% if secondary %}
   <ul>{{ secondary }}</ul>

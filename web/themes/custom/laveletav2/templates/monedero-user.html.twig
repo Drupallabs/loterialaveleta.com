@@ -1,17 +1,20 @@
 <div class="monedero-user">
-  <div class="wrapper">
-    <div class="grid grid--3-cols">
+<div class="card card--user">
+			<header class="card__header">
+				<h2 class="card__title">Monedero</h2>
+			</header>
+          <div class="grid grid--3-cols">
       <img src="{{ base_path }}themes/custom/laveletav2/images/cartera.png" style="width:130px;" alt="Mi monedero" />
       <div style="grid-column: span 2">
         <h3>El Saldo actual que tienes en loterialavelta.com es de</h3>
         <p><span class="monedero-saldo">{{ monedero }}</span>&nbsp; Euros</p>
-        <p>El dinero es virtual, con el puedes comprar loteria en esta pagina</p>
+        <p>El dinero es virtual, con &eacute;l puedes comprar loteria en esta pagina.</p>
         <a href="{{ url('mi_monedero.depositar', {'user': user.id }) }}" title="Añadir saldo a mi monedero" class="btn btn--primary company-cta__btn">Añadir Saldo a Mi Monedero</a>
         <p>Serás redirigido al TPV virutal para pagar con tu tarjeta, de forma segura.</p>
             <span class="payment-method-icon payment-method-icon--visa"></span>   
             <span class="payment-method-icon payment-method-icon--mastercard"></span>   
             <span class="payment-method-icon payment-method-icon--maestro"></span>        
       </div>
-    </div>
-  </div>
+    </div>	
+		</div>
 </div>

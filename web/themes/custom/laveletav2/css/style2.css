@@ -52,6 +52,7 @@ Icono y desplegable en cabecera para usuarios logados
 .shop__item {
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 
 .shop__username {
@@ -345,11 +346,11 @@ Perfil de usuario
 .user__header {
   display: flex;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
 }
 @media (min-width: 1024px) {
   .user__header {
-    margin: 3rem 0 1.5rem;
+    margin: 2rem 0 1rem;
   }
 }
 .user__title {

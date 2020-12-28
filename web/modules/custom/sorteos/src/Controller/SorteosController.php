@@ -53,7 +53,6 @@ class SorteosController extends ControllerBase
 
     public function dameResultadoPdf($sorteoid, Request $request)
     {
-
         $sorteo = $this->sorteosService->dameResultadoPdf($sorteoid);
         return new JsonResponse($sorteo);
     }

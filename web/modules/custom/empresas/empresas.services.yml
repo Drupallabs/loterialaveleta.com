@@ -1,0 +1,6 @@
+services:
+  empresas.empresasbbdd:
+    class: Drupal\empresas\EmpresasBbdd 
+    arguments: ["@database"]
+    tags:
+      - {name: laveleta}

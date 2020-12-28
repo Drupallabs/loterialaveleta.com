@@ -16,21 +16,35 @@
         <a href=“mailto:hola&commat;loterialaveleta&period;com” class="site-header__btn address__item"><span class="site-header__icon icon-emailmailmarkunreadlocal_post_office"></span> <span class="address__text">hola&commat;loterialaveleta&period;com</span></a>
       </div>
       <div class="shop">
-
         {{ page.carrito }}
-        {% if 'user/login' in path %}{% else %}
-          {% if user_logged %}
-                <p class="site-header__btn address__item hellouser"><span class="address__text">Hola,&nbsp;&nbsp; <strong><a href="{{ path('user.page') }}" title="Pagina de perfil de usuario">{{ user_logged_in_name }}</a></strong> &nbsp;&nbsp;<a href="{{ url('user.logout') }}" title="Cerrar Sesion de usuario">Salir</a></span></p>
-          {% else %}
-            <div class="dropdown shop__item">
-              <a href="#login-form" class="site-header__btn dropdown__trigger" id="shop__login"><span class="site-header__icon icon-person"></span></a>
-              <aside id="login-form" class="dropdown__panel">
-                  {{ page.login_header }}
-              </aside>
-            </div>
-          {% endif %}
+        {% if user_logged %}
+          <div class="dropdown shop__item shop__item--user-is-logged">
+            <a href="#logged-user" class="site-header__btn dropdown__trigger " id="shop__logged-user">
+              <span class="shop__username">{{ user_logged_in_name }}</span>
+              <span class="site-header__icon icon-keyboard_arrow_down"></span>
+            </a>
+            <aside id="logged-user" class="dropdown__panel logged-user">
+              <nav class="logged-user__links">
+                <a href="{{ url('user.page') }}" title="Pagina de perfil de usuario">Perfil de usuario</a>
+                <a href="{{ path('entity.user.edit_form', {'user': user_id }) }}" title="Datos de cliente">Datos de cliente</a>
+                <a href="{{ path('mi_monedero.monedero', {'user': user_id }) }}" title="Pagina monedero de usuario">Mi monedero</a>
+                <a href="{{ path('view.commerce_user_orders.order_page', {'user': user_id }) }}" title="Pedidos">Pedidos</a>
+              </nav>
+              <div class="logged-user__logout">
+                <a href="{{ url('user.logout') }}" title="Cerrar Sesion de usuario" class="btn btn--primary btn--block">Salir</a>
+              </div>
+            </aside>
+          </div>
         {% endif %}
-
+        {% if not user_logged %}
+					<div class="dropdown shop__item">
+						<a href="#login-form" class="site-header__btn dropdown__trigger" id="shop__login"><span class="site-header__icon icon-person"></span></a>
+						<aside id="login-form" class="dropdown__panel">
+							 {{ page.login_header }}
+						</aside>
+					
+					</div>
+					{% endif %}
       </div>
     </div>
   </div>
