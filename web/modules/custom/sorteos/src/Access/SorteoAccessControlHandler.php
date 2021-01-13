@@ -51,16 +51,17 @@ class SorteoAccessControlHandler extends EntityAccessControlHandler implements E
      */
     protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account)
     {
+
         /** @var SorteoInterface $entity */
         switch ($operation) {
             case 'view':
-                return AccessResult::allowedIfHasPermission($account, 'view sorteo entities');
+                return AccessResult::allowedIfHasPermission($account, 'view sorteo entity');
 
             case 'update':
-                return AccessResult::allowedIfHasPermission($account, 'edit sorteo entities');
+                return AccessResult::allowedIfHasPermission($account, 'edit sorteo entity');
 
             case 'delete':
-                return AccessResult::allowedIfHasPermission($account, 'delete sorteo entities');
+                return AccessResult::allowedIfHasPermission($account, 'delete sorteo entity');
         }
 
         return AccessResult::neutral();

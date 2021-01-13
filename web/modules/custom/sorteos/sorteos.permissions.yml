@@ -1,0 +1,11 @@
+view sorteo entity:
+  title: 'View Sorteo entities'
+add sorteo entity:
+  title: 'Add sorteo entities'
+edit sorteo entity:
+  title: 'Edit Sorteo entities'
+delete sorteo entity:
+  title: 'Delete sorteo entities'
+administer sorteo entity:
+  title: 'Administer Sorteo entities'
+  restrict access: TRUE

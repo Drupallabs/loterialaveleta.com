@@ -87,7 +87,6 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-
 article,
 aside,
 details,
@@ -268,8 +267,8 @@ ol {
   margin: 0 0 1em 0;
 }
 
-li>ul,
-li>ol {
+li > ul,
+li > ol {
   margin: 0.5em 0;
 }
 
@@ -385,7 +384,6 @@ WRAPPERS
 }
 
 @media (min-width: 48em) {
-
   .wrapper,
   .wrapper--text,
   .full-size,
@@ -406,7 +404,6 @@ WRAPPERS
 }
 
 @media (min-width: 48em) {
-
   .grid--2-cols,
   .grid--3-cols {
     grid-template-columns: repeat(2, 1fr);
@@ -434,7 +431,7 @@ WRAPPERS
   background: white;
 }
 
-.section+.section {
+.section + .section {
   margin-top: 3rem;
 }
 
@@ -581,7 +578,6 @@ input[type="file"] {
 
 /* Reglas específicas para webkit */
 @media (-webkit-min-device-pixel-ratio: 0) {
-
   /* Elimina la flecha del select y ajusta el padding */
   select[size],
   select[multiple],
@@ -955,7 +951,7 @@ clases CSS y javascript específicos.
   z-index: -1;
 }
 
-.input-file+label {
+.input-file + label {
   width: auto;
   font-size: 0.875rem;
   font-weight: 700;
@@ -971,23 +967,23 @@ clases CSS y javascript específicos.
   transition: all 0.3s ease-in-out;
 }
 
-.input-file:focus+label,
-.input-file.has-focus+label,
-.input-file+label:hover {
+.input-file:focus + label,
+.input-file.has-focus + label,
+.input-file + label:hover {
   background-color: #999;
 }
 
-.no-js .input-file+label {
+.no-js .input-file + label {
   display: none;
 }
 
-.input-file:focus+label,
-.input-file.has-focus+label {
+.input-file:focus + label,
+.input-file.has-focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
 }
 
-.input-file+label svg {
+.input-file + label svg {
   width: 1em;
   height: 1em;
   vertical-align: middle;
@@ -1068,7 +1064,7 @@ Heros, formulario de contacto, etc.
   width: 100%;
 }
 
-.grid>.form__item {
+.grid > .form__item {
   margin-bottom: 0;
 }
 
@@ -1085,7 +1081,7 @@ label {
   margin-bottom: 0;
 }
 
-:invalid+.form__message {
+:invalid + .form__message {
   display: block;
 }
 
@@ -1165,7 +1161,8 @@ SEARCH
   -webkit-box-align: center;
   align-items: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.75) url(../images/spinner.svg) no-repeat center/100px;
+  background: rgba(0, 0, 0, 0.75) url(../images/spinner.svg) no-repeat
+    center/100px;
 }
 
 .pop-up.is-visible {
@@ -1259,7 +1256,8 @@ Masthead
   width: 238px;
   height: 100px;
   margin: 0;
-  background: url("../images/logo-loteria-la-veleta.svg") no-repeat center left/contain;
+  background: url("../images/logo-loteria-la-veleta.svg") no-repeat center
+    left/contain;
   text-indent: -9000px;
 }
 
@@ -1381,7 +1379,6 @@ Masthead
 }
 
 @media (min-width: 64em) {
-
   .site-header__masthead .wrapper,
   .site-header__masthead .wrapper--text {
     -webkit-box-orient: horizontal;
@@ -1734,7 +1731,6 @@ LOGOS
 }
 
 @media (min-width: 48em) {
-
   .site-footer__logos .wrapper,
   .site-footer__logos .wrapper--text {
     display: -webkit-box;
@@ -1780,7 +1776,7 @@ COPYRIGHT
   padding: 3rem 0 1.5rem;
 }
 
-.section--article+.games {
+.section--article + .games {
   margin-top: 0;
 }
 
@@ -2106,11 +2102,13 @@ COPYRIGHT
 }
 
 .company-cta {
-  background-image: -webkit-gradient(linear,
-      left top,
-      right bottom,
-      from(#da5f02),
-      to(#f9b019));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(#da5f02),
+    to(#f9b019)
+  );
   background-image: -webkit-linear-gradient(top left, #da5f02 0%, #f9b019 100%);
   background-image: linear-gradient(to bottom right, #da5f02 0%, #f9b019 100%);
   padding: 3rem;
@@ -2473,7 +2471,6 @@ TABLAS
 }
 
 @media (min-width: 37.5em) {
-
   .draw__table th:first-of-type,
   .draw__table td:first-of-type {
     padding: 0;
@@ -2499,7 +2496,7 @@ TABLAS
     padding: 0.75rem;
   }
 
-  .draw__table span+span {
+  .draw__table span + span {
     border-left: 1px solid #eaeaea;
   }
 }
@@ -2713,7 +2710,7 @@ Composición del layout de páginas
   margin-bottom: 0;
 }
 
-.buy__excerpt span+span:before {
+.buy__excerpt span + span:before {
   content: " - ";
 }
 
@@ -2862,7 +2859,7 @@ Composición del layout de páginas
   padding: 1.5rem;
 }
 
-.check-result+.check-result {
+.check-result + .check-result {
   margin-top: 1.5rem;
 }
 
@@ -2946,7 +2943,6 @@ Composición del layout de páginas
 }
 
 @media (min-width: 37.5em) {
-
   .acceptance__table th,
   .acceptance__table td {
     display: table-cell;
@@ -3032,7 +3028,6 @@ Composición del layout de páginas
 }
 
 @media (min-width: 67.5em) {
-
   .cart .wrapper,
   .cart .wrapper--text {
     display: grid;
@@ -3284,14 +3279,14 @@ Composición del layout de páginas
   border: none;
 }
 
-.form-checkout fieldset>label {
+.form-checkout fieldset > label {
   display: -webkit-inline-box;
   display: inline-flex;
   width: auto;
   margin-right: 0.75rem;
 }
 
-.form-checkout fieldset>.form__label--vertical {
+.form-checkout fieldset > .form__label--vertical {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-flow: column;
@@ -3337,7 +3332,7 @@ Composición del layout de páginas
   margin-top: 1.5rem;
 }
 
-.form-checkout__buttons>* {
+.form-checkout__buttons > * {
   display: block;
 }
 
@@ -3362,11 +3357,13 @@ Composición del layout de páginas
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-image: -webkit-gradient(linear,
-      left top,
-      left bottom,
-      from(#ff8000),
-      to(#ffa411));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#ff8000),
+    to(#ffa411)
+  );
   background-image: -webkit-linear-gradient(top, #ff8000 0%, #ffa411 100%);
   background-image: linear-gradient(to bottom, #ff8000 0%, #ffa411 100%);
   mix-blend-mode: multiply;
@@ -3409,7 +3406,7 @@ Composición del layout de páginas
   text-align: center;
 }
 
-.company-hero__buttons a+a {
+.company-hero__buttons a + a {
   margin-top: 1.5rem;
 }
 
@@ -3423,7 +3420,6 @@ Composición del layout de páginas
 }
 
 @media (min-width: 48em) {
-
   .company-hero .wrapper,
   .company-hero .wrapper--text {
     display: grid;
@@ -3461,7 +3457,7 @@ Composición del layout de páginas
     margin-left: 24px;
   }
 
-  .company-hero__buttons .btn+.btn {
+  .company-hero__buttons .btn + .btn {
     margin-top: 0;
   }
 }
@@ -3496,7 +3492,7 @@ Composición del layout de páginas
   background: white;
 }
 
-.company+.games {
+.company + .games {
   margin-top: 0;
 }
 
@@ -3626,11 +3622,13 @@ Composición del layout de páginas
 .register {
   margin-top: 10px;
   padding: 24px 0;
-  background-image: -webkit-gradient(linear,
-      left top,
-      right bottom,
-      from(#ff8000),
-      to(#ffa411));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(#ff8000),
+    to(#ffa411)
+  );
   background-image: -webkit-linear-gradient(top left, #ff8000 0%, #ffa411 100%);
   background-image: linear-gradient(to bottom right, #ff8000 0%, #ffa411 100%);
 }
@@ -3788,7 +3786,6 @@ Composición del layout de páginas
 }
 
 @media (min-width: 48em) {
-
   .blog-bar__dropdown .wrapper,
   .blog-bar__dropdown .wrapper--text {
     padding: 0.75rem 1.5rem 1.5rem;
@@ -4043,7 +4040,7 @@ ARTICULOS
 }
 
 @media (min-width: 31.25em) and (max-width: 63.9375em) {
-  .sidebar__section+.sidebar__section {
+  .sidebar__section + .sidebar__section {
     margin-top: 0;
   }
 
@@ -4066,7 +4063,7 @@ ARTICULOS
     margin-top: 0;
   }
 
-  .sidebar__section+.sidebar__section {
+  .sidebar__section + .sidebar__section {
     margin-top: 3rem;
   }
 
@@ -4118,7 +4115,6 @@ ARTICULOS
 }
 
 @media (min-width: 31.25em) and (max-width: 63.9375em) {
-
   .share .sidebar__title,
   .share ul {
     -webkit-box-pack: center;
@@ -4294,7 +4290,7 @@ ARTICULOS
   flex: 1 0 auto;
 }
 
-.buy .commerce-order-item-add-to-cart-form>.form__item {
+.buy .commerce-order-item-add-to-cart-form > .form__item {
   width: 80px;
   height: 43px;
   flex: 1 0 auto;
@@ -4564,7 +4560,10 @@ form#commerce-checkout-flow-multistep-default fieldset .fieldset-wrapper {
   padding: 3%;
 }
 
-form#commerce-checkout-flow-multistep-default fieldset .fieldset-wrapper legend {
+form#commerce-checkout-flow-multistep-default
+  fieldset
+  .fieldset-wrapper
+  legend {
   display: none;
 }
 
@@ -4630,7 +4629,8 @@ ol.checkout-progress li {
   border-top-left-radius: 5px;
 }
 
-.commerce-checkout-completion-register .commerce-checkout-completion-register__text {
+.commerce-checkout-completion-register
+  .commerce-checkout-completion-register__text {
   background-color: #999;
   color: #fff;
   padding: 10px 15px;
@@ -4640,7 +4640,9 @@ ol.checkout-progress li {
   border-top-left-radius: 3px;
 }
 
-.commerce-checkout-completion-register .commerce-checkout-completion-register__text h2 {
+.commerce-checkout-completion-register
+  .commerce-checkout-completion-register__text
+  h2 {
   margin: 5px;
   padding: 0;
   color: #fff;
@@ -4654,7 +4656,9 @@ ol.checkout-progress li {
   }
 }
 
-.commerce-checkout-completion-register .commerce-checkout-completion-register__text p {
+.commerce-checkout-completion-register
+  .commerce-checkout-completion-register__text
+  p {
   display: none;
 }
 
@@ -4746,14 +4750,14 @@ ol.user-details {
   padding: 0;
 }
 
-ol.user-details>li {
+ol.user-details > li {
   list-style: none;
   border-bottom: 1px solid #dee2e6;
   padding: 10px 0;
   font-size: 12px;
 }
 
-ol.user-details>li .lab {
+ol.user-details > li .lab {
   display: inline-block;
 
   width: 250px;
@@ -4761,7 +4765,7 @@ ol.user-details>li .lab {
   font-weight: 500;
 }
 
-ol.user-details>li .value {
+ol.user-details > li .value {
   display: block;
   padding-left: 260px;
 }
@@ -4822,4 +4826,7 @@ ol.user-details>li .value {
   margin-left: auto;
   margin-right: auto;
   width: 480px;
+}
+.form-wrapper__guest-checkout section .card2 {
+  padding: 0;
 }
