@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\sorteos\Entity\SorteoInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Defines the Sorteo entity.
@@ -226,6 +227,13 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
     {
         $this->set('created', $timestamp);
         return $this;
+    }
+
+
+    public function getFechaSimple()
+    {
+        $fecha = new DrupalDateTime($this->get('fecha')->value);
+        return $fecha->format('d F');
     }
 
     /**

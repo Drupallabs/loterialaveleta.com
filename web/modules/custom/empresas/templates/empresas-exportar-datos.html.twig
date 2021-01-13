@@ -51,7 +51,7 @@
               <td>
                 {% if pedido.pago_premio == '1' %}
                 Transferencia Bancaria
-                {% endif %}
+                {% endif %} 
                {% if pedido.pago_premio == '2' %}
                   Entrega Décimos
                 {% endif %}
@@ -60,6 +60,9 @@
                 {% endif %}
                 {% if pedido.pago_premio == '4' %}
                   Canjeo Premio
+                {% endif %}
+                {% if pedido.pago_premio == '5' %}
+                  Devolucion Tarjeta
                 {% endif %}
               </td>
               <td>

@@ -1,7 +1,7 @@
 <?php
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Url;
+use Drupal\sorteos\entity\Sorteo;
 
 /**
  * Implements hook_preprocess().
@@ -47,7 +47,7 @@ function laveletav2_preprocess_table(array $variables)
   $request     = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $variables['page_title2'] = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-  $variables['page_title'] = 'caca';
+  //$variables['page_title'] = 'caca';
 }
 
 /**
@@ -107,7 +107,7 @@ function laveletav2_form_alter(&$form, &$form_state, $form_id)
  */
 function laveletav2_preprocess_commerce_cart_block(&$variables)
 {
-
+  /* Pone el boton pagar en el carrito */
   if (!empty($variables['content'][0]['#arguments'][0])) {
     $order_id = $variables['content'][0]['#arguments'][0];
     $checkout_path = 'internal:/checkout/' . $order_id . '/order_information';
@@ -137,17 +137,22 @@ function laveletav2_suggestions_commerce_checkout_order_summary(array &$suggesti
  */
 function laveletav2_preprocess_commerce_product(array &$variables)
 {
-  if ($variables['elements']['field_sorteo']) {
-    $product = $variables['elements']['field_sorteo']['#items']->getEntity();
-    $item = $product->get('field_sorteo')->get(0);
+  if ($variables['elements']['field_sorteo_3']['#items']) {
+
+    //dump($variables['elements']['field_sorteo_3']);
+    //die; 
+    $product = $variables['elements']['field_sorteo_3']['#items']->getEntity();
+    $item = $product->get('field_sorteo_3')->get(0);
     $value = FALSE;
     if (!empty($item)) {
       $value = $item->getValue();
     }
-    $sorteoid = $value['target_id'];
-    $node = Node::load($sorteoid);
-
-    $variables['decimo_url'] = file_create_url($node->field_decimo_sorteo->entity->getFileUri());
+    if ($value) {
+      $sorteoid = $value['target_id'];
+      $sorteo = Sorteo::load($sorteoid);
+      //dump($sorteo->field_decimo_imagen->entity->getFileUri()); die;
+      $variables['decimo_url'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+    }
   }
 }
 

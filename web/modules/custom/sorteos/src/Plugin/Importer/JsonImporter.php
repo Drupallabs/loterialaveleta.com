@@ -198,6 +198,7 @@ class JsonImporter extends ImporterBase
             $hoy = DateTimePlus::createFromFormat('Ymd', date('Ymd'));
             $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
         }
+        dump($url);
         $request = $this->httpClient->get($url);
         $string = $request->getBody()->getContents();
         return json_decode($string);

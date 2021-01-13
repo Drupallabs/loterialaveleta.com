@@ -3,46 +3,41 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\node\Entity\Node;
+use Drupal\sorteos\Entity\Sorteo;
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-
-  // If not the view we are looking, move on
   if ($form['#id'] != 'views-exposed-form-comprar-loteria-nacional-page-comprar-loteria') {
     return FALSE;
   }
-  // Query nodes
-  $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('node');
+  $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('sorteo');
   $nids = $storage->getQuery();
 
-  // Gather published artist nodes and sort by title
+  // Select de sorteos pendientes de celebrar
   $hoy = new \DateTime();
-  $nids = $nids->condition('type', 'sorteo')
-    ->condition('status', 1)
-    ->condition('field_fecha_sorteo', $hoy->format('Y-m-d'), '>=')
-    ->sort('title')
+  $nids = $nids->condition('type', 'loteria_nacional')->condition('fecha', $hoy->format('Y-m-d'), '>=')
+    ->sort('fecha')
     ->execute();
-
   if (!$nids) {
     return FALSE;
   }
-
   $options = [];
   $nodes = $storage->loadMultiple($nids);
+
   foreach ($nodes as $node) {
-    $options[$node->id()] = $node->getTitle();
+    $options[$node->id()] = $node->getName() . ' / ' . $node->getFechaSimple();
   }
 
   // Start building out our new form element
-  $sorteo_field = 'field_sorteo_target_id';
+  $sorteo_field = 'field_sorteo_3_target_id';
   $form[$sorteo_field]['#type'] = 'select';
   $form[$sorteo_field]['#multiple'] = FALSE;
 
   // Specify the empty option for our select list
-  $form[$sorteo_field]['#empty_option'] = t('Sorteo');
+  $form[$sorteo_field]['#empty_option'] = '-- Seleccione un Sorteo --';
 
   // Add the $options from above to our select list
   $form[$sorteo_field]['#options'] = $options;
@@ -111,17 +106,15 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
     $product_id = $product_variation->get('product_id')->getValue();
     $pid = $product_id[0]['target_id'];
     $product = \Drupal::entityTypeManager()->getStorage('commerce_product')->load($pid);
-    $item = $product->get('field_sorteo')->get(0);
+    $item = $product->get('field_sorteo_3')->get(0);
     $numero = $product->get('field_numero_decimo')->get(0);
     $value = FALSE;
     if (!empty($item)) {
       $value = $item->getValue();
     }
     $sorteoid = $value['target_id'];
-    $node = Node::load($sorteoid);
-
-    $newitems[$count]['decimo'] = file_create_url($node->field_decimo_sorteo->entity->getFileUri());
-
+    $sorteo = Sorteo::load($sorteoid);
+    $newitems[$count]['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
     $numeroarr = $numero->getValue();
     $newitems[$count]['numero'] = $numeroarr['value'];
     $count++;

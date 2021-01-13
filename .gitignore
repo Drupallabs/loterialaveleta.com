@@ -7,6 +7,7 @@
 /web/profiles/contrib/
 /web/libraries/
 /.vscode/
+TRANS.TXT
 
 # Ignore all site specific data
 /web/sites/*

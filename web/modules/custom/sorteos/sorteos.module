@@ -1,20 +1,6 @@
 <?php
 
-use Drupal\sorteos\SorteosConnection;
 use Drupal\Core\Render\Element;
-
-function sorteos_cron()
-{
-  $soc = new SorteosConnection();
-  //$soc->checkSorteos();
-  // Coge los sorteos de la semana de Loteria nacional los lunes
-  if (date("N") == "1") {
-    $soc->checkSorteosLNAC();
-  }
-  //$values = drush_invoke_process("@site", "sir", array("all"), array("verbose"));
-  //drupal_set_message('Ejecutando sorteos cron');
-  //\Drupal::logger('sorteos')->error('Ejecutando sorteos cron');
-}
 
 /**
  * Implements hook_theme().
@@ -76,7 +62,7 @@ function sorteos_form_alter(&$form, &$form_state, $form_id)
   }*/
 }
 
-
+/*
 function renombrar_resultados_archivos($form, &$form_state)
 {
   if ($form_state->hasValue('resultados')) {
@@ -108,3 +94,4 @@ function renombrar_resultados_archivos($form, &$form_state)
     }
   }
 }
+*/
