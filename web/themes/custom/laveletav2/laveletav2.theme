@@ -156,6 +156,29 @@ function laveletav2_preprocess_commerce_product(array &$variables)
   }
 }
 
+function laveletav2_preprocess_commerce_product_variation(array &$variables)
+{
+  /** @var Drupal\commerce_product\Entity\ProductVariationInterface $product_variation */
+  $product_variation = $variables['elements']['#commerce_product_variation'];
+  $product = $product_variation->getProduct();
+  $item = $product->get('field_sorteo_3')->get(0);
+  $value = FALSE;
+  if (!empty($item)) {
+    $value = $item->getValue();
+  }
+  if ($value) {
+    $sorteoid = $value['target_id'];
+    $sorteo = Sorteo::load($sorteoid);
+
+    $variables['sorteo'] = $sorteo->getName();
+    $variables['numero_decimo'] = $product->get('field_numero_decimo')->value;
+    $variables['fecha_sorteo'] = $sorteo->getFechaSimple();
+    $variables['decimo_url'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+  }
+
+}
+
+
 /**
  * Implements hook_theme_suggestions_views_view_alter().
  */

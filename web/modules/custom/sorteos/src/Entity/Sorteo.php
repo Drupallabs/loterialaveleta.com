@@ -427,11 +427,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'file_extensions' => 'pdf',
                 'max_filesize' => '3000 KB',
             ])
-            ->setDisplayOptions('view', array(
-                'label' => 'hidden',
-                'type' => 'file',
-                'weight' => -3,
-            ))
             ->setDisplayOptions('form', array(
                 'type' => 'file',
                 'weight' => -1,

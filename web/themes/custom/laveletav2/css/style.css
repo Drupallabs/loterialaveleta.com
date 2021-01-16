@@ -2675,35 +2675,30 @@ Composición del layout de páginas
   max-width: none;
   margin-bottom: 0;
 }
-
 .buy__item--number {
   position: absolute;
   margin: 0;
-  left: 33.606%;
+  left: 34.606%;
   right: 19.224%;
   top: 9.433%;
-  bottom: 71.32%;
+  bottom: 68.32%;
   display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
+  -webkit-box-align: cente
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
   background: white;
-  font-size: 30px;
-  color: #555;
+  font-size: 31px;
+  color: #444;
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
-
-/*
-@media (max-width: 35em) {
-  .buy__item--number div {
-    border: 1px solid red;
-    font-size: 1.2rem;
-    line-height: 1.2;
-  }
-}*/
+/* Decimo Cart*/
+.cart-form .buy__item--number {
+  font-size:41px;
+  bottom:71.32%;
+}
 .buy__excerpt {
   font-size: 14px;
   padding: 4px 8px;
@@ -4829,4 +4824,13 @@ ol.user-details > li .value {
 }
 .form-wrapper__guest-checkout section .card2 {
   padding: 0;
+}
+
+.decimo-cart {
+  max-width: 90px !important;
+  display:inline-block;
+  margin: auto 0;
+}
+.cart-block .card {
+  padding:0;
 }

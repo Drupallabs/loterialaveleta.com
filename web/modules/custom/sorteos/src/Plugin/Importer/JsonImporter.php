@@ -189,16 +189,21 @@ class JsonImporter extends ImporterBase
         if (!$url) {
             return NULL;
         }
-
         if ($importer_config->getParamFecha()) {
-            $dias = 7;
-            if ($importer_config->getDias()) {
-                $dias = $importer_config->getDias();
+            $hoy = DateTimePlus
+            ::createFromFormat('Ymd', date('Ymd'));
+            // Si pone dias a 0 es hoy
+            if ($importer_config->getDias() == '0') {
+                $url .= '&fecha_sorteo=' . $hoy->format('Ymd');
+            } else {
+                $dias = 7;
+                if ($importer_config->getDias()) {
+                    $dias = $importer_config->getDias();
+                }
+                $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
             }
-            $hoy = DateTimePlus::createFromFormat('Ymd', date('Ymd'));
-            $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
         }
-        dump($url);
+        //dump($url);
         $request = $this->httpClient->get($url);
         $string = $request->getBody()->getContents();
         return json_decode($string);
@@ -252,7 +257,7 @@ class JsonImporter extends ImporterBase
                     $sorteo->set('field_num_sorteo', $data->num_sorteo);
                     $sorteo->set('field_ano_sorteo', $data->anyo);
                     $sorteo->set('field_precio_decimo', $data->tenthPrice);
-                    $this->handleSorteoImage($data, $sorteo);
+                    //$this->handleSorteoImage($data, $sorteo);
                     break;
                 case 'euromillones':
                     $this->handleEuromillones($data, $sorteo);
