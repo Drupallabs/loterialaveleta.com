@@ -175,7 +175,6 @@ function laveletav2_preprocess_commerce_product_variation(array &$variables)
     $variables['fecha_sorteo'] = $sorteo->getFechaSimple();
     $variables['decimo_url'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
   }
-
 }
 
 
@@ -244,5 +243,16 @@ function laveletav2_preprocess_input(&$variables)
   $element = $variables['element'];
   if ($element['#type'] == 'number') {
     $variables['attributes']['step'] = "1";
+  }
+}
+
+function laveletav2_preprocess_form_element_label(&$variables)
+{
+  $element = $variables['element'];
+  if ($element['#title'] == 'aviso_legal') {
+    $variables['title'] = [
+      '#markup' =>
+      'Por favor, Acepta nuestra <br class="mobile-break"> <a href="https://loterialaveleta.com/proteccion-de-datos" target="_blank">Política de Proteccion de Datos</a>',
+    ];
   }
 }

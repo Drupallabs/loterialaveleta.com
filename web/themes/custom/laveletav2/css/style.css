@@ -4584,20 +4584,21 @@ ol.checkout-progress li {
   font-weight: bold;
 }
 
-.form-radios .form__item {
+.form-radios .form__item, .field--type-boolean .form__item {
   display: inline-block;
   vertical-align: middle;
   width: auto !important;
   margin: 0;
   padding: 0;
 }
-
-.form-radios label {
-  margin-right: 20px;
+.field--type-boolean .form__item {
+  margin-bottom:15px;
 }
 
-.form-radios .form__item label {
+
+.form-radios .form__item label, .field--type-boolean .form__item label {
   display: inline !important;
+  margin-right: 20px;
 }
 
 .profile .address {
@@ -4833,4 +4834,12 @@ ol.user-details > li .value {
 }
 .cart-block .card {
   padding:0;
+}
+.js-password-confirm-message {
+  visibility: hidden;
+}
+#edit-login-register-field-aviso-legal-value{
+  width:19px;
+  height:19px;
+  vertical-align: middle;
 }

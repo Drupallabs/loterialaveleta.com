@@ -1,7 +1,6 @@
 <?php
 // https://www.metaltoad.com/blog/drupal-8-consumption-third-party-api
 namespace Drupal\resultados;
-use Drupal\Core\Url;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 

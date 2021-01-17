@@ -264,26 +264,9 @@ function veleta_toolbar_alter(&$items)
   $items['administration']['#attached']['library'][] = 'veleta/toolbar';
 }
 
-function veleta_user_login($account)
-{
-  /*$current_route = \Drupal::routeMatch()->getRouteName();
-
-  if ($current_route == "entity.node.canonical") { // si es la pagina de inicio
-    // $homeResponse = new RedirectResponse(URL::fromUserInput('/')->toString());
-    $homeResponse = new RedirectResponse('comprar-loteria-nacional');
-    $homeResponse->send();
-  }*/
-  //\Drupal::messenger()->addStatus('Hola !! Acabadas de acceder como usuario registrado a loterialaveleta.com.');
-}
-
-/*
-\Drupal::messenger()->addMessage('This is a regular message');
-\Drupal::messenger()->addStatus('This is a status message, meaning status is OK or successful (green).');
-\Drupal::messenger()->addError('This is an error message (red)');
-\Drupal::messenger()->addWarning('This is a warning message (orange)');
-*/
 function veleta_menu_local_tasks_alter(&$data, $route_name)
 {
   $data["tabs"][0]["entity.user.edit_form"]["#weight"] = -9;
   $data["tabs"][0]["mimonedero.usuario"]["#weight"] = -7; // Mi Monedero
 }
+
