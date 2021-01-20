@@ -36,27 +36,27 @@ class CombinacionPrimitivaItem extends FieldItemBase
                 ),
                 'bola3' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola4' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola5' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola6' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'reintegro' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'complementario' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
             ),
         );

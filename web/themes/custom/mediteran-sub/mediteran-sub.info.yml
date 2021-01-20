@@ -1,0 +1,17 @@
+name: Mediteran Subtheme
+type: theme
+description: This is Mediteran Admin subtheme
+core: 8.x
+base theme: mediteran
+libraries:
+  - mediteran-sub/global-styling
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'

@@ -25,47 +25,50 @@ class CombinacionLototurfWidget extends WidgetBase
         $element['bola1'] = array(
             '#type' => 'number',
             '#title' => 'Bola 1',
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola1,
         );
         $element['bola2'] = array(
             '#type' => 'number',
             '#title' => 'Bola 2',
-            //'#size' => 2,
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola2,
         );
         $element['bola3'] = array(
             '#type' => 'number',
             '#title' => 'Bola 3',
-            // '#size' => 2,
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola3,
         );
         $element['bola4'] = array(
             '#type' => 'number',
             '#title' => 'Bola 4',
-            //'#size' => 3,
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola4,
         );
         $element['bola5'] = array(
             '#type' => 'number',
             '#title' => 'Bola 5',
-            //'#size' => 3,
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola5,
         );
         $element['bola6'] = array(
             '#type' => 'number',
             '#title' => 'Bola 6',
-            //'#size' => 3,
+            '#size' => 5,
             '#default_value' => $items[$delta]->bola6,
         );
         $element['caballo'] = array(
             '#type' => 'number',
-            '#title' => 'Reintegro',
-            '#default_value' => $items[$delta]->reintegro,
+            '#title' => 'Caballo',
+            '#size' => 5,
+            '#default_value' => $items[$delta]->caballo,
         );
         $element['reintegro'] = array(
             '#type' => 'number',
-            '#title' => 'Complementario',
-            '#default_value' => $items[$delta]->complementario,
+            '#title' => 'Reintegro',
+            '#size' => 5,
+            '#default_value' => $items[$delta]->reintegro,
         );
 
         // If cardinality is 1, ensure a label is output for the field by wrapping

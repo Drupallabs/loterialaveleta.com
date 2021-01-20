@@ -191,7 +191,7 @@ class JsonImporter extends ImporterBase
         }
         if ($importer_config->getParamFecha()) {
             $hoy = DateTimePlus
-            ::createFromFormat('Ymd', date('Ymd'));
+                ::createFromFormat('Ymd', date('Ymd'));
             // Si pone dias a 0 es hoy
             if ($importer_config->getDias() == '0') {
                 $url .= '&fecha_sorteo=' . $hoy->format('Ymd');

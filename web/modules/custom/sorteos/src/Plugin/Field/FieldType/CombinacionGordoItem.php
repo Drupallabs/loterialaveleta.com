@@ -36,19 +36,19 @@ class CombinacionGordoItem extends FieldItemBase
                 ),
                 'bola3' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola4' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola5' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'clave' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 )
             ),
         );

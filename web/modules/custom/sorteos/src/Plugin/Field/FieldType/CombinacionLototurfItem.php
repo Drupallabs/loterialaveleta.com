@@ -28,7 +28,7 @@ class CombinacionLototurfItem extends FieldItemBase
             'columns' => array(
                 'bola1' => array(
                     'type' => 'int',
-                    'not null' => FALSE,
+                    'not null' => FALSE
                 ),
                 'bola2' => array(
                     'type' => 'int',
@@ -36,27 +36,27 @@ class CombinacionLototurfItem extends FieldItemBase
                 ),
                 'bola3' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola4' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola5' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'bola6' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'caballo' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
                 'reintegro' => array(
                     'type' => 'int',
-                    'not null' => TRUE,
+                    'not null' => FALSE,
                 ),
             ),
         );
