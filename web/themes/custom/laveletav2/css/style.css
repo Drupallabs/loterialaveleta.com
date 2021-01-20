@@ -1092,7 +1092,16 @@ label {
 .form__message--danger {
   color: red;
 }
-
+.check__message--success {
+    color: #7ba42b;
+}
+.check__message--fail {
+    color: red;
+}
+.check__message .check-result__prize{
+  font-size: 1.3rem;
+  font-weight: bold;
+}
 /************************************
 
 LOGIN
@@ -4594,8 +4603,6 @@ ol.checkout-progress li {
 .field--type-boolean .form__item {
   margin-bottom:15px;
 }
-
-
 .form-radios .form__item label, .field--type-boolean .form__item label {
   display: inline !important;
   margin-right: 20px;

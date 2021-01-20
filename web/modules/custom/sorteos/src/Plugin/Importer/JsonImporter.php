@@ -190,8 +190,7 @@ class JsonImporter extends ImporterBase
             return NULL;
         }
         if ($importer_config->getParamFecha()) {
-            $hoy = DateTimePlus
-                ::createFromFormat('Ymd', date('Ymd'));
+            $hoy = DateTimePlus::createFromFormat('Ymd', date('Ymd'));
             // Si pone dias a 0 es hoy
             if ($importer_config->getDias() == '0') {
                 $url .= '&fecha_sorteo=' . $hoy->format('Ymd');
@@ -212,7 +211,7 @@ class JsonImporter extends ImporterBase
     /**
      * Saves a Sorteo entity from the remote data.
      * 
-     * @param \stdClass $data
+     * @param \stdClass $data 
      */
     private function persistSorteo2($data)
     {

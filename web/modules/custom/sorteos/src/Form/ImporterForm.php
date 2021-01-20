@@ -136,7 +136,7 @@ class ImporterForm extends EntityForm
         $form['dias'] = [
             '#type' => 'number',
             '#title' => 'Dias',
-            '#description' => 'Dias a partir de hoy en los que coger el sorteo en el parametro fecha, por defecto + 6',
+            '#description' => 'Dias a partir de hoy en los que coger el sorteo en el parametro fecha, por defecto + 6, si se pone 0 es Hoy.',
             '#default_value' => $importer->getDias(),
         ];
 

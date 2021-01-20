@@ -1,7 +1,5 @@
 <?php
-// https://www.metaltoad.com/blog/drupal-8-consumption-third-party-api
 namespace Drupal\resultados;
-use Drupal\Core\Url;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
@@ -26,6 +24,7 @@ class ResultadosConnection {
     } else
       return $this->queryEndpoint($gameid);
   }
+  
   public function getPremioDecimoWeb($idsorteo) {
     if(!$idsorteo) {
       return null;
@@ -39,7 +38,6 @@ class ResultadosConnection {
       $response = $this->callEndpoint($url);
       return json_decode($response->getBody());
     } catch (\Exception $e) {
-    //ump($e);
     //  watchdog_exception('resultados', $e);
        /*
       return (object) [

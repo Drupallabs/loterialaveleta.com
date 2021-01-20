@@ -50,7 +50,6 @@ class CombinacionBonolotoItem extends FieldItemBase
                 'bola6' => array(
                     'type' => 'int',
                     'not null' => FALSE,
-                    'length' => 5
                 ),
                 'reintegro' => array(
                     'type' => 'int',
