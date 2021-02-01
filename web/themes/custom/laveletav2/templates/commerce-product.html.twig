@@ -26,7 +26,9 @@
 					</p>
 					<div class="buy__header">
 						<h3 class="buy__item buy__item--number">{{ product.field_numero_decimo }}</h3>
+						{% if decimo_url != '' %}
 						<img src="{{ file_url(decimo_url) }}" alt="{{ product.field_sorteo_3 }} - {{ product.field_numero_decimo }}" class="buy__image">
+						{% endif %}
 					</div>
 				
 					<div class="buy__button">

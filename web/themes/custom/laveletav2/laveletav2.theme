@@ -135,8 +135,6 @@ function laveletav2_preprocess_commerce_product(array &$variables)
 {
   if ($variables['elements']['field_sorteo_3']['#items']) {
 
-    //dump($variables['elements']['field_sorteo_3']);
-    //die; 
     $product = $variables['elements']['field_sorteo_3']['#items']->getEntity();
     $item = $product->get('field_sorteo_3')->get(0);
     $value = FALSE;

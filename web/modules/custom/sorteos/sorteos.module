@@ -68,6 +68,18 @@ function template_preprocess_sorteo(array &$variables)
 }
 
 
+function sorteos_views_data_alter(array &$data)
+{
+  $data['sorteo']['sorteos_titles'] = array(
+    'title' => 'Sorteo666',
+    'filter' => array(
+      'title' => t('Sorteos Titles'),
+      'help' => t('Specify a list of titles a sorteos can have.'),
+      'field' => 'name',
+      'id' => 'views_sorteo_titles'
+    ),
+  );
+}
 
 /*
 function renombrar_resultados_archivos($form, &$form_state)
