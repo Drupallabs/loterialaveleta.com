@@ -278,7 +278,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ])*/
             ->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
-
         $fields['fecha'] = BaseFieldDefinition::create('datetime')
             ->setLabel('Fecha Sorteo')
             ->setDescription('La Fecha y hora de Celebracion del Sorteo.')
@@ -290,12 +289,14 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ->setDisplayOptions('view', [
                 'label' => 'above',
                 'type' => 'datetime_default',
+                //'type' => 'timestamp',
                 'settings' => [ //    'format_type' => 'medium',
                 ],
                 'weight' => -1,
             ])
             ->setDisplayOptions('form', [
                 'type' => 'datetime_default',
+                //'type' => 'datetime_timestamp',
                 'weight' => -1,
             ])
             ->setDisplayConfigurable('form', TRUE)

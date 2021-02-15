@@ -10,7 +10,7 @@ use Drupal\sorteos\Entity\Sorteo;
  */
 function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  /*
+
   if ($form['#id'] != 'views-exposed-form-comprar-loteria-nacional-page-comprar-loteria') {
     return FALSE;
   }
@@ -43,13 +43,11 @@ function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_s
   // Add the $options from above to our select list
   $form[$sorteo_field]['#options'] = $options;
   unset($form[$sorteo_field]['#size']);
- */
 }
 
 function veleta_views_data_alter(array &$data)
 {
-  //dump($data['commerce_product__field_sorteo_3']['field_sorteo_3_target_id']);
-
+  /*
   $data['sorteo']['sorteos_titles'] = array(
     'title' => 'Sorteo666',
     'filter' => array(
@@ -57,6 +55,16 @@ function veleta_views_data_alter(array &$data)
       'help' => t('Specify a list of titles a sorteos can have.'),
       'field' => 'name',
       'id' => 'views_sorteo_titles'
+    ),
+  );
+  */
+  $data['sorteo']['sorteos_fecha_hoy'] = array(
+    'title' => 'Sorteos Caducados',
+    'filter' => array(
+      'title' => t('Sorteos Caducados'),
+      'help' => t('Sólo muestra los sorteos cuya fecha de celebracion sea mayor que hoy'),
+      'field' => 'fecha',
+      'id' => 'views_sorteos_caducados'
     ),
   );
 }
