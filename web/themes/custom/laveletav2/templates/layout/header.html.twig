@@ -1,8 +1,8 @@
 <header class="site-header">
   <div class="site-header__masthead">
     <div class="wrapper">
-      <h1 class="site-header__logo"><a href="{{ url('<front>') }}">Lotería La Veleta</a></h1>
-      <a href="#" id="menu-trigger" class="menu-trigger">
+      <h1 class="site-header__logo"><a title="Pagina de Inicio de Loteria La Veleta" href="{{ url('<front>') }}">Lotería La Veleta</a></h1>
+      <a href="#" id="menu-trigger" title="Despliega el menu en la version movil" class="menu-trigger">
         <span class="menu-trigger__text">Menu</span><div class="menu-trigger__icon"><span class="menu-trigger__line"></span><span class="menu-trigger__line"></span><span class="menu-trigger__line"></span></div>
       </a>
       {{ page.primary_menu }}
@@ -42,7 +42,6 @@
 						<aside id="login-form" class="dropdown__panel">
 							 {{ page.login_header }}
 						</aside>
-					
 					</div>
 					{% endif %}
       </div>

@@ -1080,15 +1080,12 @@ label {
   display: none;
   margin-bottom: 0;
 }
-
 :invalid + .form__message {
   display: block;
 }
-
 .form__message--alert {
   color: #c45417;
 }
-
 .form__message--danger {
   color: red;
 }
@@ -1102,11 +1099,6 @@ label {
   font-size: 1.3rem;
   font-weight: bold;
 }
-/************************************
-
-LOGIN
-
-*************************************/
 .login-form__btn {
   align-self: flex-end;
 }
@@ -1119,12 +1111,6 @@ LOGIN
 .login-form__reminder a {
   text-decoration: inherit;
 }
-
-/************************************
-
-SEARCH
-
-*************************************/
 .form-search input {
   width: 100%;
   max-width: 400px;
@@ -1239,11 +1225,6 @@ SEARCH
   flex-flow: column-reverse;
 }
 
-/*****************************************
-
-Masthead
-
-******************************************/
 .site-header__masthead {
   padding: 12px 0 0;
 }
@@ -4849,4 +4830,16 @@ ol.user-details > li .value {
   width:19px;
   height:19px;
   vertical-align: middle;
+}
+.order-information td img {
+  margin:0;
+}
+.order-information td {
+  vertical-align: middle;
+}
+.customer-information .draw__item {
+  margin: 0 40px;
+}
+.order-information .card--user {
+  margin-bottom: 0;
 }

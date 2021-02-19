@@ -18,27 +18,26 @@
  */
 #}
 <div class="card">
-  <div class="customer-information ">
-    {{ order.mail }}
-    {% if order.shipping_information %}
-      <div class="customer-information__shipping">
-        <div class="field__label">{{ 'Shipping information'|t }}</div>
-        {{ order.shipping_information }}
-      </div>
-    {% endif %}
-    {% if order.billing_information %}
-      <div class="customer-billing">
-        <div class="field__label">{{ 'Billing information'|t }}</div>
-        {{ order.billing_information }}
-      </div>
-    {% endif %}
+  <div class="card__main">
+    <div class="customer-information ">
+      <ul class="draw__list">
+        <li class="draw__item">
+          <span class="">N&uacute;mero de Pedido</span> <br/>
+          <span class=""> {{ order_entity.id }}</span>
+        </li>
+        <li class="draw__item draw__item--lottery">
+          <span class="">{{ order.completed }}</span>
+        </li>
+        <li class="draw__item draw__item--lottery">
+          <span class="">{{ order.state }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="order-information">
+      {{ order.order_items }}
+      {{ order.total_price }}
+      {{ additional_order_fields }}
+    </div>
   </div>
-  <div class="order-information">
-    {{ order.completed }}
-    {{ order.placed }}
-    {{ order.state }}
-    {{ order.order_items }}
-    {{ order.total_price }}
-    {{ additional_order_fields }}
-  </div>
+  <a href="#" onclick="window.history.back();" title="Pedidos" class="btn btn--primary company-cta__btn">&gt;&gt; Volver a Pedidos</a>
 </div>
