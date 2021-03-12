@@ -8,6 +8,8 @@ use Drupal\sorteos\Entity\SorteoInterface;
 use Drupal\sorteos\Plugin\ImporterBase;
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use GuzzleHttp\Exception\RequestException;
+
 
 
 /**
@@ -202,9 +204,17 @@ class JsonImporter extends ImporterBase
                 $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
             }
         }
-        //dump($url);
-        $request = $this->httpClient->get($url);
-        $string = $request->getBody()->getContents();
+        $string = '';
+
+        try {
+            // $request = $this->httpClient->get($url);
+            // $string = $request->getBody()->getContents();
+        } catch (\Exception $e) {
+
+            dump($e);
+        }
+
+
         return json_decode($string);
     }
 

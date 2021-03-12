@@ -26,7 +26,7 @@ class SorteosBbdd
     {
         $this->connection = $connection;
         $this->date_format = 'Y-m-dTH:i:s';
-        $this->ahora = date('Y-m-dT00:00:00');
+        $this->ahora = date('Y-m-dTH:i:s');
         $this->bundles = [
             'LNAC' => 'loteria_nacional',
             'EMIL' => 'euromillones',
@@ -352,5 +352,17 @@ class SorteosBbdd
         } else {
             return '';
         }
+    }
+
+    public function dameUltimoSorteoLnac()
+    {
+        // limit 24 porque son los ultimos 3 meses
+        $sorteos = $this->connection->query("SELECT s.id, s.name, s.fecha FROM sorteo s 
+                                            WHERE type = 'loteria_nacional' AND fecha < :fecha ORDER by s.fecha DESC LIMIT 30", [
+            ':fecha' => $this->ahora
+        ])->fetchObject();
+
+
+        return $sorteos;
     }
 }

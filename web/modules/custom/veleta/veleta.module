@@ -10,7 +10,6 @@ use Drupal\sorteos\Entity\Sorteo;
  */
 function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-
   if ($form['#id'] != 'views-exposed-form-comprar-loteria-nacional-page-comprar-loteria') {
     return FALSE;
   }
@@ -47,17 +46,6 @@ function veleta_form_views_exposed_form_alter(&$form, FormStateInterface $form_s
 
 function veleta_views_data_alter(array &$data)
 {
-  /*
-  $data['sorteo']['sorteos_titles'] = array(
-    'title' => 'Sorteo666',
-    'filter' => array(
-      'title' => t('Sorteos Titles'),
-      'help' => t('Specify a list of titles a sorteos can have.'),
-      'field' => 'name',
-      'id' => 'views_sorteo_titles'
-    ),
-  );
-  */
   $data['sorteo']['sorteos_fecha_hoy'] = array(
     'title' => 'Sorteos Caducados',
     'filter' => array(

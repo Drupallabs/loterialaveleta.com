@@ -1,0 +1,5 @@
+services:
+  premios.commands:
+    class: Drupal\sorteos\Commands\PremiosCommands
+    tags:
+      - { name: premios.command }

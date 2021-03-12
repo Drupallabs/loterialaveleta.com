@@ -73,6 +73,24 @@ class MonederoManager
         return $monedero;
     }
 
+
+    /* Sin no tiene un monedero lo crea */
+    public function hasMonedero(AccountInterface $account)
+    {
+        $monedero = $this->connection->query("SELECT * FROM monedero WHERE user_id = :uid", [
+            ':uid' => $account->id(),
+        ])->fetchObject();
+        if(!$monedero) {
+            $mones = $this->entityTypeManager->getStorage('monedero')->create([
+                'name' => 'Monedero de '.$account->getUserName(),
+                'user_id' =>  $account->id(),
+                'currency' => 'EUR',
+                'cantidad' => 0
+            ]);
+            $mones->save();
+        }
+    }
+
     public function updateMonedero(AccountInterface $account, float $total)
     {
         // Sacamos el saldo actual y lo restamos con lo que vale el pedido
@@ -109,7 +127,7 @@ class MonederoManager
             $mones = $this->entityTypeManager->getStorage('monedero')
                 ->create([
                     'user_id' => $account->id(),
-                    'name' => 'Monedero',
+                    //'name' => 'Monedero',
                     'cantidad' => $saldo
                 ]);
         }

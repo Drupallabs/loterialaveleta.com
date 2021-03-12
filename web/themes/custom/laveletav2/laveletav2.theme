@@ -52,10 +52,6 @@ function laveletav2_preprocess_table(array $variables)
 function laveletav2_theme_suggestions_container_alter(array &$suggestions, array $variables)
 {
   $element = $variables['element'];
-  //dump($element);
-  // We cannot count on template_preprocess_container having run, so we copy
-  // its logic here to provide templates for forms (has parents) or not forms.
-  // Special handling for form elements.
   if (isset($element['#array_parents'])) {
     $suggestions[] = 'container__has_parent';
   } else {

@@ -33,10 +33,5 @@ class SorteosCaducados extends FilterPluginBase
         $today = new \DateTime('now', new \DateTimezone('UTC'));
         $todayf = $today->format('Y-m-d H:i:s');
         $this->query->addWhere('AND', 'sorteo_commerce_product__field_sorteo_3.fecha', $todayf, '>=');
-
-        /*
-        if (!empty($this->value)) {
-            // parent::query();
-        }*/
     }
 }

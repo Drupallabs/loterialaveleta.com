@@ -1,24 +1,16 @@
 <?php
 
-/**
- * @file
- * Contains mi_monedero.module.
- */
-
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\commerce_price\Calculator;
+use Drupal\user\UserInterface;
 
-/**
- * Implements hook_help().
- */
 function mi_monedero_help($route_name, RouteMatchInterface $route_match)
 {
   switch ($route_name) {
-      // Main module help for the mi_monedero module.
     case 'help.page.mi_monedero':
       $output = '';
-      $output .= '<h3>Sobre </h3>';
+      $output .= '<h3>Mi Monedero </h3>';
       $output .= '<p>Funcionalidad de Mi Monedero para loterialaveleta.com</p>';
       return $output;
 
@@ -45,6 +37,11 @@ function mi_monedero_theme()
   ];
 }
 
+function mi_monedero_user_login(UserInterface $user)
+{
+  // Sino tiene monedero lo crea y lo pone a 0 euros
+  \Drupal::service('mi_monedero.monedero_manager')->hasMonedero($user);
+}
 /**
  * Implements hook_form_FORM_ID_alter().
  *

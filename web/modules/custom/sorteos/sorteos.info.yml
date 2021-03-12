@@ -1,6 +1,6 @@
 name: 'sorteos'
 type: module
-description: 'Guarda y administra los sorteos de loterias'
+description: 'Guarda y administra los sorteos de loteria la veleta'
 core: 8.x
 package: 'Custom'
 

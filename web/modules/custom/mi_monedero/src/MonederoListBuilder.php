@@ -22,6 +22,7 @@ class MonederoListBuilder extends EntityListBuilder
     $header['id'] = $this->t('Monedero ID');
     $header['name'] = $this->t('Name');
     $header['user'] = 'Propietario';
+    $header['user_id'] = 'Codigo Usuario';
     $header['cantidad'] = 'Cantidad';
     return $header + parent::buildHeader();
   }
@@ -38,7 +39,13 @@ class MonederoListBuilder extends EntityListBuilder
       'entity.monedero.edit_form',
       ['monedero' => $entity->id()]
     );
-    $row['user'] = $entity->getOwner()->getUsername();
+    $row['user'] = Link::createFromRoute(
+      $entity->getOwner()->getUsername(),
+      'entity.user.edit_form',
+      ['user' => $entity->id()]
+    );
+
+    $row['user_id'] = $entity->getOwner()->id();
     $row['cantidad'] = $entity->getCantidad() . '€';
     return $row + parent::buildRow($entity);
   }
