@@ -29,6 +29,7 @@ class PremiosManager
         if (!$order_items) {
             $order->set('state', 'canceled');
         }
+        
         foreach ($order_items as $order_item) {
             $ordervar = $order_item->getPurchasedEntity();
             $product = $ordervar->getProduct();

@@ -32,21 +32,39 @@ class MonederoListBuilder extends EntityListBuilder
    */
   public function buildRow(EntityInterface $entity)
   {
-    /* @var \Drupal\mi_monedero\Entity\Monedero $entity */
-    $row['id'] = $entity->id();
-    $row['name'] = Link::createFromRoute(
-      $entity->label(),
-      'entity.monedero.edit_form',
-      ['monedero' => $entity->id()]
-    );
-    $row['user'] = Link::createFromRoute(
-      $entity->getOwner()->getUsername(),
-      'entity.user.edit_form',
-      ['user' => $entity->id()]
-    );
 
-    $row['user_id'] = $entity->getOwner()->id();
-    $row['cantidad'] = $entity->getCantidad() . '€';
+    /* @var \Drupal\mi_monedero\Entity\Monedero $entity */
+    if ($entity->getOwner()) {
+      $row['id'] = $entity->id();
+      $row['name'] = Link::createFromRoute(
+        $entity->label(),
+        'entity.monedero.edit_form',
+        ['monedero' => $entity->id()]
+      );
+      $row['user'] = Link::createFromRoute(
+        $entity->getOwner()->getUsername(),
+        'entity.user.edit_form',
+        ['user' => $entity->id()]
+      );
+
+      $row['user_id'] = $entity->getOwner()->id();
+      $row['cantidad'] = $entity->getCantidad() . '€';
+
+    } else {
+      
+      $row['id'] = $entity->id();
+      $row['name'] = Link::createFromRoute(
+        $entity->label(),
+        'entity.monedero.edit_form',
+        ['monedero' => $entity->id()]
+      );
+      $row['user'] = '';
+      $row['user_id'] = '';
+      $row['cantidad'] = '';
+    }
+
+
+
     return $row + parent::buildRow($entity);
   }
 }

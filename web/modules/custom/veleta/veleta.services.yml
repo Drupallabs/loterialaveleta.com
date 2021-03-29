@@ -26,6 +26,8 @@ services:
   veleta.logger.channel.veleta:
     parent: logger.channel_base
     arguments: ['veleta']
+    tags:
+      - {name: laveleta}
   veleta.logger.veleta:
     class: Drupal\veleta\Logger\MailLogger
     arguments: ['@logger.log_message_parser', '@config.factory']

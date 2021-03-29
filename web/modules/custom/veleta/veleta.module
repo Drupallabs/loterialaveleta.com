@@ -118,7 +118,7 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
     $product_variation = $order_item->getPurchasedEntity();
     $product_id = $product_variation->get('product_id')->getValue();
     $pid = $product_id[0]['target_id'];
-    $product = \Drupal::entityTypeManager()->getStorage('commerce_product')->load($pid);
+    $product = \Drupal::getStorage('commerce_product')()->getStorage('commerce_product')->load($pid);
     $item = $product->get('field_sorteo_3')->get(0);
     $numero = $product->get('field_numero_decimo')->get(0);
     $value = FALSE;

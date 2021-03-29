@@ -3,8 +3,17 @@ services:
     class: Drupal\resultados\Resultados
     tags:
       - {name: laveleta}
+  resultados.connection:
+    class: Drupal\resultados\Services\ResultadosConnection
+    tags:
+      - {name: laveleta}
   resultados.resultadosbbdd:
     class: Drupal\resultados\ResultadosBbdd
     arguments: ["@database"]
+    tags:
+      - {name: laveleta}
+  resultados.comprobar.lnac:
+    class: Drupal\resultados\Services\ComprobarDecimoLnac
+    arguments: ["@resultados.connection"]
     tags:
       - {name: laveleta}

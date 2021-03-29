@@ -21,7 +21,6 @@ class ComprobarDecimo
   {
     $imageurl = '';
     $premio = '';
-    //dump($this->sorteo);
     if ($this->sorteo->field_decimo_imagen[0]) {
       $decimo_imagen = $this->sorteo->field_decimo_imagen[0]->getValue();
       $imageurl = file_create_url($this->sorteo->field_decimo_imagen[0]->entity->getFileUri());

@@ -3,10 +3,13 @@ services:
     class: \Drupal\premios\PremiosManager
   premios.cron:
     class: \Drupal\premios\Cron
-    arguments: ['@entity_type.manager', '@datetime.time', '@premios.manager', '@premios.mail_premios', '@sorteos.sorteosbbdd']
+    arguments: ['@entity_type.manager', '@datetime.time', '@premios.manager', '@premios.mail_premios', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']
   premios.mail_handler:
     class: Drupal\premios\Mail\MailHandler
     arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']
   premios.mail_premios:
     class: Drupal\premios\Mail\MailPremios
     arguments: ['@premios.mail_handler']
+  premios.paga:
+    class: \Drupal\premios\PagaPremios
+    arguments: ['@entity_type.manager', '@premios.manager', '@premios.mail_premios', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']

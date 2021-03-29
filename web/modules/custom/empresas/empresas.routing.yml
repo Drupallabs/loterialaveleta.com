@@ -49,3 +49,11 @@ veleta.admin.empresas.generarpdf:
     parameters:
       pedidoid:
         type: string
+
+empresas.configuracion:
+  path: '/admin/laveleta/empresas/configuracion'
+  defaults:
+    _form: '\Drupal\empresas\Form\EmpresaSettingsForm'
+    _title: 'Empresas Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'

@@ -1,5 +1,5 @@
 commerce_redsys.configuracion:
-  path: '/admin/veleta/commerce_redsys/configuracion'
+  path: '/admin/laveleta/commerce_redsys/configuracion'
   defaults:
     _form: '\Drupal\commerce_redsys\Form\CommerceRedsysConfiguracionForm'
     _title: 'Commerce Redsys Configuracion'

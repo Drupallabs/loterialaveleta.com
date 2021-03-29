@@ -5,8 +5,6 @@ namespace Drupal\premios\Commands;
 use Drush\Commands\DrushCommands;
 
 /**
- * A drush command file.
- *
  * @package Drupal\premios\Commands
  */
 class PremiosCommands extends DrushCommands
@@ -14,12 +12,14 @@ class PremiosCommands extends DrushCommands
     /**
      * Commando que busca en los Pedidos de los usuarios, y si tiene algun premio, se lo paga al monedero
      * 
-     * @command premios-pedido-usuario
-     * @aliases ppu
+     * @command paga-premios-pedido-usuario
+     * @aliases paga
      */
 
-    public function PedidosUsuario()
+    public function PagaPedidosUsuario()
     {
-        $this->output()->writeln('pEDIDOs usuario');
+        $premiospaga = \Drupal::service('premios.paga');
+        $premiospaga->pagando();
+        $this->output()->writeln('Pedidos Usuario');
     }
 }
