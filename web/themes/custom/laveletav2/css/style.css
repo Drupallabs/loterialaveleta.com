@@ -4843,3 +4843,8 @@ ol.user-details > li .value {
 .order-information .card--user {
   margin-bottom: 0;
 }
+.product-pena-primitiva h4 {
+  font-weight: bold;
+  color:#476728;
+  font-size: 1em;
+}

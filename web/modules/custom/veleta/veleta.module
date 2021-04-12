@@ -108,28 +108,34 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
   $order = $variables['order_entity'];
   $newitems = array();
   $count = 0;
-
-
   foreach ($order->getItems() as $item => $order_item) {
     $qu = $order_item->get('quantity')->getValue();
     $tp = $order_item->get('total_price')->getValue();
     $newitems[$count]['cantidad'] = $qu[0]['value'];
     $newitems[$count]['precio_total'] = $tp[0]['number'];
     $product_variation = $order_item->getPurchasedEntity();
-    $product_id = $product_variation->get('product_id')->getValue();
-    $pid = $product_id[0]['target_id'];
-    $product = \Drupal::getStorage('commerce_product')()->getStorage('commerce_product')->load($pid);
+    $product = $product_variation->getProduct();
+
     $item = $product->get('field_sorteo_3')->get(0);
-    $numero = $product->get('field_numero_decimo')->get(0);
+
     $value = FALSE;
     if (!empty($item)) {
       $value = $item->getValue();
     }
     $sorteoid = $value['target_id'];
     $sorteo = Sorteo::load($sorteoid);
-    $newitems[$count]['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
-    $numeroarr = $numero->getValue();
-    $newitems[$count]['numero'] = $numeroarr['value'];
+    if ($product->bundle() == 'pena_primitiva') {
+      $newitems[$count]['decimo'] = file_create_url($product->field_foto_pena_primitiva->entity->getFileUri());
+      $newitems[$count]['numero'] = 'Peña Primitiva';
+    }
+    if ($product->bundle() == 'decimo_loteria') {
+      $numero = $product->get('field_numero_decimo')->get(0);
+      $newitems[$count]['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+      $numeroarr = $numero->getValue();
+      $newitems[$count]['numero'] = $numeroarr['value'];
+    }
+
+
     $count++;
   }
   $variables['newitems'] = $newitems;

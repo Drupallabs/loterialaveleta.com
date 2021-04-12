@@ -20,6 +20,5 @@ class PremiosCommands extends DrushCommands
     {
         $premiospaga = \Drupal::service('premios.paga');
         $premiospaga->pagando();
-        $this->output()->writeln('Pedidos Usuario');
     }
 }

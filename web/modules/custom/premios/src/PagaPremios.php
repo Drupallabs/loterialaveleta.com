@@ -81,6 +81,58 @@ class PagaPremios
 
     public function pagando()
     {
-        dump('pagando');
+        $this->checkSorteosYesterdayLnac();
+    }
+
+    /*
+     * Busca todos los sorteos 
+     */
+    protected function checkSorteosYesterdayLnac()
+    {
+
+        //sorteo que se celebro ayer de loteria nacional
+        $lnac = $this->sorteosBbdd->dameUltimoSorteoLnac();
+        //$ultimo_sorteo_lnac_id = $lnac->id;
+        $ultimo_sorteo_lnac_id = 693; // san valentin
+        $sorteo_id = 1118709012; // san valentin
+
+        $batch = [
+            'title' => 'Comprobando Decimos..',
+            'init_message' => 'Comprobando',
+            'progress_message' => t('Processed @current out of @total.'),
+            'error_message'    => t('Error comprobando decimos'),
+            'operations' => [
+                // [[$this, 'clearMissing'], [$products]],
+            ],
+            'finished' => [$this, 'comprobacionDecimosFinished'],
+        ];
+
+        // buscamos todos los productos que tengan el sorteo de loteria nacional
+        $order_storage = $this->entityTypeManager->getStorage('commerce_product');
+        $query = $order_storage->getQuery();
+        $query->condition('field_sorteo_3', $ultimo_sorteo_lnac_id);
+        $ids = $query->execute();
+        $sorteos = $order_storage->loadMultiple($ids);
+
+        // Si hay Productos creados de ese sorteo
+        if ($sorteos) {
+            foreach ($sorteos as $sorteo) {
+                $numeroar = $sorteo->field_numero_decimo->getValue();
+                $numero = $numeroar[0]["value"];
+                //dump($ultimo_sorteo_lnac_id);
+                $batch['operations'][] = [[$this, 'comprobarDecimoSorteo'], [$numero]];
+                
+            }
+        }
+        //dump('444444');
+
+        batch_set($batch);
+    }
+
+    private function comprobarDecimoSorteo($numero, $sorteo_id)
+    {
+        dump('comprobar decimo sorteo');
+        die;
+        //$this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
     }
 }

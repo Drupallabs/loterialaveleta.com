@@ -129,8 +129,7 @@ function laveletav2_suggestions_commerce_checkout_order_summary(array &$suggesti
  */
 function laveletav2_preprocess_commerce_product(array &$variables)
 {
-  if ($variables['elements']['field_sorteo_3']['#items']) {
-
+  if ($variables['elements']['#view_mode'] == 'comprar_decimo') {
     $product = $variables['elements']['field_sorteo_3']['#items']->getEntity();
     $item = $product->get('field_sorteo_3')->get(0);
     $value = FALSE;
@@ -140,15 +139,22 @@ function laveletav2_preprocess_commerce_product(array &$variables)
     if ($value) {
       $sorteoid = $value['target_id'];
       $sorteo = Sorteo::load($sorteoid);
-      //dump($sorteo->field_decimo_imagen->entity->getFileUri()); die;
       $variables['decimo_url'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
     }
+  }
+
+  // La imagen de la Peña primitiva
+  if ($variables['elements']['#view_mode'] == 'comprar_pena') {
+
+    $product = $variables['elements']['field_foto_pena_primitiva']['#items']->getEntity();
+    $variables['foto_pena_primitiva_url'] = file_create_url($product->field_foto_pena_primitiva->entity->getFileUri());
   }
 }
 
 function laveletav2_preprocess_commerce_product_variation(array &$variables)
 {
   /** @var Drupal\commerce_product\Entity\ProductVariationInterface $product_variation */
+
   $product_variation = $variables['elements']['#commerce_product_variation'];
   $product = $product_variation->getProduct();
   $item = $product->get('field_sorteo_3')->get(0);
@@ -156,14 +162,21 @@ function laveletav2_preprocess_commerce_product_variation(array &$variables)
   if (!empty($item)) {
     $value = $item->getValue();
   }
-  if ($value) {
+  if ($value &&  $product->bundle() == 'decimo_loteria') {
     $sorteoid = $value['target_id'];
     $sorteo = Sorteo::load($sorteoid);
-
     $variables['sorteo'] = $sorteo->getName();
     $variables['numero_decimo'] = $product->get('field_numero_decimo')->value;
     $variables['fecha_sorteo'] = $sorteo->getFechaSimple();
     $variables['decimo_url'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+  }
+
+  if ($value &&  $product->bundle() == 'pena_primitiva') {
+    $sorteoid = $value['target_id'];
+    $sorteo = Sorteo::load($sorteoid);
+    $variables['sorteo'] = $sorteo->getName();
+    $variables['foto_pena_url'] = file_create_url($product->field_foto_pena_primitiva->entity->getFileUri());
+
   }
 }
 
