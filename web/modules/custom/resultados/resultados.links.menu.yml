@@ -1,0 +1,5 @@
+resultados.admin.structure.settings:
+  title: "Resultados Configuracion"
+  description: "Configure Resultados"
+  route_name: resultados.configuration
+  parent: veleta.admin_veleta.config

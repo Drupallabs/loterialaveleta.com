@@ -5,6 +5,7 @@ services:
       - {name: laveleta}
   resultados.connection:
     class: Drupal\resultados\Services\ResultadosConnection
+    arguments: ['@config.factory']
     tags:
       - {name: laveleta}
   resultados.resultadosbbdd:

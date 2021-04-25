@@ -78,7 +78,7 @@
          </tr>
          <tr>
            <td style="padding-left:450px;">
-             <p style="margin-bottom: 0;color:#222;">
+             <p style="margin-bottom: 0;color:#222;">  
                {{ 'Subtotal: @subtotal'|t({'@subtotal': totals.subtotal|commerce_price_format}) }}
              </p>
            </td>
@@ -103,7 +103,6 @@
        </table>
      </td>
    </tr>
-   {% if order_entity.field_nombre.value %}
       <tr>
         <td align="center" bgcolor="#faeede">
          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -115,16 +114,8 @@
          {% if order_entity.id %}
            <p><span style="font-weight:bold;">N&uacute;mero de Pedido:</span>&nbsp;{{ order_entity.id }}</p> 
          {% endif %}
-         {% if order_entity.field_nombre.value %}
-           <p><span style="font-weight:bold;">Nombre:</span>&nbsp;{{ order_entity.field_nombre.value }}</p>
-         {% endif %}
-         <p>El D&eacute;cimo(s) de Loteria Nacional que usted ha comprado, est&aacute; en custodia en la Caja fuerte de Nuestra Administraci&oacute;n asociado a los datos personales que usted nos ha facilitado.</p>
-         <p>Para Cobrar el premio, en caso de  obtenerlo, debe remitirnos un correo electr&oacute;nico a la siguiente direcci&oacute;n (<a href="mailto:pedidos@loterialaveleta.com">pedidos(arroba)loterialaveleta.com</a>) con los siguientes datos: Nombre y apellidos, Numero de Pedido, Dni y n&uacute;mero de la Cuenta Bancaria en la que desea cobrar el premio.</p>
-         <p>Gracias por confiar en nostros y sobre todo.... <strong>¡Mucha Suerte¡</strong></p>
         </td>
-    </tr>
-    {% endif %} 
-         
+  </tr>
    {% for pay  in payment_method %}
      {% if pay == 'Transferencia Bancaria' %}
       <tr style="margin-top:10px;">
@@ -143,10 +134,7 @@
     {% endfor %}
     </table>
   </td>
-</tr>
-
-
-<tr>
+ </tr>
    <tr>
      <td align="center" bgcolor="#faeede">
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -172,5 +160,5 @@
          </tr>
        </table>
      </td>
-   </tr>
+  </tr>
  </table>

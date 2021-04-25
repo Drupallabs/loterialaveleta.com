@@ -4,9 +4,10 @@ namespace Drupal\resultados\Services;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Drupal\Core\Config\ConfigFactory;
 
 /**
- * Class ResultadosConnection
+ * Connect with selae and check
  *
  * @package Drupal\resultados\Services
  */
@@ -14,12 +15,18 @@ class ResultadosConnection
 {
 
   protected $config  = NULL;
-  protected $urlultimos = 'https://www.loteriasyapuestas.es/servicios/ultimosv4/?game_id=';
-  protected $urldecimos = 'https://www.loteriasyapuestas.es/servicios/premioDecimoWeb/?idsorteo=';
   protected $method = 'GET';
 
-  public function __construct()
+  /**
+   * Configuration Factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactory
+   */
+  protected $configFactory;
+
+  public function __construct(ConfigFactory $configFactory)
   {
+    $this->configFactory = $configFactory;
   }
 
   public function getResultadosJuego($gameid)
@@ -40,9 +47,11 @@ class ResultadosConnection
 
   public function queryEndpoint($gameid)
   {
+    $config = $this->configFactory->get('resultados.configuration');
     try {
-      $url = $this->urlultimos . $gameid;
+      $url = $config->get('url') . $gameid;
       $response = $this->callEndpoint($url);
+
       return json_decode($response->getBody());
     } catch (\Exception $e) {
       //  watchdog_exception('resultados', $e);
@@ -61,9 +70,11 @@ class ResultadosConnection
 
   public function queryEndpoint2($idsorteo)
   {
+    $config = $this->configFactory->get('resultados.configuration');
     try {
-      $url = $this->urldecimos . $idsorteo;
+      $url = $config->get('url') . $idsorteo;
       $response = $this->callEndpoint($url);
+
       return json_decode($response->getBody());
     } catch (\Exception $e) {
       dump($e);

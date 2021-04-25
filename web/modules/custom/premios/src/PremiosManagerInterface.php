@@ -10,6 +10,8 @@ use Drupal\commerce_order\Entity\OrderInterface;
  */
 interface PremiosManagerInterface
 {
+
+
     /**
      * Checkque los premios que tiene un pedido 
      *

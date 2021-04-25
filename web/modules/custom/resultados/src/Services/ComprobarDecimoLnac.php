@@ -25,22 +25,24 @@ class ComprobarDecimoLnac
 
     public function comprobarDecimoSorteo($numero, $sorteo)
     {
+
         $comprobacion = $this->resultadosConnection->getPremioDecimoWeb($sorteo);
         $tiene_premio = false;
-        foreach ($comprobacion->compruebe as $key => $value) {
-            $decimocomp = (string)$value->decimo;
-            $decimocomp = substr($decimocomp, 1); // quitamos el primer cero
-            $resultadoc = similar_text($decimocomp, $this->decimo);
-            if ($resultadoc == 5) {
-                $tiene_premio = true;
-                $premio = (int)$value->prize / 100;
+        if ($comprobacion->compruebe) {
+            foreach ($comprobacion->compruebe as $key => $value) {
+                $decimocomp = (string)$value->decimo;
+                $decimocomp = substr($decimocomp, 1); // quitamos el primer cero
+                $resultadoc = similar_text($decimocomp, $numero);
+                if ($resultadoc == 5) {
+                    $tiene_premio = true;
+                    $premio = (int)$value->prize / 100;
+                }
             }
         }
         if ($tiene_premio) {
-            dump($premio);
+            return $premio;
         } else {
-            dump('no tiene premio');
+            return false;
         }
-        die;
     }
 }

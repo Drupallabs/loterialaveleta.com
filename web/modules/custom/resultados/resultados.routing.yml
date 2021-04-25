@@ -92,3 +92,11 @@ resultados.dameresultados:
     _controller: '\Drupal\resultados\Controller\ResultadosController::dameResultados'
   requirements:
     _access: "TRUE"
+
+resultados.configuration:
+  path: '/admin/laveleta/resultados/configuration'
+  defaults:
+    _form: '\Drupal\resultados\Form\ResultadosConfigurationForm'
+    _title: 'Resultados Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'

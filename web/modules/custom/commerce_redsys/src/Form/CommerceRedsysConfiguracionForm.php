@@ -55,6 +55,11 @@ class CommerceRedsysConfiguracionForm extends ConfigFormBase
       '#title'         => 'Clave de comercio SHA-256',
       '#default_value' => $config->get('clave_sha'),
     );
+    $form['commerce_redsys']['fuc'] = array(
+      '#type'          => 'textfield',
+      '#title'         => 'Fuc',
+      '#default_value' => $config->get('fuc'),
+    );
     $form['commerce_redsys']['url_comercio'] = array(
       '#type'          => 'textfield',
       '#title'         => 'Url del comercio',
@@ -105,6 +110,7 @@ class CommerceRedsysConfiguracionForm extends ConfigFormBase
       ->set('clave_sha', $form_state->getValue('clave_sha'))
       ->set('url_comercio', $form_state->getValue('url_comercio'))
       ->set('merchant_url', $form_state->getValue('merchant_url'))
+      ->set('fuc', $form_state->getValue('fuc'))
       ->set('url_ok', $form_state->getValue('url_ok'))
       ->set('url_nook', $form_state->getValue('url_nook'))
       ->set('monedero_urlok', $form_state->getValue('monedero_urlok'))

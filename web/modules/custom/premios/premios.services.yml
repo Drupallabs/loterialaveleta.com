@@ -1,8 +1,7 @@
 services:
   premios.manager:
     class: \Drupal\premios\PremiosManager
-  premios.cron:
-    class: \Drupal\premios\Cron
+    arguments: ['@entity_type.manager']
   premios.mail_handler:
     class: Drupal\premios\Mail\MailHandler
     arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']

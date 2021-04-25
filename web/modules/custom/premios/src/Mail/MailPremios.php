@@ -9,46 +9,46 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  */
 final class MailPremios
 {
-    /**
-     * The mail handler.
-     *
-     * @var \Drupal\example\Mail\MailHandler
-     */
-    protected $mailHandler;
+  /**
+   * The mail handler.
+   *
+   * @var \Drupal\example\Mail\MailHandler
+   */
+  protected $mailHandler;
 
-    protected $htmlmail;
-    /**
-     * Constructs a new UserLoginEmail object.
-     *
-     * @param \Drupal\example\Mail\MailHandler $mail_handler
-     *   The mail handler.
-     */
-    public function __construct(MailHandler $mail_handler)
-    {
-        $this->mailHandler = $mail_handler;
-        $this->htmlmail = $this->getHtmlMail();
-    }
-    /**
-     * Sends email.
-     *
-     * @return bool 
-     *   The message status.
-     */
-    public function send(): bool
-    {
-        $subject = new TranslatableMarkup('Notificacion Pedido');
-        $body = [
-            '#markup' => $this->htmlmail,
-        ];
-        return $this->mailHandler->sendMail('david@hipertintorero.com', $subject, $body);
-    }
+  protected $htmlmail;
+  /**
+   * Constructs a new UserLoginEmail object.
+   *
+   * @param \Drupal\example\Mail\MailHandler $mail_handler
+   *   The mail handler.
+   */
+  public function __construct(MailHandler $mail_handler)
+  {
+    $this->mailHandler = $mail_handler;
+    $this->htmlmail = $this->getHtmlMail();
+  }
+  /**
+   * Sends email.
+   *
+   * @return bool 
+   *   The message status.
+   */
+  public function send($numero): bool
+  {
+    $subject = new TranslatableMarkup('Notificacion Premio Pedido ' . $numero);
+    $body = [
+      '#markup' => $this->htmlmail,
+    ];
+    return $this->mailHandler->sendMail('david@hipertintorero.com', $subject, $body);
+  }
 
-    private function getHtmlMail() {
-        return '<div class="preheader"style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+  private function getHtmlMail()
+  {
+    return '<div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
              Notificacion de Pedido de Usuario en Loteria La Veleta sitio web
              </div>
              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
                <tr>
                  <td align="center" bgcolor="#faeede">
                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -108,5 +108,5 @@ final class MailPremios
                  </td>
                </tr>
              </table>';
-    }
+  }
 }

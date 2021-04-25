@@ -49,15 +49,10 @@ class MonederoListBuilder extends EntityListBuilder
 
       $row['user_id'] = $entity->getOwner()->id();
       $row['cantidad'] = $entity->getCantidad() . '€';
-
     } else {
-      
+
       $row['id'] = $entity->id();
-      $row['name'] = Link::createFromRoute(
-        $entity->label(),
-        'entity.monedero.edit_form',
-        ['monedero' => $entity->id()]
-      );
+      $row['name'] = '';
       $row['user'] = '';
       $row['user_id'] = '';
       $row['cantidad'] = '';

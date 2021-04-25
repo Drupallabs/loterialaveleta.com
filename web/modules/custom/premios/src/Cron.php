@@ -1,9 +1,8 @@
 <?php
+
 namespace Drupal\premios;
 
-
 use Drupal\Core\CronInterface;
-
 
 /**
  * Default cron implementation.
@@ -14,7 +13,7 @@ class Cron implements CronInterface
 
     public function run()
     {
-       // $this->checkSorteosYesterday();
+        // $this->checkSorteosYesterday();
     }
 
     protected function checkSorteosYesterday()
@@ -33,7 +32,7 @@ class Cron implements CronInterface
             ],
             'finished' => [$this, 'comprobacionDecimosFinished'],
         ];
-  
+
 
         // buscamos todos los productos que tengan el sorteo de loteria nacional
         $order_storage = $this->entityTypeManager->getStorage('commerce_product');
@@ -51,9 +50,8 @@ class Cron implements CronInterface
                 $batch['operations'][] = [[$this, 'comprobarDecimoSorteo'], [$numero, $sorteo_id]];
             }
         }
-      
+
         batch_set($batch);
-      
     }
 
     private function comprobarDecimoSorteo($numero, $sorteo_id)

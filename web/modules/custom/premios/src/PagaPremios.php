@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\premios\Mail\MailPremios;
 use Drupal\sorteos\SorteosBbdd;
 use Drupal\resultados\Services\ComprobarDecimoLnac;
+use Drupal\commerce_product\Entity\ProductInterface;
 
 class PagaPremios
 {
@@ -92,47 +93,51 @@ class PagaPremios
 
         //sorteo que se celebro ayer de loteria nacional
         $lnac = $this->sorteosBbdd->dameUltimoSorteoLnac();
-        //$ultimo_sorteo_lnac_id = $lnac->id;
-        $ultimo_sorteo_lnac_id = 693; // san valentin
-        $sorteo_id = 1118709012; // san valentin
-
-        $batch = [
-            'title' => 'Comprobando Decimos..',
-            'init_message' => 'Comprobando',
-            'progress_message' => t('Processed @current out of @total.'),
-            'error_message'    => t('Error comprobando decimos'),
-            'operations' => [
-                // [[$this, 'clearMissing'], [$products]],
-            ],
-            'finished' => [$this, 'comprobacionDecimosFinished'],
-        ];
-
+        $ultimo_sorteo_lnac_id = $lnac->id;
+        $sorteo_id = $lnac->id_sorteo;
+        // dump($sorteo_id);
         // buscamos todos los productos que tengan el sorteo de loteria nacional
         $order_storage = $this->entityTypeManager->getStorage('commerce_product');
         $query = $order_storage->getQuery();
         $query->condition('field_sorteo_3', $ultimo_sorteo_lnac_id);
         $ids = $query->execute();
-        $sorteos = $order_storage->loadMultiple($ids);
+
+        $products = $order_storage->loadMultiple($ids);
 
         // Si hay Productos creados de ese sorteo
-        if ($sorteos) {
-            foreach ($sorteos as $sorteo) {
-                $numeroar = $sorteo->field_numero_decimo->getValue();
+        $operations = [];
+        if ($products) {
+            foreach ($products as $product) {
+                $numeroar = $product->field_numero_decimo->getValue();
                 $numero = $numeroar[0]["value"];
-                //dump($ultimo_sorteo_lnac_id);
-                $batch['operations'][] = [[$this, 'comprobarDecimoSorteo'], [$numero]];
-                
+                $operations[] = [
+                    [
+                        $this->comprobarDecimoSorteo($numero, $sorteo_id, $product),
+                    ],
+                ];
             }
         }
-        //dump('444444');
-
+        $batch = [
+            'title' => 'Comprobando Decimos..',
+            'progress_message' => t('Processed @current out of @total.'),
+            'error_message'    => t('Error comprobando decimos'),
+            'operations' => $operations,
+            'finished' => $this->finishedPaid(),
+        ];
         batch_set($batch);
     }
 
-    private function comprobarDecimoSorteo($numero, $sorteo_id)
+    function comprobarDecimoSorteo($numero, $sorteo_id, ProductInterface $product)
     {
-        dump('comprobar decimo sorteo');
-        die;
-        //$this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
+        $premio = $this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
+        if ($premio) {
+            $this->premios_manager->payPremiosProduct($product, $premio);
+            $this->mailPremios->send($numero);
+        }
+    }
+
+    function finishedPaid()
+    {
+        dump('finishedPaid');
     }
 }

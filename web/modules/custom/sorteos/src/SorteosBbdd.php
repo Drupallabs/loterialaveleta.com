@@ -357,7 +357,7 @@ class SorteosBbdd
     public function dameUltimoSorteoLnac()
     {
         // limit 24 porque son los ultimos 3 meses
-        $sorteos = $this->connection->query("SELECT s.id, s.name, s.fecha FROM sorteo s 
+        $sorteos = $this->connection->query("SELECT s.id, s.name, s.fecha, s.id_sorteo FROM sorteo s 
                                             WHERE type = 'loteria_nacional' AND fecha < :fecha ORDER by s.fecha DESC LIMIT 30", [
             ':fecha' => $this->ahora
         ])->fetchObject();

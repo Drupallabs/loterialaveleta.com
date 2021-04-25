@@ -26,7 +26,6 @@ class RedsysPaymentForm extends BasePaymentOffsiteForm
     $redirect_url = $url_real;
 
     $red = new RedsysAPI;
-    $fuc = "049095037";
     $terminal = "001";
     $moneda = "978";
     $trans = "0";
@@ -42,7 +41,7 @@ class RedsysPaymentForm extends BasePaymentOffsiteForm
 
     $red->setParameter('DS_MERCHANT_AMOUNT', $amount);
     $red->setParameter('DS_MERCHANT_ORDER', $id);
-    $red->setParameter('DS_MERCHANT_MERCHANTCODE', $fuc);
+    $red->setParameter('DS_MERCHANT_MERCHANTCODE', $config->get('fuc'));
     $red->setParameter('DS_MERCHANT_CURRENCY', $moneda);
     $red->setParameter('DS_MERCHANT_TRANSACTIONTYPE', $trans);
     $red->setParameter('DS_MERCHANT_TERMINAL', $terminal);

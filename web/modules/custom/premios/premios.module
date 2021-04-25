@@ -5,7 +5,7 @@
  */
 function premios_cron()
 {
-    \Drupal::service('premios.cron')->run();
+    //\Drupal::service('premios.cron')->run();
 }
 
 /**
