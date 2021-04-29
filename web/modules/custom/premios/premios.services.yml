@@ -1,7 +1,7 @@
 services:
   premios.manager:
     class: \Drupal\premios\PremiosManager
-    arguments: ['@entity_type.manager']
+    arguments: ['@entity_type.manager', '@mi_monedero.monedero_manager', '@premios.mail_premios']
   premios.mail_handler:
     class: Drupal\premios\Mail\MailHandler
     arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']
@@ -10,4 +10,4 @@ services:
     arguments: ['@premios.mail_handler']
   premios.paga:
     class: \Drupal\premios\PagaPremios
-    arguments: ['@entity_type.manager', '@premios.manager', '@premios.mail_premios', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']
+    arguments: ['@entity_type.manager', '@premios.manager', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']

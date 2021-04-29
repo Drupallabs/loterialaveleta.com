@@ -8,6 +8,8 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Session\AccountProxy;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\commerce_price\Calculator;
+use Drupal\Core\Logger\LoggerlInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Monedero manager class.
@@ -39,13 +41,19 @@ class MonederoManager
     protected $currentUser;
 
     /**
+     * @var \Drupal\Core\Logger\LoggerChannelInterface
+     */
+    protected $logger;
+
+    /**
      * Class constructor.
      */
-    public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $connection, AccountProxy $current_user)
+    public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $connection, AccountProxy $current_user, LoggerInterface $logger)
     {
         $this->entityTypeManager = $entity_type_manager;
         $this->connection = $connection;
         $this->currentUser = $current_user;
+        $this->logger = $logger;
     }
 
     /**
@@ -56,7 +64,8 @@ class MonederoManager
         return new static(
             $container->get('entity_type.manager'),
             $container->get('database'),
-            $container->get('current_user')
+            $container->get('current_user'),
+            $container->get('mi_monedero.logger.channel.mi_monedero')
         );
     }
 
@@ -80,9 +89,9 @@ class MonederoManager
         $monedero = $this->connection->query("SELECT * FROM monedero WHERE user_id = :uid", [
             ':uid' => $account->id(),
         ])->fetchObject();
-        if(!$monedero) {
+        if (!$monedero) {
             $mones = $this->entityTypeManager->getStorage('monedero')->create([
-                'name' => 'Monedero de '.$account->getUserName(),
+                'name' => 'Monedero de ' . $account->getUserName(),
                 'user_id' =>  $account->id(),
                 'currency' => 'EUR',
                 'cantidad' => 0
@@ -90,7 +99,9 @@ class MonederoManager
             $mones->save();
         }
     }
-
+    /*
+     * Pay the order with mi monedero
+     */
     public function updateMonedero(AccountInterface $account, float $total)
     {
         // Sacamos el saldo actual y lo restamos con lo que vale el pedido
@@ -102,9 +113,15 @@ class MonederoManager
 
         $mones = reset($this->entityTypeManager->getStorage('monedero')->loadByProperties(['user_id' =>  $account->id()]));
         $mones->cantidad = $saldo;
-        $mones->save();
-    }
 
+        $mones->save();
+
+        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros menos', ['@user' => $account->getUserName(), '@total' => number_format($total)]);
+    }
+    
+    /*
+    * Add value to monedero
+    */
     public function masMonedero(AccountInterface $account, float $total)
     {
         // Sacamos el saldo actual y lo restamos con lo que vale el pedido
@@ -132,5 +149,6 @@ class MonederoManager
                 ]);
         }
         $mones->save();
+        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros más', ['@user' => $account->getUserName(), '@total' => number_format($total)]);
     }
 }

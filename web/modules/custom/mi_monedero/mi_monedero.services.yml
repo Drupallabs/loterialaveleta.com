@@ -1,6 +1,13 @@
 services:
+  mi_monedero.logger.channel.mi_monedero:
+    parent: logger.channel_base
+    arguments: ['mi_monedero']
+  logger.mi_monedero:
+    class: Drupal\mi_monedero\Logger\MiMonederoLogger
+    tags:
+      - { name: logger }
   mi_monedero.monedero_manager:
     class: Drupal\mi_monedero\MonederoManager
-    arguments: ["@entity_type.manager", "@database", "@current_user"]
+    arguments: ["@entity_type.manager", "@database", "@current_user", "@mi_monedero.logger.channel.mi_monedero" ]
     tags:
       - {name: laveleta}

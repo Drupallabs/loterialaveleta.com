@@ -4,6 +4,8 @@ namespace Drupal\premios;
 
 use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\mi_monedero\MonederoManager;
+use Drupal\premios\Mail\MailPremios;
 
 /**
  * Premios manager class.
@@ -16,16 +18,37 @@ class PremiosManager
      * @var \Drupal\Core\Entity\EntityTypeManagerInterface
      */
     protected $entityTypeManager;
+
     /**
-     * Constructs a new Cron object.
+     * The Monedero manager.
+     *
+     * @var Drupal\mi_monedero\MonederoManager
+     */
+    protected $monederoManager;
+
+    /**
+     * The premios mail.
+     *
+     * @var \Drupal\premios\Mail\MailPremios
+     */
+    protected $mailPremios;
+
+    /**
+     * Constructs a new Premios Manager Object.
      *
      * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
      *   The entity type manager.
+     * @param Drupal\mi_monedero\MonederoManager $monederoManager
+     *   The monedero manager.
+     * @param \Drupal\premios\Mail\MailPremios $mailPremios
+     *   The premios mail manager.
      */
 
-    public function __construct(EntityTypeManagerInterface $entity_type_manager)
+    public function __construct(EntityTypeManagerInterface $entity_type_manager, MonederoManager $monederoManager, MailPremios $mailPremios)
     {
         $this->entityTypeManager = $entity_type_manager;
+        $this->monederoManager = $monederoManager;
+        $this->mailPremios = $mailPremios;
     }
 
     /**
@@ -44,54 +67,20 @@ class PremiosManager
 
             foreach ($commerce_order_items as $commerce_order_item) {
                 $commerce_order = $commerce_order_item->getOrder();
-                
+                // si ya esta pagado no hacemos nada
+                if ($commerce_order->get('field_pago_premio_pedido')->value == '') {
+                    $quantity = (int)$commerce_order_item->getQuantity();
+                    $reward = $quantity * $premio;
+                    $account = $commerce_order->getCustomer();
+                    $this->monederoManager->masMonedero($account, $reward); // pay de price
+                    $orderes = $this->entityTypeManager->getStorage('commerce_order')->load($commerce_order->id());
+                    $orderes->set('field_pago_premio_pedido', 3); // Mi Monedero
+                    $orderes->save();
+
+                    $this->mailPremios->send($commerce_order, $premio);
+                }
+        
             }
         }
-    }
-
-    /**
-     * Check los premios que tiene un pedido, de las lineas de pedidos 
-     *
-     * @param \Drupal\commerce_order\Entity\OrderInterface $order
-     *   The recurring order.
-     */
-    public function checkPremiosOrder(OrderInterface $order)
-    {
-        /*
-        $comprobacion = (object)[]; // guarda el resultado de la comprobacion
-        $order_items = $order->getItems();
-        //dump($order_items);
-        // OrderRefresh skips empty orders, an order without items can't stay open.
-        if (!$order_items) {
-            $order->set('state', 'canceled');
-        }
-
-        foreach ($order_items as $order_item) {
-            $ordervar = $order_item->getPurchasedEntity();
-            $product = $ordervar->getProduct();
-            $decimo = trim($product->get('field_numero_decimo')->value);
-
-            $sorteo = $product->get('field_sorteo_3')[0]->getValue();
-            $sorteo_id = $sorteo['target_id'];
-            $reso = new ResultadosConnection();
-            $sorteo = Sorteo::load($sorteo_id);
-            // Si el sorteo no se ha celebrado todavia no hacemos nada
-            //$hoy = DateTimePlus::createFromFormat('Y-m-dTH:i:s', date('Y-m-dTH:i:s'));
-            //dump($hoy);
-            //die;
-            //$sorteo_fecha = DateTimePlus::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $sorteo->getFecha());
-            //$diff = $hoy->diff($sorteo_fecha);
-
-            $cdc = $sorteo->getIdSorteo();
-            if (!$sorteo) {
-                return;
-            } else {
-                $resultado = $reso->getPremioDecimoWeb($cdc);
-                $compo = new ComprobarDecimo($decimo, $sorteo, $resultado);
-                $comprobacion = $compo->dameResultadosComprobacionLight();
-                return $comprobacion;
-                //dump($comprobacion);
-            }
-        }*/
     }
 }

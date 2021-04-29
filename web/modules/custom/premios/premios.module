@@ -8,6 +8,19 @@ function premios_cron()
     //\Drupal::service('premios.cron')->run();
 }
 
+function premios_theme()
+{
+    return [
+        'premios_email' => [
+            'variables' => [
+                'commerce_order' => [],
+                'order_items' => [],
+                'prize' => ''
+            ],
+        ]
+    ];
+}
+
 /**
  * Implements hook_mail().
  *
@@ -15,14 +28,27 @@ function premios_cron()
  */
 function premios_mail(string $key, array &$message, array $params): void
 {
-    /** @var \Drupal\Core\Render\RendererInterface $renderer */
-    $renderer = \Drupal::service('renderer');
-    if (isset($params['headers'])) {
-        $message['headers'] = array_merge($message['headers'], $params['headers']);
+    switch ($key) {
+        case 'premios_mail':
+            /** @var \Drupal\Core\Render\RendererInterface $renderer */
+            $renderer = \Drupal::service('renderer');
+            if (isset($params['headers'])) {
+                $message['headers'] = array_merge($message['headers'], $params['headers']);
+            }
+            if (!empty($params['from'])) {
+                $message['from'] = $params['from'];
+            }
+            $message['subject'] = $params['subject'];
+            //$message['body'][] = $renderer->renderPlain($params['body']);
+
+            $theme_body = array(
+                '#theme' => 'premios_email',
+                '#commerce_order' => $params['commerce_order'],
+                '#order_items' => $params['commerce_order']->getItems(),
+                '#prize' => $params['prize']
+            );
+
+            $message['body'][] = \Drupal::service('renderer')->render($theme_body);
+            break;
     }
-    if (!empty($params['from'])) {
-        $message['from'] = $params['from'];
-    }
-    $message['subject'] = $params['subject'];
-    $message['body'][] = $renderer->renderPlain($params['body']);
 }

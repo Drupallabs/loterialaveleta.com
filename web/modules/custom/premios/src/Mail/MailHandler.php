@@ -59,8 +59,7 @@ final class MailHandler
     public function __construct(
         MailManagerInterface $mail_manager,
         LanguageManagerInterface $language_manager,
-        LanguageDefault
-        $language_default,
+        LanguageDefault $language_default,
         TranslationInterface $string_translation
     ) {
         $this->mailManager = $mail_manager;
@@ -94,7 +93,7 @@ final class MailHandler
                 'Content-Transfer-Encoding' => '8Bit',
             ],
 
-            'id' => 'mail',
+            'id' => 'premios_mail',
             'reply-to' => NULL,
             'subject' => $subject,
             'langcode' => $this->languageManager->getCurrentLanguage()->getId(),

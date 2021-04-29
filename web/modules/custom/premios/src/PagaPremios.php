@@ -3,7 +3,6 @@
 namespace Drupal\premios;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\premios\Mail\MailPremios;
 use Drupal\sorteos\SorteosBbdd;
 use Drupal\resultados\Services\ComprobarDecimoLnac;
 use Drupal\commerce_product\Entity\ProductInterface;
@@ -23,21 +22,6 @@ class PagaPremios
      * @var \Drupal\premios\PremiosManagerInterface
      */
     protected $premiosManager;
-
-
-    /**
-     * The premios mail.
-     *
-     * @var \Drupal\premios\Mail\MailPremios
-     */
-    protected $mailPremios;
-
-    /**
-     * The premios mail handler.
-     *
-     * @var \Drupal\premios\Mail\MailHandler
-     */
-    protected $mailHandler;
 
     /**
      * Sorteos Bbdd
@@ -60,8 +44,6 @@ class PagaPremios
      *   The entity type manager.
      * @param \Drupal\premios\PremiosManagerInterface $premios_manager
      *   The premios manager.  
-     * @param \Drupal\premios\Mail\MailPremios $mailPremios
-     *   The premios mail manager.
      * @param \Drupal\sorteos\SorteosBbdd $sorteos_bbdd
      * @param \Drupal\resultados\Servicios\ComprobarDecimoLnac $comprobar_lnac
      *   
@@ -69,13 +51,11 @@ class PagaPremios
     public function __construct(
         EntityTypeManagerInterface $entity_type_manager,
         PremiosManager $premios_manager,
-        MailPremios $mailPremios,
         SorteosBbdd $sorteos_bbdd,
         ComprobarDecimoLnac $comprobar_lnac
     ) {
         $this->entityTypeManager = $entity_type_manager;
         $this->premios_manager = $premios_manager;
-        $this->mailPremios = $mailPremios;
         $this->sorteosBbdd = $sorteos_bbdd;
         $this->comprobarLnac = $comprobar_lnac;
     }
@@ -132,7 +112,6 @@ class PagaPremios
         $premio = $this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
         if ($premio) {
             $this->premios_manager->payPremiosProduct($product, $premio);
-            $this->mailPremios->send($numero);
         }
     }
 
