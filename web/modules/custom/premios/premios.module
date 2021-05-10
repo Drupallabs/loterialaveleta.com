@@ -1,12 +1,6 @@
 <?php
 
-/**
- * Implements hook_cron().
- */
-function premios_cron()
-{
-    //\Drupal::service('premios.cron')->run();
-}
+use Drupal\sorteos\Entity\Sorteo;
 
 function premios_theme()
 {
@@ -14,11 +8,37 @@ function premios_theme()
         'premios_email' => [
             'variables' => [
                 'commerce_order' => [],
-                'order_items' => [],
+                'order_item' => [],
                 'prize' => ''
             ],
         ]
     ];
+}
+
+function premios_preprocess_premios_email(&$variables)
+{
+    $order_item = $variables['order_item'];
+    $qu = $order_item->get('quantity')->getValue();
+    $tp = $order_item->get('total_price')->getValue();
+    $variables['cantidad'] = $qu[0]['value'];
+    $variables['precio_total'] = $tp[0]['number'];
+    $product_variation = $order_item->getPurchasedEntity();
+    $product = $product_variation->getProduct();
+    if ($product->bundle() == 'decimo_loteria') {
+        $numero = $product->get('field_numero_decimo')->get(0);
+
+        $item = $product->get('field_sorteo_3')->get(0);
+
+        $value = FALSE;
+        if (!empty($item)) {
+            $value = $item->getValue();
+        }
+        $sorteoid = $value['target_id'];
+        $sorteo = Sorteo::load($sorteoid);
+        $variables['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+        $numeroarr = $numero->getValue();
+        $variables['numero'] = $numeroarr['value'];
+    }
 }
 
 /**
@@ -44,7 +64,7 @@ function premios_mail(string $key, array &$message, array $params): void
             $theme_body = array(
                 '#theme' => 'premios_email',
                 '#commerce_order' => $params['commerce_order'],
-                '#order_items' => $params['commerce_order']->getItems(),
+                '#order_item' => $params['commerce_order_item'],
                 '#prize' => $params['prize']
             );
 

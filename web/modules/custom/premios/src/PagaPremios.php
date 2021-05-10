@@ -75,36 +75,39 @@ class PagaPremios
         $lnac = $this->sorteosBbdd->dameUltimoSorteoLnac();
         $ultimo_sorteo_lnac_id = $lnac->id;
         $sorteo_id = $lnac->id_sorteo;
-        // dump($sorteo_id);
+
         // buscamos todos los productos que tengan el sorteo de loteria nacional
         $order_storage = $this->entityTypeManager->getStorage('commerce_product');
         $query = $order_storage->getQuery();
         $query->condition('field_sorteo_3', $ultimo_sorteo_lnac_id);
         $ids = $query->execute();
 
-        $products = $order_storage->loadMultiple($ids);
+        if (!empty($ids)) {
+            $products = $order_storage->loadMultiple($ids);
 
-        // Si hay Productos creados de ese sorteo
-        $operations = [];
-        if ($products) {
-            foreach ($products as $product) {
-                $numeroar = $product->field_numero_decimo->getValue();
-                $numero = $numeroar[0]["value"];
-                $operations[] = [
-                    [
-                        $this->comprobarDecimoSorteo($numero, $sorteo_id, $product),
-                    ],
-                ];
+            // Si hay Productos creados de ese sorteo
+            $operations = [];
+            if ($products) {
+                foreach ($products as $product) {
+                    $numeroar = $product->field_numero_decimo->getValue();
+                    $numero = $numeroar[0]["value"];
+                    $operations[] = [
+                        [
+                            $this->comprobarDecimoSorteo($numero, $sorteo_id, $product),
+                        ],
+                    ];
+                }
             }
+
+            $batch = [
+                'title' => 'Comprobando Decimos..',
+                'progress_message' => t('Processed @current out of @total.'),
+                //'error_message'    => t('Error comprobando decimos'),
+                'operations' => $operations,
+                'finished' => $this->finishedPaid(),
+            ];
+            batch_set($batch);
         }
-        $batch = [
-            'title' => 'Comprobando Decimos..',
-            'progress_message' => t('Processed @current out of @total.'),
-            'error_message'    => t('Error comprobando decimos'),
-            'operations' => $operations,
-            'finished' => $this->finishedPaid(),
-        ];
-        batch_set($batch);
     }
 
     function comprobarDecimoSorteo($numero, $sorteo_id, ProductInterface $product)

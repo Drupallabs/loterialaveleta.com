@@ -59,8 +59,7 @@ class PremiosManager
         $product_variation = reset($product->getVariations());
         if ($product_variation) {
             $order_storage = $this->entityTypeManager->getStorage('commerce_order_item');
-            $query = $order_storage->getQuery()
-                ->condition('purchased_entity', $product_variation->id());
+            $query = $order_storage->getQuery()->condition('purchased_entity', $product_variation->id());
 
             $ids = $query->execute();
             $commerce_order_items = $order_storage->loadMultiple($ids);
@@ -76,10 +75,8 @@ class PremiosManager
                     $orderes = $this->entityTypeManager->getStorage('commerce_order')->load($commerce_order->id());
                     $orderes->set('field_pago_premio_pedido', 3); // Mi Monedero
                     $orderes->save();
-
-                    $this->mailPremios->send($commerce_order, $premio);
+                    $this->mailPremios->send($commerce_order_item, $reward);
                 }
-        
             }
         }
     }
