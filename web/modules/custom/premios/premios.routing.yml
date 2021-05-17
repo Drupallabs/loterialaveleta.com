@@ -1,0 +1,7 @@
+premios.configuration:
+  path: '/admin/laveleta/premios/configuracion'
+  defaults:
+    _form: '\Drupal\premios\Form\PremiosConfigurationForm'
+    _title: 'Premios Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'

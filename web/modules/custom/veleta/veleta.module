@@ -108,6 +108,9 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
   $order = $variables['order_entity'];
   $newitems = array();
   $count = 0;
+  $customer = $order->getCustomer();
+
+  $variables['nombre_completo'] = $customer->get('field_nombre')->value . ' ' . $customer->get('field_apellidos')->value;
   foreach ($order->getItems() as $item => $order_item) {
     $qu = $order_item->get('quantity')->getValue();
     $tp = $order_item->get('total_price')->getValue();
@@ -134,8 +137,6 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
       $numeroarr = $numero->getValue();
       $newitems[$count]['numero'] = $numeroarr['value'];
     }
-
-
     $count++;
   }
   $variables['newitems'] = $newitems;

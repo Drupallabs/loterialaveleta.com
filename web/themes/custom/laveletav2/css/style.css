@@ -849,7 +849,6 @@ video,
 iframe {
   display: block;
   width: auto;
-  max-width: 100%;
   margin-bottom: 1.5rem;
   -ms-interpolation-mode: bicubic;
 }
@@ -4428,7 +4427,7 @@ ARTICULOS
 }
 
 #mini-cart {
-  max-width: calc(400px - 32px);
+  max-width: calc(500px - 32px);
 }
 
 .checkout-order-summary img {
@@ -4847,4 +4846,8 @@ ol.user-details > li .value {
   font-weight: bold;
   color:#476728;
   font-size: 1.3em;
+}
+.cart-block img {
+  width: 80px;
+  margin:0;
 }

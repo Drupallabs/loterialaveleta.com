@@ -29,3 +29,8 @@ mimonedero.usuario:
   route_name: mi_monedero.monedero
   base_route: entity.user.canonical
   title: Mi Monedero
+
+mimonedero.cuenta_bancaria:
+  route_name: mi_monedero.cuenta_bancaria
+  base_route: entity.user.canonical
+  title: Cuenta Bancaria

@@ -57,17 +57,20 @@ class PremiosManager
     public function payPremiosProduct(ProductInterface $product, $premio)
     {
         $product_variation = reset($product->getVariations());
+
         if ($product_variation) {
-            $order_storage = $this->entityTypeManager->getStorage('commerce_order_item');
-            $query = $order_storage->getQuery()->condition('purchased_entity', $product_variation->id());
+            $order_item_storage = $this->entityTypeManager->getStorage('commerce_order_item');
+            $query = $order_item_storage->getQuery()->condition('purchased_entity', $product_variation->id());
+            $id = $query->execute();
 
-            $ids = $query->execute();
-            $commerce_order_items = $order_storage->loadMultiple($ids);
+            if ($id) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
 
-            foreach ($commerce_order_items as $commerce_order_item) {
+                $commerce_order_item = $order_item_storage->load((int)key($id));
+
                 $commerce_order = $commerce_order_item->getOrder();
+
                 // si ya esta pagado no hacemos nada
-                if ($commerce_order->get('field_pago_premio_pedido')->value == '') {
+                if ($commerce_order_item->get('field_premio_pagado')->value == null) {
                     $quantity = (int)$commerce_order_item->getQuantity();
                     $reward = $quantity * $premio;
                     $account = $commerce_order->getCustomer();
@@ -75,6 +78,10 @@ class PremiosManager
                     $orderes = $this->entityTypeManager->getStorage('commerce_order')->load($commerce_order->id());
                     $orderes->set('field_pago_premio_pedido', 3); // Mi Monedero
                     $orderes->save();
+
+                    $commerce_order_item->set('field_premio_pagado', 1);
+                    $commerce_order_item->save();
+
                     $this->mailPremios->send($commerce_order_item, $reward);
                 }
             }

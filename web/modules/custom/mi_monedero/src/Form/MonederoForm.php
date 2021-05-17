@@ -11,7 +11,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup mi_monedero
  */
-class MonederoForm extends ContentEntityForm {
+class MonederoForm extends ContentEntityForm
+{
 
   /**
    * The current user account.
@@ -23,7 +24,8 @@ class MonederoForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container)
+  {
     // Instantiates this form class.
     $instance = parent::create($container);
     $instance->account = $container->get('current_user');
@@ -33,8 +35,9 @@ class MonederoForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\mi_monedero\Entity\Monedero $entity */
+  public function buildForm(array $form, FormStateInterface $form_state)
+  {
+
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {
@@ -52,7 +55,8 @@ class MonederoForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state)
+  {
     $entity = $this->entity;
 
     // Save as a new revision if requested to do so.
@@ -62,8 +66,7 @@ class MonederoForm extends ContentEntityForm {
       // If a new revision is created, save the current user as revision author.
       $entity->setRevisionCreationTime($this->time->getRequestTime());
       $entity->setRevisionUserId($this->account->id());
-    }
-    else {
+    } else {
       $entity->setNewRevision(FALSE);
     }
 
@@ -83,5 +86,11 @@ class MonederoForm extends ContentEntityForm {
     }
     $form_state->setRedirect('entity.monedero.canonical', ['monedero' => $entity->id()]);
   }
-
+    /*
+    * {@inheritdoc}
+     */
+    public function getFormId()
+    {
+        return 'mi_monedero_monedero';
+    }
 }

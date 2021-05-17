@@ -7,7 +7,7 @@ services:
     arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']
   premios.mail_premios:
     class: Drupal\premios\Mail\MailPremios
-    arguments: ['@premios.mail_handler']
+    arguments: ['@premios.mail_handler', '@config.factory']
   premios.paga:
     class: \Drupal\premios\PagaPremios
     arguments: ['@entity_type.manager', '@premios.manager', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']

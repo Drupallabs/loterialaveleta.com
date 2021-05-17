@@ -1,0 +1,5 @@
+premios.admin.structure.settings:
+  title: "Premios Configuracion"
+  description: "Configure Premios"
+  route_name: premios.configuration
+  parent: veleta.admin_veleta.config

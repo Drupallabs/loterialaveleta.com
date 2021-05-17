@@ -113,6 +113,7 @@ class PagaPremios
     function comprobarDecimoSorteo($numero, $sorteo_id, ProductInterface $product)
     {
         $premio = $this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
+
         if ($premio) {
             $this->premios_manager->payPremiosProduct($product, $premio);
         }

@@ -12,6 +12,20 @@ mi_monedero.monedero:
       user:
         type: entity:user
 
+mi_monedero.cuenta_bancaria:
+  path: "/user/{user}/cuenta-bancaria"
+  defaults:
+    _form: '\Drupal\mi_monedero\Form\BankAccountForm'
+    _title: "Cuenta Bancara"
+    link_id: "mi_monedero.cuenta_bancaria"
+  requirements:
+    _custom_access: '\Drupal\mi_monedero\Access\MiMonederoMethodAccessCheck::checkAccess'
+  options:
+    no_cache: "TRUE"
+    parameters:
+      user:
+        type: entity:user
+
 mi_monedero.depositar:
   path: "/user/{user}/mi-monedero/depositar"
   defaults:
