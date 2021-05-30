@@ -29,6 +29,7 @@ final class MailPremios
      * Constructs a new UserLoginEmail object.
      *
      * @param \Drupal\example\Mail\MailHandler $mail_handler
+     * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
      *   The mail handler.
      */
     public function __construct(MailHandler $mail_handler, ConfigFactoryInterface $config_factory)

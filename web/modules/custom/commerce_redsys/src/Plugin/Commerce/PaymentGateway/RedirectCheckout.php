@@ -65,8 +65,8 @@ class RedirectCheckout extends OffsitePaymentGatewayBase implements RedsysInterf
   public function onNotify(Request $request)
   {
 
-    $logger = \Drupal::logger('commerce_redsys');
-    $logger->notice('entra en onNotify' . $request->query->get('Ds_SignatureVersion'));
+   // $logger = \Drupal::logger('commerce_redsys');
+   // $logger->notice('entra en onNotify' . $request->query->get('Ds_SignatureVersion'));
 
     parent::onNotify($request);
   }

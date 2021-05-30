@@ -66,11 +66,11 @@ class PremiosManager
             if ($id) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
 
                 $commerce_order_item = $order_item_storage->load((int)key($id));
-
                 $commerce_order = $commerce_order_item->getOrder();
-
                 // si ya esta pagado no hacemos nada
-                if ($commerce_order_item->get('field_premio_pagado')->value == null) {
+
+                if ($commerce_order_item->get('field_premio_pagado')->value == "0") {
+
                     $quantity = (int)$commerce_order_item->getQuantity();
                     $reward = $quantity * $premio;
                     $account = $commerce_order->getCustomer();

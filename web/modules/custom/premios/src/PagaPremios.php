@@ -74,7 +74,11 @@ class PagaPremios
         //sorteo que se celebro ayer de loteria nacional
         $lnac = $this->sorteosBbdd->dameUltimoSorteoLnac();
         $ultimo_sorteo_lnac_id = $lnac->id;
+
         $sorteo_id = $lnac->id_sorteo;
+
+        //$ultimo_sorteo_lnac_id = 958;
+        //$sorteo_id = 1128409040;
 
         // buscamos todos los productos que tengan el sorteo de loteria nacional
         $order_storage = $this->entityTypeManager->getStorage('commerce_product');
@@ -113,7 +117,6 @@ class PagaPremios
     function comprobarDecimoSorteo($numero, $sorteo_id, ProductInterface $product)
     {
         $premio = $this->comprobarLnac->comprobarDecimoSorteo(trim($numero), trim($sorteo_id));
-
         if ($premio) {
             $this->premios_manager->payPremiosProduct($product, $premio);
         }

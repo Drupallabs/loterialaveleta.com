@@ -133,7 +133,6 @@ function veleta_preprocess_commerce_order_receipt(&$variables)
     }
     if ($product->bundle() == 'decimo_loteria') {
       $numero = $product->get('field_numero_decimo')->get(0);
-      $newitems[$count]['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
       $numeroarr = $numero->getValue();
       $newitems[$count]['numero'] = $numeroarr['value'];
     }

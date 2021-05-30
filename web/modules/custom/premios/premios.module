@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\sorteos\Entity\Sorteo;
+use Drupal\image\Entity\ImageStyle;
 
 function premios_theme()
 {
@@ -9,7 +10,9 @@ function premios_theme()
             'variables' => [
                 'commerce_order' => [],
                 'order_item' => [],
-                'prize' => ''
+                'prize' => '',
+                'decimo' => '',
+                'numero' => ''
             ],
         ]
     ];
@@ -35,7 +38,11 @@ function premios_preprocess_premios_email(&$variables)
         }
         $sorteoid = $value['target_id'];
         $sorteo = Sorteo::load($sorteoid);
-        $variables['decimo'] = file_create_url($sorteo->field_decimo_imagen->entity->getFileUri());
+
+        $uri = $sorteo->field_decimo_imagen->entity->getFileUri();
+
+        $variables['decimo'] = file_url_transform_relative(file_create_url($uri));
+
         $numeroarr = $numero->getValue();
         $variables['numero'] = $numeroarr['value'];
     }
