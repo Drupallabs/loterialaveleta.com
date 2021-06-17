@@ -27,7 +27,6 @@ class ContactoForm extends FormBase
   public function buildForm(array $form, FormStateInterface $form_state)
   {
 
-    $options = ['absolute' => TRUE, 'attributes' => ['class' => 'this-class']];
     $link_object = \Drupal\Core\Link::createFromRoute('proteccion de datos', 'entity.node.canonical', ['node' => 7]);
     $link = $link_object->toString();
     $linkp = $link->__toString();
