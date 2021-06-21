@@ -2,7 +2,6 @@
 
 namespace Drupal\sorteos\Commands;
 
-
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\sorteos\Plugin\ImporterManager;
 use Drush\Commands\DrushCommands;

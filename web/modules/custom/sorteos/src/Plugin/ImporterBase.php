@@ -12,6 +12,7 @@ use Drupal\sorteos\Entity\ImporterInterface;
 use Drupal\sorteos\Plugin\ImporterInterface as ImporterPluginInterface;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Base class for Importer plugins.
@@ -33,13 +34,19 @@ abstract class ImporterBase extends PluginBase implements ImporterPluginInterfac
     protected $httpClient;
 
     /**
+     * @var Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * {@inheritdoc}
      */
-    public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager, ClientInterface $httpClient)
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager, ClientInterface $httpClient, LoggerInterface $logger)
     {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
         $this->entityTypeManager = $entityTypeManager;
         $this->httpClient = $httpClient;
+        $this->logger = $logger;
 
         if (!isset($configuration['config'])) {
             throw new PluginException('Missing Importer configuration.');
@@ -60,7 +67,8 @@ abstract class ImporterBase extends PluginBase implements ImporterPluginInterfac
             $plugin_id,
             $plugin_definition,
             $container->get('entity_type.manager'),
-            $container->get('http_client')
+            $container->get('http_client'),
+            $container->get('sorteos.logger.sorteos')
         );
     }
 

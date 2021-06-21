@@ -10,3 +10,9 @@ services:
     arguments: ["@database"]
     tags:
       - {name: laveleta}
+  sorteos.logger.channel.sorteos:
+    parent: logger.channel_base
+    arguments: ['sorteos']
+  sorteos.logger.sorteos:
+    class: Drupal\sorteos\Logger\MailLogger
+    arguments: ['@sorteos.logger.channel.sorteos','@logger.log_message_parser', '@config.factory']

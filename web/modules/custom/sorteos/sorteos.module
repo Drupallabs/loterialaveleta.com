@@ -81,36 +81,37 @@ function sorteos_views_data_alter(array &$data)
   );
 }
 
-/*
-function renombrar_resultados_archivos($form, &$form_state)
+/**
+ * 
+ * Implements hook_mail().
+ *
+ * @see \Drupal\premios\Mail\MailHandler
+ */
+function sorteos_mail(string $key, array &$message, array $params): void
 {
-  if ($form_state->hasValue('resultados')) {
-    if ($form_state->getValue('resultados')[0]['fids'] != null) {
-
-      $fid_0 = $form_state->getValue('resultados')[0]['fids'][0];
-
-      $tiposorteo = $form['form_id']['#value'];
-
-      $id_sorteo = $form_state->getValue('id_sorteo')[0]['value'];
-      $file_name = ucfirst($tiposorteo) . '-' . $id_sorteo;
-      $file_name = trim(preg_replace("/[^0-9A-Za-z]/", '-', $file_name));
-
-      try {
-        $file = \Drupal\file\Entity\File::load($fid_0);
-
-        $old_file_name = $file->getFilename();
-        $old_file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getFilename());
-
-        $new_filename_uri = str_replace($old_file_name, $file_name, $file->getFileUri());
-        file_move($file, $new_filename_uri);
-        dump($new_filename_uri);
-        $file->setFilename($file_name);
-        $file->setFileUri($new_filename_uri);
-        $file->save();
-      } catch (\Exception $e) {
-        watchdog_exception('sorteos', $e);
+  switch ($key) {
+    case 'sorteos_log':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('There is an error in the Sorteos Importer');
+      $message['body'][] = $params['message'];
+      if (isset($params['user'])) {
+        $user_message = 'The user that was logged in: [current-user:name]';
+        $message['body'][] = \Drupal::token()->replace($user_message, ['current-user' => $params['user']]);
       }
-    }
+
+      break;
   }
 }
-*/
+
+
+/**
+ * Implements hook_mail_alter().
+ */
+function hello_world_mail_alter(&$message)
+{
+  switch ($message['key']) {
+    case 'hello_world_log':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      break;
+  }
+}

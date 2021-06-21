@@ -10,8 +10,6 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use GuzzleHttp\Exception\RequestException;
 
-
-
 /**
  * Sorteo importer from a JSON format.
  *
@@ -204,14 +202,13 @@ class JsonImporter extends ImporterBase
                 $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
             }
         }
-        $string = '';
 
         try {
-            // $request = $this->httpClient->get($url);
-            // $string = $request->getBody()->getContents();
+            $request = $this->httpClient->get($url);
+            $string = $request->getBody()->getContents();
         } catch (\Exception $e) {
-
-            dump($e);
+            dump($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
 
 
@@ -238,7 +235,6 @@ class JsonImporter extends ImporterBase
             /** @var \Drupal\sorteos\Entity\SorteoInterface $sorteo */
             $sorteo = $this->entityTypeManager->getStorage('sorteo')->create($values);
         } else {
-            // actualizamos campos nuevos 
             $sorteo = reset($existing);
         }
         try {
@@ -294,8 +290,7 @@ class JsonImporter extends ImporterBase
                     break;
             }
         } catch (\Exception $e) {
-            //\Drupal::logger('sorteos')->error($e->getMessage()var_dump($data->escrutinio));
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
 
         $sorteo->save();
@@ -328,7 +323,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_combinacion_euromillones', $combi);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
@@ -357,7 +352,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->setEscrutinioJoker($data->escrutinio_joker);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
 
@@ -382,7 +377,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_combinacion_gordo', $combi);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
@@ -408,7 +403,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_combinacion_bonoloto', $combi);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
@@ -424,7 +419,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_jornada', $data->jornada);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
@@ -440,7 +435,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_jornada', $data->jornada);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
@@ -466,7 +461,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_combinacion_lototurf', $combi);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
 
@@ -491,7 +486,7 @@ class JsonImporter extends ImporterBase
                 $sorteo->set('field_combinacion_quintuple', $combi);
             }
         } catch (\Exception $e) {
-            \Drupal::logger('sorteos')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
     }
     /**
