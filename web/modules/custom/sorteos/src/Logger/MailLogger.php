@@ -47,6 +47,8 @@ class MailLogger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
+        echo "5555555555555555555555555555555555555555";
+        die;
         if ($level !== RfcLogLevel::ERROR) {
             return;
         }
@@ -64,9 +66,10 @@ class MailLogger implements LoggerInterface
 
         /** @var AccountProxyInterface $account */
         $account = $context['user'];
-        //$to = $this->configFactory->get('system.site')->get('mail');
-        $to = 'david@loterialaveleta.com';
+        $config = $this->configFactory->get('sorteos.configuration');
+        $to = $config->get('email');
         $langode = $this->configFactory->get('system.site')->get('langcode');
+
         $variables = $this->parser->parseMessagePlaceholders($message, $context);
         $markup = new FormattableMarkup($message, $variables);
         \Drupal::service('plugin.manager.mail')->mail('sorteos', 'sorteos_log', $to, $langode, ['message' => $markup, 'user' => $account]);

@@ -31,3 +31,9 @@ entity.sorteo.delete_form:
   base_route: entity.sorteo.canonical
   title: Eliminar
   weight: 10
+
+sorteos.admin.structure.settings:
+  title: "Sorteos Configuracion"
+  description: "Configure Sorteos"
+  route_name: sorteos.configuration
+  parent: veleta.admin_veleta.config

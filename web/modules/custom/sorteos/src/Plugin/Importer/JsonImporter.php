@@ -2,13 +2,12 @@
 
 namespace Drupal\sorteos\Plugin\Importer;
 
-//use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\sorteos\Entity\SorteoInterface;
 use Drupal\sorteos\Plugin\ImporterBase;
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * Sorteo importer from a JSON format.
@@ -52,24 +51,25 @@ class JsonImporter extends ImporterBase
         if (!is_array($sorteos)) {
             return TRUE;
         }
-
-        /*
-        $batch_builder = (new BatchBuilder())
-            ->setTitle($this->t('Importing sorteos'))
-            ->setFinishCallback([$this, 'importSorteosFinished']);
-
-        //$batch_builder->addOperation([$this, 'clearMissing'], [$sorteos]);
-        $batch_builder->addOperation([$this, 'importSorteos'], [$sorteos]);
-        batch_set($batch_builder->toArray());
-
-        if (PHP_SAPI == 'cli') {
-            drush_backend_batch_process();
-        }*/
-
-
-        foreach ($sorteos as $sorteo) {
-            $this->persistSorteo2($sorteo);
+        $operations = [];
+        if ($sorteos) {
+            foreach ($sorteos as $sorteo) {
+                $operations[] = [
+                    [
+                        $this->persistSorteo2($sorteo)
+                    ],
+                ];
+            }
         }
+
+        $batch = [
+            'title' => 'Comprobando Decimos..',
+            'progress_message' => t('Processed @current out of @total.'),
+            //'error_message'    => t('Error comprobando decimos'),
+            'operations' => $operations,
+            //'finished' => $this->finishedPaid(),
+        ];
+        batch_set($batch);
 
         return TRUE;
     }
@@ -202,15 +202,15 @@ class JsonImporter extends ImporterBase
                 $url .= '&fecha_sorteo=' . $hoy->modify('+' . $dias . ' days')->format('Ymd');
             }
         }
-
+        $request = $this->httpClient->get($url);
         try {
-            $request = $this->httpClient->get($url);
-            $string = $request->getBody()->getContents();
-        } catch (\Exception $e) {
-            dump($e->getMessage());
-            $this->logger->error($e->getMessage());
-        }
 
+            $string = $request->getBody()->getContents();
+        } catch (ClientException $e) {
+            dump($e->getMessage());
+            //die;
+            $this->logger->error('caca2222');
+        }
 
         return json_decode($string);
     }

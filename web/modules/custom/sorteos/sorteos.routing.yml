@@ -28,3 +28,10 @@ sorteos.dameresultado.pdf:
     parameters:
       sorteoid:
         type: string
+sorteos.configuration:
+  path: '/admin/laveleta/sorteos/configuration'
+  defaults:
+    _form: '\Drupal\sorteos\Form\SorteosConfigurationForm'
+    _title: 'Sorteos Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'
