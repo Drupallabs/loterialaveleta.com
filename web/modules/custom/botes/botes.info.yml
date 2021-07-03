@@ -5,4 +5,5 @@ core: 8.x
 package: 'Custom'
 dependencies:
   - drupal:block
+  - veleta
   - sorteos

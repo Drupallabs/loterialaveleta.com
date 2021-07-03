@@ -105,7 +105,9 @@ class RedirectCheckout extends OffsitePaymentGatewayBase implements RedsysInterf
     $signatureCalculada = $red->createMerchantSignatureNotif($clave, $params);
 
     if ($signatureCalculada === $signature) {
-      $codigoRespuesta = $red->getParameter("Ds_Response");
+      
+      $DsErrorCode = $red->getParameter("Ds_ErrorCode");
+      $DsResponse = $red->getParameter("Ds_Response");
       $authcode = $red->getParameter("Ds_AuthorisationCode");
       $amount = $red->getParameter("Ds_Amount");
       $order = $red->getParameter("Ds_Order");

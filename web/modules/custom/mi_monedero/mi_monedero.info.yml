@@ -4,6 +4,7 @@ description: "Mi Monedero para loterialaveleta.com"
 core: 8.x
 package: "Custom"
 dependencies:
+  - veleta
   - Commerce:commerce
   - Commerce:commerce_checkout
   - Commerce:commerce_order

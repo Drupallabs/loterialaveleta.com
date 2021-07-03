@@ -3,3 +3,6 @@ type: module
 description: 'Formulario de contacto loterialaveleta.com'
 core: 8.x
 package: 'Custom'
+
+dependencies:
+  - veleta
