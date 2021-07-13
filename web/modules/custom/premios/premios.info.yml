@@ -1,7 +1,7 @@
 name: 'premios'
 type: module
 description: 'Premios de Loteria Nacional'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Custom'
 
 dependencies:

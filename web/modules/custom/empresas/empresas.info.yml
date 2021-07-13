@@ -1,7 +1,7 @@
 name: 'Empresas'
 type: module
 description: 'Para gestionar las empresas en Loteria la Veleta'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Custom'
 
 dependencies:

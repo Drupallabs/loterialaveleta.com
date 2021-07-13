@@ -1,8 +1,9 @@
 name: laveletav2
 type: theme
 description: 'Tema para loterialaveleta.com'
+base theme: stable
 package: Other
-core: 8.x
+core_version_requirement: ^8 || ^9
 libraries:
   - laveletav2/global
 

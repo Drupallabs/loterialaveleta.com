@@ -2,7 +2,7 @@ name: veletaled
 type: theme
 description: 'Tema para las pantallas led y no led'
 package: Other
-core: 8.x
+core_version_requirement: ^8 || ^9
 libraries:
   - veletaled/global
  

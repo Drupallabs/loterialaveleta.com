@@ -63,7 +63,12 @@ use Drupal\commerce_price\Entity\CurrencyInterface;
  *     "revision_delete" = "/admin/laveleta/monedero/{monedero}/revisions/{monedero_revision}/delete",
  *     "collection" = "/admin/laveleta/monedero",
  *   },
- *   field_ui_base_route = "monedero.settings"
+ *   field_ui_base_route = "monedero.settings",
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log"
+ *   }
  * )
  */
 class Monedero extends EditorialContentEntityBase implements MonederoInterface
