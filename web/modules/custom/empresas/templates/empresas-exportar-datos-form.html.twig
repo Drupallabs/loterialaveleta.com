@@ -1,0 +1,74 @@
+<div id="empresas-exportar-datos-form">
+  <div class="exportar-form">
+    <h3>Filtar Datos  2</h3>
+       {{ dump(form) }}
+      <form name="filtrarDatos" id="filtrarDatos" >
+      <div class="form--inline clearfix">
+        <div class="form-item">
+          {{ form.filtros.empresa }}
+        </div>
+        <div class="form-item">
+          {{ form.filtros.numero }}
+        </div>
+        <div class="form-item">
+          {{ form.filtros.codigo }}
+        </div>
+      </div>
+      {{ form.filtros.submit }}
+      {{ form.form_build_id }}
+      {{ form.form_token }}
+      {{ form.form_id }}
+      </form>
+  </div>
+  <div class="exportar" style="float:right; padding:10px;">
+    <a href="{{ path('veleta.admin.empresas.exportarcsv') }}" class="btn btn-primary btn-lg square" role="button">Descargar Datos >> </a>
+  </div>
+  {% set sum = 0 %}
+  <table>
+      <thead>
+          <tr>
+              {% for key,value in header_data %}
+              <th class="views-field">{{ value }} </th>
+              {% endfor %}
+          </tr>
+      </thead>
+      <tbody>
+      {% for pedido in pedidos  %}
+          <tr>
+              <td>{{ pedido.pedido }}</td>
+              <td>{{ pedido.codigo_tpv }}</td>
+              <td>{{ pedido.empresa }}</td>
+              <td>{{ pedido.usuario }}</td>
+              <td>{{ pedido.email }}</td>
+              <td>{{ pedido.nombre }}</td>
+              <td>{{ pedido.dni }}</td>
+              <td>{{ pedido.producto_id }}</td>
+              <td>{{ pedido.cantidad|number_format() }}</td>
+              <td>{{ pedido.numero }}</td>
+              <td>{{ pedido.total_linea|number_format(2,',','.') }} €</td>
+              <td>{{ pedido.total|number_format(2,',','.') }} €</td>
+              <td>{{ pedido.ip }}</td>
+              <td>{{ pedido.fecha|date('d/m/Y H:m:i') }}</td>
+          </tr>
+           {% set sum = sum + pedido.cantidad|number_format() %}  
+        {% endfor %}
+      </tbody>
+      <tfoot>
+              <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><td>
+              <td></td>
+              <td>{% if sum != 0 %}{{ sum }}{% endif %}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+      </tfoot>
+  </table>
+</div>

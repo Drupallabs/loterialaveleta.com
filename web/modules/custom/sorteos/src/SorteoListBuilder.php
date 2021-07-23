@@ -52,7 +52,7 @@ class SorteoListBuilder extends EntityListBuilder
     public function load()
     {
 
-        $entity_query = \Drupal::service('entity.query')->get('sorteo')->sort('id', 'DESC');
+        $entity_query = \Drupal::service('entity.query.sql')->get('sorteo')->sort('id', 'DESC');
         $header = $this->buildHeader();
 
         $entity_query->pager(25);

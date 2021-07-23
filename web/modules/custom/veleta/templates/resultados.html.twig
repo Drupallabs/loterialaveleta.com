@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+     <div class="col-lg-4">
+       <img alt="Logotipo Loteria La Veleta" class="bruja effect" src="{{ base_path }}themes/custom/veletaled/images/laveleta-blanco2.png" />
+     </div>
+     <div class="col-lg-4">
+        <table class="table-resultados bono">
+          <caption>BONOLOTO</caption>
+           <tr>
+              <td><span class="dia-sorteo">{{ resultados.bono.0.dia_semana|capitalize }}</span></td>{% set complementario = 0 %}{% set reintegro = 0 %}
+                  {% for i in resultados.bono.0.combinacion|split('-') %}
+                      {% if loop.index == 6 %}
+                               <td>{{ i|slice(1,2) }}</td>
+                               {% set com = i|quitaParentesis %}
+                               {% set complementario = com[0] %}{% set reintegro = com[1] %}
+                       {% else %}
+                             <td>{{ i }}</td>
+                      {% endif %}
+                  {% endfor %}
+                  <td>{{ complementario }}</td><td>{{ reintegro }}</td>
+           </tr>
+        </table>
+     </div>
+     <div class="col-lg-4">
+       <table class="table-resultados emil">
+         <caption>EUROMILLONES</caption>
+          <tr>
+             <td><span class="dia-sorteo">{{ resultados.emil.0.dia_semana|capitalize }}</span></td>{% set complementario = 0 %}{% set reintegro = 0 %}
+                 {% for i in resultados.emil.0.combinacion|split('-') %}
+                     {% if loop.index == 6 %}
+                              <td class="circulo"><span>{{ i|slice(1,2) }}</span></td>
+                              {% set com = i|quitaParentesis %}
+                              {% set complementario = com[0] %}{% set reintegro = com[1] %}
+                      {% else %}
+                            <td>{{ i }}</td>
+                     {% endif %}
+                 {% endfor %}
+                 <td>{{ complementario }}</td><td>{{ reintegro }}</td>
+          </tr>
+       </table>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm bloque collogo">
+      <img alt="Logotipo Loteria La Veleta" class="img-fluid bruja effect" src="{{ base_path }}themes/custom/veletaled/images/laveleta-blanco.png" />
+  </div>
+  <div class="col-sm bloque bloque-botes">
+
+        <article class="card emil">
+            <div class="row">
+              <div class="col col-lg-4"><img alt="Euromillones" src="{{ base_path }}themes/custom/laveleta/images/sorteos/euromillones.jpg" /></div>
+              <div class="col-md-auto">
+                <div class="botenum">
+                {% if botes.emil.0.premio_bote != 0 %}
+              {{ botes.emil.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                </div>
+                <div class="cuenta-atras"><span>{{ botes.emil.0.fecha_sorteo|diasBote|raw }}</span></div>
+            </div>
+            </div>
+        </article>
+        <!--
+        <article class="card lanc container">
+            <div class="row">
+              <div class="col col-lg-5"><img alt="Loteria Nacional" src="{{ base_path }}themes/custom/laveleta/images/sorteos/loteria-nacional.jpg" /></div>
+              <div class="col-md-auto">
+                <div class="botenum">
+                {% if botes.lanc.0.premio_bote != 0 %}
+              {{ botes.lanc.0.premio_bote|number_format }} € {% else %}No hay bote{% endif %}
+                </div>
+                <div class="cuenta-atras"><span>{{ botes.lanc.0.fecha_sorteo|diasBote|raw }}</span></div>
+            </div>
+            </div>
+        </article>
+        -->
+        <article class="card lapr">
+            <div class="row">
+              <div class="col col-5"><img alt="La Primitiva" src="{{ base_path }}themes/custom/laveleta/images/sorteos/primitiva.jpg" /></div>
+              <div class="col-md-auto">
+                <div class="botenum">
+                {% if botes.lapr.0.premio_bote != 0 %}
+              {{ botes.lapr.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                </div>
+                <div class="cuenta-atras"><span>{{ botes.lapr.0.fecha_sorteo|diasBote|raw }}</span></div>
+            </div>
+            </div>
+        </article>
+
+          <article class="card bono">
+              <div class="row">
+                <div class="col col-5"><img alt="Bonoloto" src="{{ base_path }}themes/custom/laveleta/images/sorteos/bonoloto.jpg" /></div>
+                <div class="col-md-auto">
+                  <div class="botenum">
+                  {% if botes.bono.0.premio_bote != 0 %}
+                {{ botes.bono.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                  </div>
+                  <div class="cuenta-atras"><span>{{ botes.bono.0.fecha_sorteo|diasBote }}</span></div>
+              </div>
+              </div>
+          </article>
+
+            <article class="card elgr">
+                <div class="row">
+                  <div class="col col-5"><img alt="El gordo" src="{{ base_path }}themes/custom/laveleta/images/sorteos/gordo.jpg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.elgr.0.premio_bote != 0 %}
+                  {{ botes.elgr.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.elgr.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </article>
+
+            <article class="card laqu">
+                <div class="row">
+                  <div class="col-5"><img alt="Quiniela" src="{{ base_path }}themes/custom/laveleta/images/sorteos/quiniela.jpg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.laqu.0.premio_bote != 0 %}
+                  {{ botes.laqu.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.laqu.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </article>
+
+            <article class="card qgol">
+                <div class="row">
+                  <div class="col-5"><img alt="Quinigol" src="{{ base_path }}themes/custom/laveleta/images/sorteos/quinigol.jpg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.qgol.0.premio_bote != 0 %}
+                  {{ botes.qgol.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.qgol.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </article>
+
+            <article class="card lotu">
+                <div class="row">
+                  <div class="col-5"><img alt="Lototurf" src="{{ base_path }}themes/custom/laveleta/images/sorteos/lototurf.jpg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.lotu.0.premio_bote != 0 %}
+                  {{ botes.lotu.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.lotu.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </article>
+
+            <article class="card qupl">
+                <div class="row">
+                  <div class="col-5"><img alt="Quintuple plus" src="{{ base_path }}themes/custom/laveleta/images/sorteos/quintuple.jpg" /></div>
+                  <div class="col-md-auto">
+                    <div class="botenum">
+                    {% if botes.qupl.0.premio_bote != 0 %}
+                  {{ botes.qupl.0.premio_bote|number_format }} € {% else %}<span>No hay bote</span>{% endif %}
+                    </div>
+                    <div class="cuenta-atras"><span>{{ botes.qupl.0.fecha_sorteo|diasBote|raw }}</span></div>
+                </div>
+                </div>
+            </article>
+      </div>
+    </div>
+</div>

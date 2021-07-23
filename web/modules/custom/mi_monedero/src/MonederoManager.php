@@ -91,7 +91,7 @@ class MonederoManager
         ])->fetchObject();
         if (!$monedero) {
             $mones = $this->entityTypeManager->getStorage('monedero')->create([
-                'name' => 'Monedero de ' . $account->getUserName(),
+                'name' => 'Monedero de ' . $account->getAccountName(),
                 'user_id' =>  $account->id(),
                 'currency' => 'EUR',
                 'cantidad' => 0
@@ -116,7 +116,7 @@ class MonederoManager
 
         $mones->save();
 
-        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros menos', ['@user' => $account->getUserName(), '@total' => number_format($total)]);
+        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros menos', ['@user' => $account->getAccountName(), '@total' => number_format($total)]);
     }
     
     /*

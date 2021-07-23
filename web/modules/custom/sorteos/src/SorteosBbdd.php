@@ -348,7 +348,7 @@ class SorteosBbdd
         }
         $file = File::load($sorteo[0]->fid);
         if ($file) {
-            return $file->url();
+            return $file->createFileUrl(FALSE);
         } else {
             return '';
         }

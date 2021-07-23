@@ -44,6 +44,7 @@ class JsonImporter extends ImporterBase
     public function import()
     {
         $sorteos = $this->getData();
+
         if (!$sorteos) {
             return FALSE;
         }
@@ -54,13 +55,19 @@ class JsonImporter extends ImporterBase
         $operations = [];
         if ($sorteos) {
             foreach ($sorteos as $sorteo) {
+                $this->persistSorteo2($sorteo);
+            }
+        }
+        /*
+        if ($sorteos) {
+            foreach ($sorteos as $sorteo) {
                 $operations[] = [
                     [
                         $this->persistSorteo2($sorteo)
                     ],
                 ];
             }
-        }
+        }*/
 
         $batch = [
             'title' => 'Comprobando Decimos..',
