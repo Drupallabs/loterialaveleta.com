@@ -5,9 +5,10 @@ namespace Drupal\sorteos\Plugin\Importer;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\sorteos\Entity\SorteoInterface;
 use Drupal\sorteos\Plugin\ImporterBase;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Component\Datetime\DateTimePlus;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use GuzzleHttp\Exception\ClientException;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Sorteo importer from a JSON format.
@@ -39,6 +40,7 @@ class JsonImporter extends ImporterBase
 
 
     /**
+     * 
      * {@inheritdoc}
      */
     public function import()
@@ -58,6 +60,7 @@ class JsonImporter extends ImporterBase
                 $this->persistSorteo2($sorteo);
             }
         }
+
         /*
         if ($sorteos) {
             foreach ($sorteos as $sorteo) {
@@ -215,8 +218,7 @@ class JsonImporter extends ImporterBase
             $string = $request->getBody()->getContents();
         } catch (ClientException $e) {
             dump($e->getMessage());
-            //die;
-            $this->logger->error('caca2222');
+            $this->logger->error($e->getMessage());
         }
 
         return json_decode($string);
@@ -245,15 +247,19 @@ class JsonImporter extends ImporterBase
             $sorteo = reset($existing);
         }
         try {
+
             $dtime = DateTimePlus::createFromFormat('Y-m-d H:i:s', $data->fecha_sorteo);
             $dtimeFormat = $dtime->format('d/m/Y');
-            $dtime->setTimezone(new \DateTimezone(DateTimeItemInterface::STORAGE_TIMEZONE));
             $subnombre = ' ' . ucfirst($data->dia_semana) . ' ' . $dtimeFormat;
+            // Solo viene con nombre los sorteos de loteria nacional
             if (!$data->nombre) $sorteo->setName(ucfirst($config->getBundle()) . $subnombre);
             else $sorteo->setName($data->nombre);
+
             $sorteo->setDiaSemana(ucfirst($data->dia_semana));
-            $dtimeFormat2 = $dtime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
-            $sorteo->setFecha($dtimeFormat2);
+
+            $fecha = $dtime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
+
+            $sorteo->setFecha($fecha);
             $sorteo->setPremioBote($data->premio_bote);
             $sorteo->setApuestas($data->apuestas);
             $sorteo->setRecaudacion($data->recaudacion);
@@ -297,16 +303,12 @@ class JsonImporter extends ImporterBase
                     break;
             }
         } catch (\Exception $e) {
+            dump($e->getMessage());
             $this->logger->error($e->getMessage());
         }
 
         $sorteo->save();
         return;
-
-        /*
-        if (!$config->updateExisting()) {
-            return;
-        }*/
     }
 
     /**

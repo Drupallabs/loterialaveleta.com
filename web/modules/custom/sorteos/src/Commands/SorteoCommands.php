@@ -6,6 +6,7 @@ use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\sorteos\Plugin\ImporterManager;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\Console\Input\InputOption;
+use Psr\Log\LoggerInterface;
 
 /**
  * Drush commands for sorteos.
@@ -24,15 +25,25 @@ class SorteoCommands extends DrushCommands
     protected $lock;
 
     /**
+     * The logger.
+     *
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+
+    /**
      * SorteoCommands constructor.
      *
      * @param \Drupal\sorteos\Plugin\ImporterManager $importerManager
      * @param \Drupal\Core\Lock\LockBackendInterface $lock
+     * @var \Psr\Log\LoggerInterface
      */
-    public function __construct(ImporterManager $importerManager, LockBackendInterface $lock)
+    public function __construct(ImporterManager $importerManager, LockBackendInterface $lock, LoggerInterface $logger)
     {
         $this->importerManager = $importerManager;
         $this->lock = $lock;
+        $this->logger = $logger;
     }
 
     /**
@@ -49,6 +60,7 @@ class SorteoCommands extends DrushCommands
      */
     public function import($options = ['importer' => InputOption::VALUE_OPTIONAL])
     {
+        $this->logger->info('Entrando en import');
         $importer = $options['importer'];
         // llega un parametro solo creamos un plugin
         if (!is_null($importer)) {

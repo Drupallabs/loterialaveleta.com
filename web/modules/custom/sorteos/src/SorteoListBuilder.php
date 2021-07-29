@@ -37,7 +37,7 @@ class SorteoListBuilder extends EntityListBuilder
     public function __construct(EntityTypeInterface $entity_type, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter)
     {
         parent::__construct($entity_type, $entity_type_manager->getStorage($entity_type->id()));
-
+        $this->entity_type_manager = $entity_type_manager;
         $this->dateFormatter = $date_formatter;
     }
 
@@ -52,16 +52,20 @@ class SorteoListBuilder extends EntityListBuilder
     public function load()
     {
 
-        $entity_query = \Drupal::service('entity.query.sql')->get('sorteo')->sort('id', 'DESC');
         $header = $this->buildHeader();
 
-        $entity_query->pager(25);
-        $entity_query->tableSort($header);
+        $entity = $this->entity_type_manager->getStorage('sorteo');
 
-        $uids = $entity_query->execute();
+        $query = $entity->getQuery();
+        $query->sort('id', 'DESC');
+        $query->pager(25);
+        $query->tableSort($header);
+
+        $uids = $query->execute();
 
         return $this->storage->loadMultiple($uids);
     }
+
 
     public function buildHeader()
     {
@@ -82,12 +86,14 @@ class SorteoListBuilder extends EntityListBuilder
     {
         /** @var \Drupal\sorteos\Entity\SorteoInterface $entiti */
         $sorteo_type = SorteoType::load($entity->bundle());
-        $dtime = DateTimePlus::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $entity->getFecha());
+        //$dtime = DateTimePlus::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $entity->getFecha());
         /* @var $entity \Drupal\sorteos\Entity\Sorteo */
         $row['id'] = $entity->id();
         $row['numero'] = $entity->getIdSorteo();
-        $row['fecha'] =  $dtime->format('d/m/Y');
-        $row['hora'] = $dtime->format('H:i:s');
+        $row['fecha'] =  $entity->getFecha();
+        $row['hora'] = '';
+        //$row['fecha'] =  $dtime->format('d/m/Y');
+        //$row['hora'] = $dtime->format('H:i:s');
         $row['dia_semana'] = $entity->getDiaSemana();
         $row['tipo'] = $sorteo_type->label();
         $row['name'] = Link::fromTextAndUrl(
@@ -101,6 +107,7 @@ class SorteoListBuilder extends EntityListBuilder
         );
         return $row + parent::buildRow($entity);
     }
+
     /**
      * {@inheritdoc}
      */

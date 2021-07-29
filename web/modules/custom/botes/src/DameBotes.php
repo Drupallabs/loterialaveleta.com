@@ -13,8 +13,6 @@ use Drupal\Core\Database\Connection;
 class DameBotes
 {
 
-    private $hoy;
-    private $botes;
     private $date_format;
     private $bote;
 
@@ -38,7 +36,7 @@ class DameBotes
         $this->entityTypeManager = $entity_type_manager;
         $this->connection = $connection;
         $this->date_format = 'Y-m-dTH:i:s';
-        $this->hoy = new DrupalDateTime(); // TODO cuando pase esto porner hoy, 
+        $this->hoy = new DrupalDateTime();
         $this->botes = [];
         $this->bote = (object) [
             'fecha_sorteo' => null,
@@ -102,7 +100,7 @@ class DameBotes
             ':bundle' => $bundle, ':fecha' => $ahora
         ])->fetchObject();
 
-        
+
         return $this->filtraDatos($sorteo);
     }
 

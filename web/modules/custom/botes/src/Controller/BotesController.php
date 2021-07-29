@@ -5,6 +5,7 @@ namespace Drupal\botes\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\botes\BotesBbdd;
+use Drupal\botes\DameBotes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -19,11 +20,10 @@ class BotesController extends ControllerBase
    */
   protected $botesServiceBbdd;
 
-
   /**
    * Botes constructor.
    *
-   * @param \Drupal\botes\BotesBbdd $botes
+   * @param \Drupal\botes\BotesBbdd $botesServiceBbdd
    */
   public function __construct(BotesBbdd $botesServiceBbdd)
   {
@@ -38,7 +38,6 @@ class BotesController extends ControllerBase
   {
     return new static($container->get('botes.botesbbdd'));
   }
-
   /**
    * Todos.
    *
