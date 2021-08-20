@@ -55,67 +55,44 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
 {
     use EntityChangedTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->get('name')->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName($name)
     {
         $this->set('name', $name);
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getIdSorteo()
     {
         return $this->get('id_sorteo')->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setIdSorteo($id_sorteo)
     {
         $this->set('id_sorteo', $id_sorteo);
         return $this;
     }
-    /**
-     * {@inheritdoc}
-     */
+
     public function getDiaSemana()
     {
         return $this->get('dia_semana')->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDiaSemana($dia_semana)
     {
         $this->set('dia_semana', $dia_semana);
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPremioBote()
     {
         return $this->get('premio_bote')->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPremioBote($premio_bote)
     {
         $this->set('premio_bote', $premio_bote);
@@ -264,18 +241,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ->setLabel('Nombre')
             ->setDescription('')
             ->setRequired(TRUE)
-            /*->setSettings([
-                'max_length' => 255,
-                'text_processing' => 0,
-            ])
-            ->setDisplayOptions('view', [
-                'type' => 'string',
-                'weight' => -2,
-            ])
-            ->setDisplayOptions('form', [
-                'type' => 'string_textfield',
-                'weight' => -2,
-            ])*/
             ->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
         $fields['fecha'] = BaseFieldDefinition::create('datetime')
@@ -289,14 +254,11 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ->setDisplayOptions('view', [
                 'label' => 'above',
                 'type' => 'datetime_default',
-                //'type' => 'timestamp',
-                'settings' => [ //    'format_type' => 'medium',
-                ],
+                'settings' => [],
                 'weight' => -1,
             ])
             ->setDisplayOptions('form', [
                 'type' => 'datetime_default',
-                //'type' => 'datetime_timestamp',
                 'weight' => -1,
             ])
             ->setDisplayConfigurable('form', TRUE)
@@ -319,7 +281,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'type' => 'number',
                 'weight' => 0,
             ])
-            //->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
 
         $fields['premio_bote'] = BaseFieldDefinition::create('string')
@@ -336,7 +297,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'type' => 'number',
                 'weight' => 1,
             ])
-            //->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
 
         $fields['apuestas'] = BaseFieldDefinition::create('string')
@@ -385,7 +345,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'type' => 'number',
                 'weight' => 4,
             ])
-            //->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
 
         $fields['fondo_bote'] = BaseFieldDefinition::create('string')
@@ -402,7 +361,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
                 'type' => 'number',
                 'weight' => 5,
             ])
-            //->setDisplayConfigurable('form', TRUE)
             ->setDisplayConfigurable('view', TRUE);
 
         $fields['escrutinio'] = BaseFieldDefinition::create('map')
@@ -424,7 +382,6 @@ class Sorteo extends ContentEntityBase implements SorteoInterface
             ->setSettings([
                 'uri_scheme' => 'public',
                 'file_directory' => 'resultados/[date:custom:Y]-[date:custom:m]',
-                //'default_value' => '',
                 'file_extensions' => 'pdf',
                 'max_filesize' => '3000 KB',
             ])

@@ -13,15 +13,12 @@
   function removeClass() {
     message.classList.remove('is-animated');
   }
-
   var trigger = document.querySelectorAll('.acceptance-trigger');
   var acceptance = document.querySelector('#acceptance');
-
   if (!trigger) { return; }
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
-
   try {
     for (var _iterator = trigger[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var t = _step.value;
@@ -40,7 +37,6 @@
         }
       }
   }
-
   function toggleAcceptance(e) {
     e.preventDefault();
     if (acceptance.clientHeight > 0) {
@@ -112,7 +108,6 @@
             setPanelWidth(panel);
           }
       }
-
       function setPanelWidth(panel) {
         panel.style.opacity = '0';
         panel.classList.add('is-active');
@@ -128,8 +123,6 @@
           panel.style.opacity = '1';
           return;
         } // Reposicionamos el panel por la derecha ( 0 - distancia hasta el borde de la pantalla )
-
-
         panel.style.right = 0 - (window.innerWidth - containerOffsetRight) + 16 + 'px';
         panel.style.opacity = '1';
       }
@@ -175,8 +168,7 @@
 
 })();
 
-/*Muestra el desplegable del perfil
-*/
+/*Muestra el desplegable del perfil*/
 (function () {
   var btn = document.querySelector('.user-menu__active-element');
   var menu = document.querySelector('.user-menu__tasks');
@@ -191,9 +183,6 @@
     menu.classList.toggle('is-showing');
   });
 })();
-/*
-Muestra el desplegable del login con posiciÃ³n fija
-*/
 (function () {
   var flc = document.querySelector('#flc');
   var flcBtn = document.querySelector('#flc__btn');
@@ -217,4 +206,37 @@ Muestra el desplegable del login con posiciÃ³n fija
       flc.classList.remove('is-hidden');
     }
   });
+})();
+
+(function () {
+
+  let cookies = document.querySelector('#cookies-wrap');
+  if (getCookie('loterialaveleta-accept-cookies')) {
+    cookies.style.display = "none";
+  }
+  cookies.addEventListener('click', function (e) {
+    setCookie('loterialaveleta-accept-cookies', '1', 100);
+    cookies.style.display = "none";
+    e.preventDefault();
+  });
+
+  function setCookie(name, value, daysToLive) {
+      var cookie = name + "=" + encodeURIComponent(value);
+      
+      if(typeof daysToLive === "number") {
+          cookie += "; max-age=" + (daysToLive*24*60*60);
+          document.cookie = cookie;
+      }
+  }
+
+  function getCookie(name) {
+      var cookieArr = document.cookie.split(";");
+      for(var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+          if(name == cookiePair[0].trim()) {
+              return decodeURIComponent(cookiePair[1]);
+          }
+      }
+      return null;
+  }
 })();

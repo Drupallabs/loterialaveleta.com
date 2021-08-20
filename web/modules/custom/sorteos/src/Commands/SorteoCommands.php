@@ -8,9 +8,6 @@ use Drush\Commands\DrushCommands;
 use Symfony\Component\Console\Input\InputOption;
 use Psr\Log\LoggerInterface;
 
-/**
- * Drush commands for sorteos.
- */
 class SorteoCommands extends DrushCommands
 {
 
@@ -100,7 +97,6 @@ class SorteoCommands extends DrushCommands
                 return;
             }
         }
-
         $result = $plugin->import();
         $message_values = ['@importer' => $plugin->getConfig()->label()];
         if ($result) {
