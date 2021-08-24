@@ -79,6 +79,12 @@ function veleta_theme()
     'veleta' => [
       'render element' => 'children',
     ],
+    'dashboard' => [
+      'variables' => [
+        'lastimport' => ''
+      ],
+      'render element' => 'children',
+    ],
     'led' => [
       'variables' => [
         'botes' => [], 'resultados' => [],

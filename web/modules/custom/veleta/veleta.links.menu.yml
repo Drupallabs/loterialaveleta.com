@@ -5,6 +5,13 @@ veleta.admin_veleta:
   description: 'Administer and configure La Veleta.'
   weight: -9
 
+veleta.admin_veleta.dashboard:
+  title: 'Dashboard'
+  route_name: 'veleta.dashboard'
+  parent: 'veleta.admin_veleta'
+  description: 'La Veleta Dashboard'
+  weight: -2
+
 veleta.admin_veleta.config:
   title: 'Configuracion'
   route_name: 'veleta.config'

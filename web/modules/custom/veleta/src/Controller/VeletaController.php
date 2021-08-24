@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\botes\Botes;
 use Drupal\resultados\ResultadosBbdd;
+use Drupal\Core\State\State;
 
 /**
  * Class VeletaController.
@@ -25,13 +26,21 @@ class VeletaController extends ControllerBase
   protected $resultadosService;
 
   /**
+   * The state
+   * @var \Drupal\Core\State\State
+   */
+  protected $state;
+
+  /**
    * @param \Drupal\botes\Botes $botes
    * @param \Drupal\resultados\ResultadosBbdd $resultados
+   * @param \Drupal\Core\State\State
    */
-  public function __construct(Botes $botesService, ResultadosBbdd $resultadosService)
+  public function __construct(Botes $botesService, ResultadosBbdd $resultadosService, State $state)
   {
     $this->botesService = $botesService;
     $this->resultadosService = $resultadosService;
+    $this->state = $state;
   }
 
 
@@ -39,10 +48,18 @@ class VeletaController extends ControllerBase
   {
     return new static(
       $container->get('botes.botes'),
-      $container->get('resultados.resultadosbbdd')
+      $container->get('resultados.resultadosbbdd'),
+      $container->get('state')
     );
   }
+  public function dashboard()
+  {
 
+    return array(
+      '#theme' => 'dashboard',
+      '#lastimport' => $this->state->get('sorteos.last_import')
+    );
+  }
   public function led()
   {
 

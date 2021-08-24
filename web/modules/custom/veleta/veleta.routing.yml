@@ -6,6 +6,14 @@ veleta.admin:
   requirements:
     _permission: 'access veleta administration pages'
 
+veleta.dashboard:
+  path: '/admin/laveleta/dashboard'
+  defaults:
+    _controller: '\Drupal\veleta\Controller\VeletaController::dashboard'
+    _title: 'Dashboard'
+  requirements:
+    _permission: 'access veleta administration pages'
+
 veleta.config:
   path: '/admin/laveleta/config'
   defaults:

@@ -7,6 +7,8 @@ use Drupal\sorteos\Plugin\ImporterManager;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\Console\Input\InputOption;
 use Psr\Log\LoggerInterface;
+use Drupal\Core\State\State;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class SorteoCommands extends DrushCommands
 {
@@ -22,25 +24,42 @@ class SorteoCommands extends DrushCommands
     protected $lock;
 
     /**
-     * The logger.
+     * The logger. Conflict with $logger of Drush, 
      *
      * @var \Psr\Log\LoggerInterface
      */
-    protected $logger;
+    protected $loggerSorteos;
 
+    /**
+     * The state
+     * @var \Drupal\Core\State\State
+     */
+    protected $state;
 
     /**
      * SorteoCommands constructor.
      *
      * @param \Drupal\sorteos\Plugin\ImporterManager $importerManager
      * @param \Drupal\Core\Lock\LockBackendInterface $lock
-     * @var \Psr\Log\LoggerInterface
+     * @param \Psr\Log\LoggerInterface
+     * @param \Drupal\Core\State\State
      */
-    public function __construct(ImporterManager $importerManager, LockBackendInterface $lock, LoggerInterface $logger)
+    public function __construct(ImporterManager $importerManager, LockBackendInterface $lock, LoggerInterface $loggerSorteos, State $state)
     {
         $this->importerManager = $importerManager;
         $this->lock = $lock;
-        $this->logger = $logger;
+        $this->loggerSorteos = $loggerSorteos; // Conflict with $this->logger of DrushCommand
+        $this->state = $state;
+    }
+
+    public static function create(ContainerInterface $container)
+    {
+        return new static(
+            $container->get('sorteos.importer_manager'),
+            $container->get('lock'),
+            $container->get('sorteos.logger.channel.sorteos'),
+            $container->get('state')
+        );
     }
 
     /**
@@ -57,7 +76,8 @@ class SorteoCommands extends DrushCommands
      */
     public function import($options = ['importer' => InputOption::VALUE_OPTIONAL])
     {
-        $this->logger->info('Entrando en import');
+        $this->state->set('sorteos.last_import', \Drupal::time()->getRequestTime());
+
         $importer = $options['importer'];
         // llega un parametro solo creamos un plugin
         if (!is_null($importer)) {
@@ -89,6 +109,7 @@ class SorteoCommands extends DrushCommands
      */
     protected function runPluginImport(\Drupal\sorteos\Plugin\ImporterInterface $plugin)
     {
+        $this->logger()->log('status', t('run PluginImport'));
 
         if (!$this->lock->acquire($plugin->getPluginId())) {
             $this->logger()->log('notice', t('The plugin @plugin is already running. Waiting for it to finish.', ['@plugin' => $plugin->getPluginDefinition()['label']]));
