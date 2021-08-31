@@ -36,7 +36,7 @@ class DameBotes
         $this->entityTypeManager = $entity_type_manager;
         $this->connection = $connection;
         $this->date_format = 'Y-m-dTH:i:s';
-        $this->hoy = new DrupalDateTime();
+        $this->hoy = new DrupalDateTime(); // TODO cuando pase esto porner hoy, 
         $this->botes = [];
         $this->bote = (object) [
             'fecha_sorteo' => null,
@@ -100,7 +100,7 @@ class DameBotes
             ':bundle' => $bundle, ':fecha' => $ahora
         ])->fetchObject();
 
-
+        
         return $this->filtraDatos($sorteo);
     }
 

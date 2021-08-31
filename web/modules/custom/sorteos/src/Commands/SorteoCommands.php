@@ -121,7 +121,7 @@ class SorteoCommands extends DrushCommands
         $result = $plugin->import();
         $message_values = ['@importer' => $plugin->getConfig()->label()];
         if ($result) {
-            $this->logger()->log('status', t('The "@importer" importer has been run.', $message_values));
+            $this->logger()->log('notice', t('The "@importer" importer has been run.', $message_values));
             $this->lock->release($plugin->getPluginId());
             return;
         }
