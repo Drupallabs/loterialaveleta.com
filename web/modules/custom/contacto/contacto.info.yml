@@ -1,0 +1,8 @@
+name: 'contacto'
+type: module
+description: 'Formulario de contacto loterialaveleta.com'
+core_version_requirement: ^8 || ^9
+package: 'Custom'
+
+dependencies:
+  - veleta

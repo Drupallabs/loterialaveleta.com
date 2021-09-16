@@ -1,7 +1,0 @@
-name: Commerce Redsys
-type: module
-description: Provides Commerce integration for the Redsys payment Gateway.
-core_version_requirement: ^8 || ^9
-package: Custom
-dependencies:
-  - commerce:commerce_payment

@@ -1,0 +1,12 @@
+name: "mi_monedero"
+type: module
+description: "Mi Monedero para loterialaveleta.com"
+core_version_requirement: ^8.9 || ^9
+package: "Custom"
+dependencies:
+  - veleta
+  - Commerce:commerce
+  - Commerce:commerce_checkout
+  - Commerce:commerce_order
+  - Commerce:commerce_payment
+  - Commerce:commerce_store
