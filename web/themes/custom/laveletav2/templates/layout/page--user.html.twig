@@ -11,20 +11,5 @@
     </section>
   {% include '@laveletav2/layout/sections/empresas.html.twig' %}
   {% include '@laveletav2/layout/sections/jugar-a.html.twig' %}
-  {% if 'user/login' in path %}{% else %}
-    {% if not user_logged %}
-      <aside id="flc" class="fixed-login-container flc">
-        <div id="flc__login-container" class="flc__login-container">
-          {{ page.login_header }}
-        </div>
-        <a id="flc__btn" href="#flc__login" class="flc__btn">
-          <div class="flc__icon">
-            <span class="icon-person"></span>
-          </div>
-          <span class="flc__text">Log In</span>
-        </a>
-      </aside>
-    {% endif %}
-  {% endif %}
 </main>
   {% include '@laveletav2/layout/footer.html.twig' %}

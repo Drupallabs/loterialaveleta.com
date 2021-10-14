@@ -38,10 +38,7 @@
         {% endif %}
         {% if not user_logged %}
 					<div class="dropdown shop__item">
-						<a href="#login-form" class="site-header__btn dropdown__trigger" id="shop__login"><span class="site-header__icon icon-person"></span></a>
-						<aside id="login-form" class="dropdown__panel">
-							 {{ page.login_header }}
-						</aside>
+						<a href="{{ url('user.login') }}" class="site-header__btn" id="shop__login"><span class="site-header__icon icon-person"></span></a>	
 					</div>
 					{% endif %}
       </div>

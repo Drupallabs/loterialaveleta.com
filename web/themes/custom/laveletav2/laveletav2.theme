@@ -29,14 +29,12 @@ function laveletav2_preprocess_html(array &$variables)
  */
 function laveletav2_preprocess_page(array &$variables)
 {
-
-  // if user is authenticated
-  if ($variables['user']->isAuthenticated()) {
-    $user_logged_in_name = $variables['user']->getAccountName();
-    $variables['user_id'] = $variables['user']->id();
+  $current = \Drupal::currentUser();
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $user_logged_in_name = $current->getAccountName();
+    $variables['user_id'] = $current->id();
     $variables['user_logged_in_name'] = ucfirst($user_logged_in_name);
-    $user_logged = $variables['user']->isAuthenticated();
-    $variables['user_logged'] = $user_logged;
+    $variables['user_logged'] = $current->isAuthenticated();
   }
 }
 
@@ -118,13 +116,6 @@ function laveletav2_preprocess_commerce_cart_block(&$variables)
   }
 }
 
-
-function laveletav2_suggestions_commerce_checkout_order_summary(array &$suggestions, array $variables)
-{
-  //  dump($suggestions);
-}
-
-
 /**
  * Implements hook_preprocess_node().
  */
@@ -187,13 +178,6 @@ function laveletav2_preprocess_commerce_product_variation(array &$variables)
 function laveletav2_theme_suggestions_views_view_alter(array &$suggestions, array $variables)
 {
   $suggestions[] = sprintf('views_view__%s', $variables['view']->id());
-}
-
-/**
- * Implements hook_preprocess_form().
- */
-function laveletav2_preprocess_form(array &$variables)
-{
 }
 
 /**
