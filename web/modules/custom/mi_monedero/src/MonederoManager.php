@@ -149,6 +149,6 @@ class MonederoManager
                 ]);
         }
         $mones->save();
-        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros más', ['@user' => $account->getUserName(), '@total' => number_format($total)]);
+        $this->logger->info('El Monedero de @user ha sido actualizado con @total euros más', ['@user' => $account->getAccountName(), '@total' => number_format($total)]);
     }
 }

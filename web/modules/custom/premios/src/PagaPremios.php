@@ -62,6 +62,7 @@ class PagaPremios
 
     public function pagando()
     {
+
         $this->checkSorteosYesterdayLnac();
     }
 

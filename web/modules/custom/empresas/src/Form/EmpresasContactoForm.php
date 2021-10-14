@@ -58,12 +58,12 @@ class EmpresasContactoForm extends FormBase
       '#type' => 'captcha',
       '#captcha_type' => 'captcha/Image',
     );
-    $form['submit'] = [
+    /*$form['submit'] = [
       '#type' => 'submit',
       '#value' => 'Enviar !!',
-    ];
+    ];*/
     $form['#theme'] = 'empresas-contacto';
-   
+
     return $form;
   }
 

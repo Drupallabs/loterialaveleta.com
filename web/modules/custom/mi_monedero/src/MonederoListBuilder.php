@@ -42,7 +42,7 @@ class MonederoListBuilder extends EntityListBuilder
         ['monedero' => $entity->id()]
       );
       $row['user'] = Link::createFromRoute(
-        $entity->getOwner()->getUsername(),
+        $entity->getOwner()->getAccountName(),
         'entity.user.edit_form',
         ['user' => $entity->id()]
       );
