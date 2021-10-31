@@ -61,28 +61,32 @@ class PremiosManager
         if ($product_variation) {
             $order_item_storage = $this->entityTypeManager->getStorage('commerce_order_item');
             $query = $order_item_storage->getQuery()->condition('purchased_entity', $product_variation->id());
-            $id = $query->execute();
+            $ids = $query->execute();
 
-            if ($id) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
+            if ($ids) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
+                foreach ($ids as $id) {
 
-                $commerce_order_item = $order_item_storage->load((int)key($id));
-                $commerce_order = $commerce_order_item->getOrder();
-                // si ya esta pagado no hacemos nada
+                    $commerce_order_item = $order_item_storage->load((int)$id);
+                    $commerce_order = $commerce_order_item->getOrder();
+                    // si ya esta pagado no hacemos nada
 
-                if ($commerce_order_item->get('field_premio_pagado')->value == "0") {
+                    if ($commerce_order_item->get('field_premio_pagado')->value == "0") {
 
-                    $quantity = (int)$commerce_order_item->getQuantity();
-                    $reward = $quantity * $premio;
-                    $account = $commerce_order->getCustomer();
-                    $this->monederoManager->masMonedero($account, $reward); // pay de price
-                    $orderes = $this->entityTypeManager->getStorage('commerce_order')->load($commerce_order->id());
-                    $orderes->set('field_pago_premio_pedido', 3); // Mi Monedero
-                    $orderes->save();
+                        $quantity = (int)$commerce_order_item->getQuantity();
 
-                    $commerce_order_item->set('field_premio_pagado', 1);
-                    $commerce_order_item->save();
+                        $reward = $quantity * $premio;
+                        // dump('Pagando ' . $reward . ' del pedido ' . $commerce_order->id());
 
-                    $this->mailPremios->send($commerce_order_item, $reward);
+                        $account = $commerce_order->getCustomer();
+                        $this->monederoManager->masMonedero($account, $reward); // pay de price
+                        $orderes = $this->entityTypeManager->getStorage('commerce_order')->load($commerce_order->id());
+                        $orderes->set('field_pago_premio_pedido', 3); // Mi Monedero
+                        $orderes->save();
+                        $commerce_order_item->set('field_premio_pagado', 1);
+                        $commerce_order_item->save();
+
+                        $this->mailPremios->send($commerce_order_item, $reward);
+                    }
                 }
             }
         }

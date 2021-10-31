@@ -86,7 +86,6 @@ class PagaPremios
         $query = $order_storage->getQuery();
         $query->condition('field_sorteo_3', $ultimo_sorteo_lnac_id);
         $ids = $query->execute();
-
         if (!empty($ids)) {
             $products = $order_storage->loadMultiple($ids);
 
@@ -111,6 +110,7 @@ class PagaPremios
                 'operations' => $operations,
                 'finished' => $this->finishedPaid(),
             ];
+
             batch_set($batch);
         }
     }
