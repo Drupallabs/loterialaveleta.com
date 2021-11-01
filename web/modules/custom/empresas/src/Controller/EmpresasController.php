@@ -24,16 +24,19 @@ class EmpresasController extends ControllerBase
     $numero = $request->query->get('numero');
     $codigo = $request->query->get('codigo');
     $email = $request->query->get('email');
+    $ano = $request->query->get('ano');
 
     $form  = \Drupal::formBuilder()->getForm('Drupal\empresas\Form\EmpresasListadoForm');
-    if (!$empresa) {
+    /*
+    if (!$empresa && !$año) {
       \Drupal::messenger()->addError('Debes Seleccionar una empresa');
-    }
-    if ($empresa || $numero || $email || $codigo) {
+    }*/
+    if ($empresa || $numero || $email || $codigo || $ano) {
 
-      $headers = array('Pedido ', 'Codigo TPV', 'Empresa', 'Correo electrónico', 'Nombre', 'DNI', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'Fecha','Pago Premio', 'PDF');
+      $headers = array('Pedido ', 'Codigo TPV', 'Empresa', 'Correo electrónico', 'Nombre', 'DNI', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'Fecha', 'Pago Premio', 'PDF');
 
-      $query = $this->getQuery($empresa, $numero, $codigo, $email);
+      $query = $this->getQuery($empresa, $numero, $codigo, $email, $ano);
+
       $result = $query->execute();
 
       foreach ($result as $record) {
@@ -43,8 +46,8 @@ class EmpresasController extends ControllerBase
           'empresa' => $record->nombre_empresa,
           'usuario' => $record->name,
           'email' => $record->mail,
-          'nombre' => $record->field_nombre_value,
-          'dni' => $record->field_dni_value,
+          'nombre' => '',
+          'dni' => '',
           'producto_id' => $record->product_id,
           'cantidad' => $record->quantity,
           'numero' => $record->field_numero_decimo_value,
@@ -67,15 +70,15 @@ class EmpresasController extends ControllerBase
     return $output;
   }
 
-  private function getQuery($empresa = null, $numero = null, $codigo = null, $email = null)
+  private function getQuery($empresa = null, $numero = null, $codigo = null, $email = null, $ano = null)
   {
 
     $db_connection = Database::getConnection('default');
     $query = $db_connection->select('commerce_order', 'co');
 
     $query->join('users_field_data', 'u', 'co.uid = u.uid');
-    $query->join('commerce_order__field_nombre', 'cn', 'co.order_id = cn.entity_id');
-    $query->join('commerce_order__field_dni', 'cdni', 'co.order_id = cdni.entity_id');
+    //$query->join('commerce_order__field_nombre', 'cn', 'co.order_id = cn.entity_id');
+    //$query->join('commerce_order__field_dni', 'cdni', 'co.order_id = cdni.entity_id');
     $query->join('commerce_order_item', 'coi', 'co.order_id = coi.order_id');
     $query->join('commerce_order__order_items', 'cois', 'coi.order_item_id = cois.order_items_target_id');
     $query->join('commerce_product_variation_field_data', 'cov', 'coi.purchased_entity = cov.variation_id');
@@ -93,6 +96,9 @@ class EmpresasController extends ControllerBase
       'u',
       ['name']
     );
+    
+
+    /*
     $query->fields(
       'cn',
       ['field_nombre_value']
@@ -100,7 +106,7 @@ class EmpresasController extends ControllerBase
     $query->fields(
       'cdni',
       ['field_dni_value']
-    );
+    );*/
     $query->fields(
       'coi',
       ['quantity']
@@ -123,11 +129,19 @@ class EmpresasController extends ControllerBase
       $query->condition('co.order_id', $codigo);
     if ($email)
       $query->condition('co.mail', $email);
-
+    if ($ano) {
+      $inicio = mktime(0, 0, 0, 01, 01, $ano);
+      $fin = mktime(23, 0, 50, 12, 31, $ano);
+      $query->condition('co.placed', array($inicio, $fin), 'BETWEEN');
+    }
     $query->orderBy('co.completed', 'DESC');
 
-    $tempstore = \Drupal::service('user.private_tempstore')->get('empresas');
+    $tempstore = \Drupal::service('tempstore.private')->get('empresas');
     $tempstore->set('empresas_query', $query);
+    //echo $query;
+    //print_r($query->__toString());
+    //print_r($query->arguments());
+
     return $query;
   }
 }

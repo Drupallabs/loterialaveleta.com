@@ -50,6 +50,11 @@ class EmpresasListadoForm extends FormBase
     {
 
         $options = ['' => '-- Seleccione Una Empresa'];
+        $anos = [];
+        $anosr = range('2020', date("Y") + 20);
+        foreach ($anosr as $n) {
+            $anos[$n] = $n;
+        }
 
         $empresas_ids = \Drupal::entityQuery('empresa')->execute();
 
@@ -89,7 +94,12 @@ class EmpresasListadoForm extends FormBase
             '#required' => false,
             '#size' => 50
         ];
-
+        $form['filtros']['ano'] = [
+            '#type' => 'select',
+            '#title' => 'Año',
+            '#options' => $anos,
+            '#required' => true,
+        ];
         $form['filtros']['submit'] = [
             '#type' => 'submit',
             '#value' => 'Filtrar',
@@ -97,6 +107,8 @@ class EmpresasListadoForm extends FormBase
         $form['#method'] = 'get';
         return $form;
     }
+
+
     /**
      * {@inheritdoc}
      */
@@ -106,8 +118,6 @@ class EmpresasListadoForm extends FormBase
         if ($empresa == '') {
             $form_state->setErrorByName('empresa', 'Introduce una empresa');
         }
-
-        // parent::validateForm($form, $form_state);
     }
 
     /**
