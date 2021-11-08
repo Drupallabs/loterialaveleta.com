@@ -96,17 +96,6 @@ class EmpresasController extends ControllerBase
       'u',
       ['name']
     );
-    
-
-    /*
-    $query->fields(
-      'cn',
-      ['field_nombre_value']
-    );
-    $query->fields(
-      'cdni',
-      ['field_dni_value']
-    );*/
     $query->fields(
       'coi',
       ['quantity']

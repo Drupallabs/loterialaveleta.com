@@ -1,7 +1,7 @@
 services:
   premios.manager:
     class: \Drupal\premios\PremiosManager
-    arguments: ['@entity_type.manager', '@mi_monedero.monedero_manager', '@premios.mail_premios']
+    arguments: ['@entity_type.manager', '@mi_monedero.monedero_manager', '@premios.mail_premios', '@database']
   premios.mail_handler:
     class: Drupal\premios\Mail\MailHandler
     arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']

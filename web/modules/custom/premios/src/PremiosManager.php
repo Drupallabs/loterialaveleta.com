@@ -6,6 +6,7 @@ use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\mi_monedero\MonederoManager;
 use Drupal\premios\Mail\MailPremios;
+use Drupal\Core\Database\Connection;
 
 /**
  * Premios manager class.
@@ -33,6 +34,7 @@ class PremiosManager
      */
     protected $mailPremios;
 
+    protected $database;
     /**
      * Constructs a new Premios Manager Object.
      *
@@ -42,13 +44,16 @@ class PremiosManager
      *   The monedero manager.
      * @param \Drupal\premios\Mail\MailPremios $mailPremios
      *   The premios mail manager.
+     * @param \Drupal\Core\Database\Connection $database
+     *   The database connection to be used.
      */
 
-    public function __construct(EntityTypeManagerInterface $entity_type_manager, MonederoManager $monederoManager, MailPremios $mailPremios)
+    public function __construct(EntityTypeManagerInterface $entity_type_manager, MonederoManager $monederoManager, MailPremios $mailPremios, Connection $database)
     {
         $this->entityTypeManager = $entity_type_manager;
         $this->monederoManager = $monederoManager;
         $this->mailPremios = $mailPremios;
+        $this->database = $database;
     }
 
     /**
@@ -59,14 +64,22 @@ class PremiosManager
         $product_variation = reset($product->getVariations());
 
         if ($product_variation) {
-            $order_item_storage = $this->entityTypeManager->getStorage('commerce_order_item');
-            $query = $order_item_storage->getQuery()->condition('purchased_entity', $product_variation->id());
-            $ids = $query->execute();
 
-            if ($ids) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
-                foreach ($ids as $id) {
+            $query = $this->database->select('commerce_order_item', 'coi');
+            $query->join('commerce_order', 'co', 'coi.order_id = co.order_id');
+            $query->condition('coi.purchased_entity', $product_variation->id());
+            $query->condition('co.state', 'completed');
+            $query->fields('coi', ['order_item_id']);
+            $query->fields('co', ['order_id']);
+            $result = $query->execute();
 
+            if ($result) { // si hay algun pedido que tiene ese producto, pagamos, sino no hacemos nada
+                foreach ($result as $coi) {
+                    $id = $coi->order_item_id;
+
+                    $order_item_storage = $this->entityTypeManager->getStorage('commerce_order_item');
                     $commerce_order_item = $order_item_storage->load((int)$id);
+
                     $commerce_order = $commerce_order_item->getOrder();
                     // si ya esta pagado no hacemos nada
 
@@ -75,7 +88,7 @@ class PremiosManager
                         $quantity = (int)$commerce_order_item->getQuantity();
 
                         $reward = $quantity * $premio;
-                        // dump('Pagando ' . $reward . ' del pedido ' . $commerce_order->id());
+                        //dump('Pagando ' . $reward . 'euros del pedido ' . $commerce_order->id());
 
                         $account = $commerce_order->getCustomer();
                         $this->monederoManager->masMonedero($account, $reward); // pay de price

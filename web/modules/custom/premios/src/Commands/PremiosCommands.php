@@ -18,6 +18,7 @@ class PremiosCommands extends DrushCommands
 
     public function PagaPedidosUsuario()
     {
+        $this->state->set('premios.last_paga', \Drupal::time()->getRequestTime());
         $premiospaga = \Drupal::service('premios.paga');
         $premiospaga->pagando();
     }
