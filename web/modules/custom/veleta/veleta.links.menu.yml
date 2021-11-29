@@ -18,3 +18,10 @@ veleta.admin_veleta.config:
   parent: 'veleta.admin_veleta'
   description: 'Configure La Veleta.'
   weight: 2
+
+veleta.admin.structure.settings:
+  title: "Configuracion General"
+  description: "Configure La Veleta"
+  route_name: veleta.configuration
+  parent: veleta.admin_veleta.config
+  weight: -10

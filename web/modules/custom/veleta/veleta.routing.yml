@@ -29,3 +29,11 @@ veleta.led:
     _title: 'Loteria La Veleta'
   requirements:
     _permission: 'access content'
+  
+veleta.configuration:
+  path: '/admin/laveleta/veleta/configuracion'
+  defaults:
+    _form: '\Drupal\veleta\Form\VeletaConfigurationForm'
+    _title: 'La Veleta Configuracion'
+  requirements:
+    _permission: 'access veleta administration pages'

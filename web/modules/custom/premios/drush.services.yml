@@ -1,5 +1,6 @@
 services:
   premios.commands:
     class: Drupal\premios\Commands\PremiosCommands
+    arguments: ["@state"]
     tags:
       - { name: drush.command }

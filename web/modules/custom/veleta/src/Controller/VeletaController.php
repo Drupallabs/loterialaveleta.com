@@ -54,12 +54,12 @@ class VeletaController extends ControllerBase
   }
   public function dashboard()
   {
-
-    return array(
+    $dashboard = array(
       '#theme' => 'dashboard',
       '#lastimport' => $this->state->get('sorteos.last_import'),
       '#lastpaga' => $this->state->get('premios.last_paga')
     );
+    return $dashboard;
   }
   public function led()
   {

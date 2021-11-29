@@ -10,4 +10,4 @@ services:
     arguments: ['@premios.mail_handler', '@config.factory']
   premios.paga:
     class: \Drupal\premios\PagaPremios
-    arguments: ['@entity_type.manager', '@premios.manager', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac']
+    arguments: ['@entity_type.manager', '@premios.manager', '@sorteos.sorteosbbdd', '@resultados.comprobar.lnac', '@database']

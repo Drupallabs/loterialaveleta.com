@@ -107,8 +107,7 @@ class EmpresasListadoForm extends FormBase
         $form['#method'] = 'get';
         return $form;
     }
-
-
+    
     /**
      * {@inheritdoc}
      */

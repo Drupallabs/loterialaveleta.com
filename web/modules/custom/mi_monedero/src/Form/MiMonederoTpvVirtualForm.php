@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\commerce_redsys\RedsysAPI as RedsysAPI;
+use Drupal\commerce_redsys_payment\RedsysAPI as RedsysAPI;
 
 class MiMonederoTpvVirtualForm extends FormBase
 {
@@ -59,10 +59,16 @@ class MiMonederoTpvVirtualForm extends FormBase
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {
-        $tempstore = \Drupal::service('user.private_tempstore')->get('mi_monedero');
-        $config = $this->factory->get('commerce_redsys.configuracion');
+        $tempstore = \Drupal::service('tempstore.private')->get('mi_monedero');
+        $config = $this->factory->get('commerce_payment.commerce_payment_gateway.pago_con_tarjeta_redsys');
 
-        $clave = $config->get('clave_sha');
+        $clave = $config->get('clave');
+        $fuc = $config->get('fuc');
+        dump($clave);
+        dump($fuc);
+        dump($config);
+        die;
+        dump($tempstore);
         $version = $config->get('signatureversion');
         $clave = $config->get('clave_sha');
         $merchant_url = $config->get('merchant_url');
@@ -99,7 +105,6 @@ class MiMonederoTpvVirtualForm extends FormBase
 
         $form['#action'] = $config->get('url_real');
         $form['#attached']['library'][] = 'mi_monedero/redireccion_offsite';
-        //$form['#action'] = $config->get('url_pruebas');
 
         foreach ($data as $name => $value) {
             if (isset($value)) {

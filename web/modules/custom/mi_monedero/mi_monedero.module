@@ -31,7 +31,8 @@ function mi_monedero_theme()
       'render element' => 'children',
       'variables' => [
         'monedero' => 0,
-        'user' => []
+        'user' => [],
+        'show_payment' => false   
       ],
     ],
   ];

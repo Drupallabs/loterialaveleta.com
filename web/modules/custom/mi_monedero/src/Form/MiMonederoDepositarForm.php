@@ -117,7 +117,7 @@ class MiMonederoDepositarForm extends FormBase
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
         $cantidad = $form_state->getValue('cantidad');
-        $tempstore = \Drupal::service('user.private_tempstore')->get('mi_monedero');
+        $tempstore = \Drupal::service('tempstore.private')->get('mi_monedero');
         $tempstore->set('cantidad', $cantidad);
         $path = URL::fromUserInput('/mi_monedero/tpv-virtual', array('query' => array('cantidad' => $cantidad)))->toString();
         $response = new RedirectResponse($path);

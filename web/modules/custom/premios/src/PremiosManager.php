@@ -79,7 +79,7 @@ class PremiosManager
 
                     $order_item_storage = $this->entityTypeManager->getStorage('commerce_order_item');
                     $commerce_order_item = $order_item_storage->load((int)$id);
-
+                    
                     $commerce_order = $commerce_order_item->getOrder();
                     // si ya esta pagado no hacemos nada
 
@@ -88,7 +88,7 @@ class PremiosManager
                         $quantity = (int)$commerce_order_item->getQuantity();
 
                         $reward = $quantity * $premio;
-                        //dump('Pagando ' . $reward . 'euros del pedido ' . $commerce_order->id());
+                        dump('Pagando ' . $reward . ' del pedido ' . $commerce_order->id());
 
                         $account = $commerce_order->getCustomer();
                         $this->monederoManager->masMonedero($account, $reward); // pay de price

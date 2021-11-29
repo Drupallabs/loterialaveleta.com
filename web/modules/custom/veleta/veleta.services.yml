@@ -28,7 +28,7 @@ services:
     arguments: ['veleta']
     tags:
       - {name: laveleta}
-  veleta.logger.veleta:
+  veleta.logger.mail_logger:
     class: Drupal\veleta\Logger\MailLogger
     arguments: ['@logger.log_message_parser', '@config.factory']
     tags:

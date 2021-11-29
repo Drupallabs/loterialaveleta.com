@@ -9,8 +9,9 @@ use Drupal\Core\Url;
 use Drupal\mi_monedero\Entity\MonederoInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Drupal\commerce_redsys\RedsysAPI as RedsysAPI;
+use Drupal\commerce_redsys_payment\RedsysAPI as RedsysAPI;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
  * Class MonederoController.
@@ -35,6 +36,13 @@ class MonederoController extends ControllerBase implements ContainerInjectionInt
   protected $renderer;
 
   /**
+   * The config factory
+   *
+   * @var Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $factory;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container)
@@ -42,6 +50,7 @@ class MonederoController extends ControllerBase implements ContainerInjectionInt
     $instance = parent::create($container);
     $instance->dateFormatter = $container->get('date.formatter');
     $instance->renderer = $container->get('renderer');
+    $instance->factory = $container->get('config.factory');
     return $instance;
   }
   /*
@@ -61,11 +70,15 @@ class MonederoController extends ControllerBase implements ContainerInjectionInt
     } else {
       $euros = 0;
     }
-
+    $show_payment = false;
+    if ($this->factory->get('commerce_redsys_payment.configuracion')) {
+      $show_payment = true;
+    }
     return array(
       '#theme' => 'monedero_user',
       '#monedero' => $euros,
-      '#user' => $user
+      '#user' => $user,
+      '#show_payment' => $show_payment
     );
   }
   public function depositarBackOk(Request $request)
