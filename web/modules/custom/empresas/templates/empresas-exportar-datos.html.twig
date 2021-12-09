@@ -41,10 +41,10 @@
       {% for pedido in pedidos  %}
           <tr>
               <td>{{ pedido.pedido }}</td>
-              <td>{{ pedido.codigo_tpv }}</td>
               <td>{{ pedido.empresa }}</td>
               <td>{{ pedido.email }}</td>
               <td>{{ pedido.nombre }}</td>
+              <td>{{ pedido.apellidos }}</td>
               <td>{{ pedido.dni }}</td>
               <td>{{ pedido.cantidad|number_format() }}</td>
               <td>{{ pedido.numero }}</td>

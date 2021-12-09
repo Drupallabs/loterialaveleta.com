@@ -7,7 +7,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\commerce_redsys_payment\RedsysAPI as RedsysAPI;
+use Drupal\Core\Url;
+use Drupal\mi_monedero\RedsysAPI as RedsysAPI;
 
 class MiMonederoTpvVirtualForm extends FormBase
 {
@@ -35,9 +36,6 @@ class MiMonederoTpvVirtualForm extends FormBase
         $this->factory = $factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function create(ContainerInterface $container)
     {
         return new static(
@@ -60,26 +58,19 @@ class MiMonederoTpvVirtualForm extends FormBase
     public function buildForm(array $form, FormStateInterface $form_state)
     {
         $tempstore = \Drupal::service('tempstore.private')->get('mi_monedero');
-        $config = $this->factory->get('commerce_payment.commerce_payment_gateway.pago_con_tarjeta_redsys');
+        $config = $this->factory->get('mi_monedero.configuracion');
 
-        $clave = $config->get('clave');
-        $fuc = $config->get('fuc');
-        dump($clave);
-        dump($fuc);
-        dump($config);
-        die;
-        dump($tempstore);
-        $version = $config->get('signatureversion');
-        $clave = $config->get('clave_sha');
+        $signature_version = $config->get('signature_version');
+        $signature = $config->get('signature');
         $merchant_url = $config->get('merchant_url');
+        $merchant_code = $config->get('merchant_code');
+        $currency = $config->get('currency');
+        $terminal = $config->get('terminal');
+        $transaction_type = $config->get('transaction_type');
+        $urlOK = $config->get('url_ok');
+        $urlKO = $config->get('url_nook');
 
         $red = new RedsysAPI;
-        $fuc = "049095037";
-        $terminal = "001";
-        $moneda = "978";
-        $trans = "0";
-        $urlOK = $config->get('monedero_urlok');
-        $urlKO = $config->get('monedero_urlnook');
 
         //estos dos valores los vamos cambiando en cada compra
         $id = $this->currentUser()->id() . "-" . substr(str_shuffle("0123456789"), 0, 6);
@@ -87,23 +78,24 @@ class MiMonederoTpvVirtualForm extends FormBase
 
         $red->setParameter('DS_MERCHANT_AMOUNT', $cantidad);
         $red->setParameter('DS_MERCHANT_ORDER', $id);
-        $red->setParameter('DS_MERCHANT_MERCHANTCODE', $fuc);
-        $red->setParameter('DS_MERCHANT_CURRENCY', $moneda);
-        $red->setParameter('DS_MERCHANT_TRANSACTIONTYPE', $trans);
+        $red->setParameter('DS_MERCHANT_MERCHANTCODE', $merchant_code);
+        $red->setParameter('DS_MERCHANT_CURRENCY', $currency);
+        $red->setParameter('DS_MERCHANT_TRANSACTIONTYPE', $transaction_type);
         $red->setParameter('DS_MERCHANT_TERMINAL', $terminal);
         $red->setParameter('DS_MERCHANT_MERCHANTURL', $merchant_url);
         $red->setParameter('DS_MERCHANT_URLOK', $urlOK);
         $red->setParameter('DS_MERCHANT_URLKO', $urlKO);
 
         $params = $red->createMerchantParameters();
-        $signature = $red->createMerchantSignature($clave);
+        $signature = $red->createMerchantSignature($signature);
+
         $data = [
-            'Ds_SignatureVersion' => $version,
+            'Ds_SignatureVersion' => $signature_version,
             'Ds_MerchantParameters' => $params,
             'Ds_Signature' => $signature
         ];
 
-        $form['#action'] = $config->get('url_real');
+        $form['#action'] = $config->get('redirect_url');
         $form['#attached']['library'][] = 'mi_monedero/redireccion_offsite';
 
         foreach ($data as $name => $value) {
@@ -120,6 +112,7 @@ class MiMonederoTpvVirtualForm extends FormBase
 
         return $form;
     }
+
     /**
      * {@inheritdoc}
      */

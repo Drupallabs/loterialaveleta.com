@@ -91,7 +91,7 @@ class MonederoManager
         ])->fetchObject();
         if (!$monedero) {
             $mones = $this->entityTypeManager->getStorage('monedero')->create([
-                'name' => 'Monedero de ' . substr($account->getAccountName(), 0, 50),
+                'name' => 'Monedero de ' . substr($account->getAccountName(), 0, 35),
                 'user_id' =>  $account->id(),
                 'currency' => 'EUR',
                 'cantidad' => 0

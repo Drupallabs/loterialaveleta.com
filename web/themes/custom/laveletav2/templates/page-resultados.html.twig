@@ -4,68 +4,75 @@
       <section class="section__subsection">
         <div class="results__section__container">
           <div class="results__section__content">
-          <div class="grid grid--3-cols"> {% set lnac =  resultados.lnac|first %}
-            <article id="loteria-nacional" class="card draw">
-              <header class="card__header">
-                <h3 class="card__title">
-                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" alt="Lotería Nacional" class="game__logo">
-                </h3>
-                <p class="card__date">{{ lnac.dia_semana }}, {{ lnac.fecha_sorteo|date('d/m/Y') }}</p>
-              </header> 
+          <div class="grid grid--3-cols"> 
 
-              <div class="card__main">
-                <p class="nombre-sorteo">{{ lnac.nombre }}</p>
-                <ul class="draw__list draw__list--lottery">
-                  <li class="draw__item draw__item--lottery">
-                    <span class="draw__text draw__text--lottery">Primer premio</span>
-                    <span class="draw__number--lottery">{{ lnac.primerpremio }}</span>
-             
-                  </li>
-                  <li class="draw__item draw__item--lottery">
-                    <span class="draw__text draw__text--lottery">Segundo premio</span>
-                    <span class="draw__number--lottery">{{ lnac.segundopremio }}</span>
-                  </li>
-                </ul>
-                 <img class="image-block" src="{{ resultados.lnac.0.decimo | image_style('medium') }}" />
-              </div>
-              <div class="card__footer">
-                <a  title="Jugar al Loteria Nacional en la Veleta" href="{{ path('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--primary card__btn-primary">Jugar ya</a>
-                <a href="#results-pop-up-lnac" class="pop-up-trigger card__btn-secondary">Detalle premios</a>
-              </div>
-              <a title="Ultimos Resultados de Loteria Nacional" href="{{ url('resultados.loterianacional') }}">Sorteos Anteriores</a>
-            </article>
-            {% set emil =  resultados.emil|first %}
-            <article id="euromillones" class="card draw">
-              <header class="card__header">
-                <h3 class="card__title">
-                  <img src="{{ base_path }}themes/custom/laveletav2/images/logos/euromillones.svg" alt="Euromillones" class="game__logo">
-                </h3>
-                <p class="card__date">{{ emil.dia_semana }}, {{ emil.fecha_sorteo|date('d/m/Y') }}</p>
-              </header>
-              <div class="card__main">
-                <ul class="draw__list">
-                      <li class="draw__item"><span class="draw__number">{{ emil.bola1 }}</span></li>
-                      <li class="draw__item"><span class="draw__number">{{ emil.bola2 }}</span></li>
-                      <li class="draw__item"><span class="draw__number">{{ emil.bola3 }}</span></li>
-                      <li class="draw__item"><span class="draw__number">{{ emil.bola4 }}</span></li>
-                      <li class="draw__item"><span class="draw__number">{{ emil.bola5 }}</span></li>
-                      <li class="draw__item--break"></li>
-                            <li class="draw__item">
-                              <span class="draw__star icon-stargrade"><span>{{ emil.estrella1 }}</span></span>
-                              </li>
-                              <li class="draw__item">
-                               <span class="draw__star icon-stargrade"><span>{{ emil.estrella2 }}</span></span>
-                            </li>
-                </ul>
-              </div>
-              <div class="card__footer">
-                <a title="Jugar al Euromillones en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/EMIL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
-                <a href="#results-pop-up-emil" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
-              </div>
-                <a title="Ultimos Resultados de Euromillones" href="{{ url('resultados.euromillones') }}">Sorteos Anteriores</a>
+              {% if resultados.lnac %}
+              {% set lnac =  resultados.lnac %}
+              <article id="loteria-nacional" class="card draw">
+                <header class="card__header">
+                  <h3 class="card__title">
+                    <img src="{{ base_path }}themes/custom/laveletav2/images/logos/loteria.svg" alt="Lotería Nacional" class="game__logo">
+                  </h3>
+                  <p class="card__date">{{ lnac.dia_semana }}, {{ lnac.fecha_sorteo|date('d/m/Y') }}</p>
+                </header> 
+                <div class="card__main">
+                  <p class="nombre-sorteo">{{ lnac.nombre }}</p>
+                  <ul class="draw__list draw__list--lottery">
+                    <li class="draw__item draw__item--lottery">
+                      <span class="draw__text draw__text--lottery">Primer premio</span>
+                      <span class="draw__number--lottery">{{ lnac.primerpremio }}</span>
               
-            </article>
-                {% set lapr =  resultados.lapr|first %}
+                    </li>
+                    <li class="draw__item draw__item--lottery">
+                      <span class="draw__text draw__text--lottery">Segundo premio</span>
+                      <span class="draw__number--lottery">{{ lnac.segundopremio }}</span>
+                    </li>
+                  </ul>
+                  <img class="image-block" src="{{ resultados.lnac.0.decimo | image_style('medium') }}" />
+                </div>
+                <div class="card__footer">
+                  <a  title="Jugar al Loteria Nacional en la Veleta" href="{{ path('view.comprar_loteria_nacional.page_comprar_loteria') }}" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                  <a href="#results-pop-up-lnac" class="pop-up-trigger card__btn-secondary">Detalle premios</a>
+                </div>
+                <a title="Ultimos Resultados de Loteria Nacional" href="{{ url('resultados.loterianacional') }}">Sorteos Anteriores</a>
+              </article>
+            {% endif %}
+
+            {% if resultados.emil %}
+              {% set emil =  resultados.emil|first %}
+              <article id="euromillones" class="card draw">
+                <header class="card__header">
+                  <h3 class="card__title">
+                    <img src="{{ base_path }}themes/custom/laveletav2/images/logos/euromillones.svg" alt="Euromillones" class="game__logo">
+                  </h3>
+                  <p class="card__date">{{ emil.dia_semana }}, {{ emil.fecha_sorteo|date('d/m/Y') }}</p>
+                </header>
+                <div class="card__main">
+                  <ul class="draw__list">
+                        <li class="draw__item"><span class="draw__number">{{ emil.bola1 }}</span></li>
+                        <li class="draw__item"><span class="draw__number">{{ emil.bola2 }}</span></li>
+                        <li class="draw__item"><span class="draw__number">{{ emil.bola3 }}</span></li>
+                        <li class="draw__item"><span class="draw__number">{{ emil.bola4 }}</span></li>
+                        <li class="draw__item"><span class="draw__number">{{ emil.bola5 }}</span></li>
+                        <li class="draw__item--break"></li>
+                              <li class="draw__item">
+                                <span class="draw__star icon-stargrade"><span>{{ emil.estrella1 }}</span></span>
+                                </li>
+                                <li class="draw__item">
+                                <span class="draw__star icon-stargrade"><span>{{ emil.estrella2 }}</span></span>
+                              </li>
+                  </ul>
+                </div>
+                <div class="card__footer">
+                  <a title="Jugar al Euromillones en la pagina de Loterias" href="https://juegos.loteriasyapuestas.es/jugar/cas/configuracion/club_conmigo_online/95005/EMIL" target="_blank" class="btn btn--primary card__btn-primary">Jugar ya</a>
+                  <a href="#results-pop-up-emil" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
+                </div>
+                  <a title="Ultimos Resultados de Euromillones" href="{{ url('resultados.euromillones') }}">Sorteos Anteriores</a>
+              </article>
+            {% endif %}
+
+            {% if resultados.lapr %}
+            {% set lapr =  resultados.lapr|first %}
             <article class="card draw">
               <header class="card__header">
                 <h3 class="card__title">
@@ -103,6 +110,8 @@
               </div>
               <a title="Ultimos Resultados de La Primitiva" href="{{ url('resultados.primitiva') }}">Sorteos Anteriores</a>
             </article>
+            {% endif %}
+             
             {% set elgr =  resultados.elgr|first %}
             <article class="card draw">
               <header class="card__header">
@@ -131,9 +140,12 @@
                 <a href="#results-pop-up-elgr" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
               </div>
                <a title="Ultimos Resultados de El Gordo La Primitiva" href="{{ url('resultados.elgordo') }}">Sorteos Anteriores</a>
-            
             </article>
-              {% set bono =  resultados.bono|first %}
+          
+
+            
+            {% if resultados.bono %}
+            {% set bono =  resultados.bono|first %}
             <article class="card draw">
               <header class="card__header">
                 <h3 class="card__title">
@@ -165,8 +177,9 @@
                 <a href="#results-pop-up-bono" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
               </div>
                 <a title="Ultimos Resultados de Bonoloto" href="{{ url('resultados.bonoloto') }}">Sorteos Anteriores</a>
-             
             </article>
+            {% endif %}
+
           </div>
           </div>
         </div>
@@ -175,6 +188,8 @@
         <div class="results__section__container">
           <div class="results__section__content">
             <div class="grid grid--lg-align-start">
+              
+              {% if resultados.laqu %}
             	<article class="card draw">
                {% set laqu =  resultados.laqu|first %}
             		<header class="card__header">
@@ -196,22 +211,18 @@
             					</tr>
             				</thead>
             				<tbody>
-             
-                    {{ laqu.partidos|jsonDecode }}
-                    {% for partido in laqu.partidos | jsonDecode %}
-                      <tr>
-                      <td>
-                        <span>{{ partido.local }}</span><span>{{ partido.visitante }}</span>
-                      </td>
-                      {% if partido.fecha %}
-                          <td colspan="2">{{ partido.fecha }}</td>
-                      {% else %}
-                        <td>{{ partido.signo }}</td>
-                        <td>{{ partido.marcador }}</td>
-                        {% endif %}
-                      </tr>
-                    {% endfor %}
-              				</tbody>
+                      {% for partido in laqu.partidos | jsonDecode %}
+                        <tr>
+                        <td><span>{{ partido.local }}</span><span>{{ partido.visitante }}</span></td>
+                        {% if partido.fecha %}
+                            <td colspan="2">{{ partido.fecha }}</td>
+                        {% else %}
+                          <td>{{ partido.signo }}</td>
+                          <td>{{ partido.marcador }}</td>
+                          {% endif %}
+                        </tr> 
+                      {% endfor %}
+              				</tbody>                      
             			</table>
             		</div>
             		<footer class="card__footer">
@@ -220,7 +231,10 @@
             		</footer>
                 <a title="Ultimos Resultados de La Quiniela" href="{{ url('resultados.quiniela') }}">Sorteos Anteriores</a>
             	</article>
-                {% set qgol = resultados.qgol|first %}
+              {% endif %}
+              
+              {% if resultados.qgol %}
+              {% set qgol = resultados.qgol|first %}
             	<article class="card draw">
             		<header class="card__header">
             			<h3 class="card__title">
@@ -240,7 +254,6 @@
             					</tr>
             				</thead>
             				<tbody>
-                    {{ qgol.partidos|jsonDecode }}
                     {% for partido in qgol.partidos | jsonDecode %}
                       <tr>
                       <td>
@@ -262,8 +275,8 @@
             			<a href="#results-pop-up-qgol" class="card__btn-secondary pop-up-trigger">Detalle premios</a>
             		</footer>
                 <a title="Ultimos Resultados de Quinigol" href="{{ url('resultados.quinigol') }}">Sorteos Anteriores</a>
-           
             	</article>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -272,7 +285,9 @@
         <div class="results__section__container">
           <div class="results__section__content">
             <div class="grid grid--2-cols grid--lg-align-start"><!-- LOTOTURF -->
-            {% set lotu =  resultados.lotu|first %}
+              
+              {% if resultados.lotu %}
+              {% set lotu =  resultados.lotu|first %}
               <article class="card draw">
                 <header class="card__header">
                   <h3 class="card__title">
@@ -306,6 +321,9 @@
                 <a title="Ultimos Resultados de Lototurf" href="{{ url('resultados.lototurf') }}">Sorteos Anteriores</a>
            
               </article>
+              {% endif %}
+
+              {% if resultados.qupl %}
               {% set qupl =  resultados.qupl|first %}
               <article class="card draw">
                 <header class="card__header">
@@ -349,7 +367,8 @@
                   <a href="#results-pop-up-qupl" class=" pop-up-trigger card__btn-secondary">Detalle premios</a>
                 </footer>
                  <a title="Ultimos Resultados de Quintuple Plus" href="{{ url('resultados.quintupleplus') }}">Sorteos Anteriores</a>
-                        </article>
+            </article>
+            {% endif %}
             </div>
           </div>
         </div>
@@ -357,7 +376,8 @@
       </div>
     </div>
   </div>
-
+  
+  {% if resultados.lnac %}
   <aside id="results-pop-up-lnac" class="pop-up"> <!-- detalle loteria nacional -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -383,7 +403,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
 
+  {% if resultados.emil %}
   <aside id="results-pop-up-emil" class="pop-up"> <!-- detalle euromillones -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -421,6 +443,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.lapr %}
   <aside id="results-pop-up-lapr" class="pop-up">
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -457,6 +482,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.elgr %}
   <aside id="results-pop-up-elgr" class="pop-up">
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -492,6 +520,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.bono %}
   <aside id="results-pop-up-bono" class="pop-up"> <!-- BONOLOTO -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -527,6 +558,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.laqu %}
   <aside id="results-pop-up-laqu" class="pop-up"> <!-- QUINIELA -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -563,6 +597,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.qgol %}
   <aside id="results-pop-up-qgol" class="pop-up"> <!-- QUINIGOL -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -571,7 +608,7 @@
             <table class="table"><thead>
                 <tr><th>Tipo</th><th>Categoria</th><th>Premio</th><th>Ganadores</th></tr>
               </thead>
-             {% set escrutinio = laqu.escrutinio | unserialize %}
+             {% set escrutinio = qgol.escrutinio | unserialize %}
              {% for escru in escrutinio %}
                                 {% for e in escru %}
               <tr>
@@ -598,6 +635,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.lotu %}
   <aside id="results-pop-up-lotu" class="pop-up"> <!-- LOTOTURF -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -634,6 +674,9 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
+
+  {% if resultados.qupl %}
   <aside id="results-pop-up-qupl" class="pop-up"> <!-- QUINTUPLE PLUS -->
     <div class="pop-up__wrapper"><div class="pop-up__content">
       <article class="card">
@@ -670,4 +713,5 @@
       <a href="#results-pop-up" class="pop-up__btn-close"><span class="icon-clearclose"></span></a>
     </div>
   </aside>
+  {% endif %}
 </section>

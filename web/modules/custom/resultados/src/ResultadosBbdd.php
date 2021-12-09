@@ -129,11 +129,10 @@ class ResultadosBbdd
       $resultado = [];
       foreach ($sorteos as $key => $sorteo) {
          $dtime = DateTimePlus::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $sorteo->fecha);
-         $res['dia'] = (integer)$dtime->format('d');
+         $res['dia'] = (int)$dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
          $res['dia'] = $dtime->format('d');
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -159,8 +158,9 @@ class ResultadosBbdd
       }
       $sorteos = $this->connection->queryRange(
          "SELECT s.*,f.*,j.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_primitiva f ON f.entity_id = s.id 
-                       LEFT JOIN sorteo__field_joker j ON j.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+                       LEFT JOIN sorteo__field_joker j ON j.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'primitiva',
             ':ahora' => $this->ahora
@@ -172,7 +172,6 @@ class ResultadosBbdd
          $res['dia'] = $dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -200,8 +199,9 @@ class ResultadosBbdd
       }
       $sorteos = $this->connection->queryRange(
          "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_bonoloto f ON f.entity_id = s.id 
-                       WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+                       WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'bonoloto',
             ':ahora' => $this->ahora,
@@ -215,7 +215,6 @@ class ResultadosBbdd
          $res['dia'] = $dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -242,8 +241,9 @@ class ResultadosBbdd
          $cuantos = 10;
       }
       $sorteos = $this->connection->queryRange(
-         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_gordo f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_gordo f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'gordo_primitiva',
             ':ahora' => $this->ahora,
@@ -255,7 +255,6 @@ class ResultadosBbdd
          $res['dia'] = $dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -283,8 +282,9 @@ class ResultadosBbdd
                                  LEFT JOIN sorteo__field_jornada jor ON s.id = jor.entity_id
                                  LEFT JOIN sorteo__field_temporada tem ON s.id = tem.entity_id
                                  LEFT JOIN sorteo__field_partidos par ON s.id = par.entity_id
-                                 WHERE s.type = :bundle AND s.fecha < :ahora ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+                                 WHERE s.type = :bundle AND s.fecha < :ahora ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'quiniela',
             ':ahora' => $this->ahora
@@ -319,8 +319,9 @@ class ResultadosBbdd
                                  LEFT JOIN sorteo__field_jornada jor ON s.id = jor.entity_id
                                  LEFT JOIN sorteo__field_temporada tem ON s.id = tem.entity_id
                                  LEFT JOIN sorteo__field_partidos par ON s.id = par.entity_id
-                                 WHERE s.type = :bundle AND s.fecha < :ahora ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+                                 WHERE s.type = :bundle AND s.fecha < :ahora ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'quinigol',
             ':ahora' => $this->ahora,
@@ -351,8 +352,9 @@ class ResultadosBbdd
          $cuantos = 10;
       }
       $sorteos = $this->connection->queryRange(
-         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_lototurf f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_lototurf f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'lototurf',
             ':ahora' => $this->ahora
@@ -364,7 +366,6 @@ class ResultadosBbdd
          $res['dia'] = $dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -389,8 +390,9 @@ class ResultadosBbdd
          $cuantos = 10;
       }
       $sorteos = $this->connection->queryRange(
-         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_quintuple f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC"
-         ,0,$cuantos,
+         "SELECT s.*,f.* FROM sorteo s LEFT JOIN sorteo__field_combinacion_quintuple f ON f.entity_id = s.id WHERE s.type = :bundle AND s.fecha < :ahora AND s.apuestas != 0 ORDER BY s.fecha DESC",
+         0,
+         $cuantos,
          [
             ':bundle' => 'quintuple_plus',
             ':ahora' => $this->ahora,
@@ -402,7 +404,6 @@ class ResultadosBbdd
          $res['dia'] = $dtime->format('d');
          $res['fecha_sorteo'] = $sorteo->fecha;
          $res['dia_semana'] = $sorteo->dia_semana;
-         $res['combinacion'] = $sorteo->combinacion;
          $res['escrutinio'] = $sorteo->escrutinio;
          $res['apuestas'] = $sorteo->apuestas;
          $res['recaudacion'] = $sorteo->recaudacion;
@@ -440,7 +441,6 @@ class ResultadosBbdd
       )->fetchAll();
       return $sorteo;
    }
-
    /**
     * Obtiene el proximos sorteo futuro que tiene bote a partir de ahora
     */

@@ -9,13 +9,13 @@
         <h3>El Saldo actual que tienes en loterialavelta.com es de</h3>
         <p><span class="monedero-saldo">{{ monedero }}</span>&nbsp; Euros</p>
         <p>El dinero es virtual, con &eacute;l puedes comprar loteria en esta pagina.</p>
-        {% if show_payment %}
+        {% if activate_tpv %}
           <a href="{{ url('mi_monedero.depositar', {'user': user.id }) }}" title="Añadir saldo a mi monedero" class="btn btn--primary company-cta__btn">Añadir Saldo a Mi Monedero</a>
           <p>Serás redirigido al TPV virutal para pagar con tu tarjeta, de forma segura.</p>
               <span class="payment-method-icon payment-method-icon--visa"></span>   
               <span class="payment-method-icon payment-method-icon--mastercard"></span>   
-              <span class="payment-method-icon payment-method-icon--maestro"></span>        
-        {% endif %}
+              <span class="payment-method-icon payment-method-icon--maestro"></span>
+        {% endif %}    
       </div>
     </div>	
 		</div>

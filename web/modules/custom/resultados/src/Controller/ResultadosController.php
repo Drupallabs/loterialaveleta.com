@@ -61,6 +61,7 @@ class ResultadosController extends ControllerBase
 
   public function content()
   {
+
     $this->resultados['lnac'] = $this->resultadosService->getResultadosJuego('loteria_nacional', 1);
     $this->resultados['emil'] = $this->resultadosService->getResultadosJuego('euromillones', 1);
     $this->resultados['lapr'] = $this->resultadosService->getResultadosJuego('primitiva', 1);
@@ -70,6 +71,7 @@ class ResultadosController extends ControllerBase
     $this->resultados['qgol'] = $this->resultadosService->getResultadosJuego('quinigol', 1);
     $this->resultados['lotu'] = $this->resultadosService->getResultadosJuego('lototurf', 1);
     $this->resultados['qupl'] = $this->resultadosService->getResultadosJuego('quintuple_plus', 1);
+
     return [
       '#theme' => 'page_resultados',
       '#titulo' => 'Últimos Resultados de los Sorteos de Loteria',

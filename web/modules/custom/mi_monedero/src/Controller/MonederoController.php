@@ -9,9 +9,9 @@ use Drupal\Core\Url;
 use Drupal\mi_monedero\Entity\MonederoInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Drupal\commerce_redsys_payment\RedsysAPI as RedsysAPI;
+use Symfony\Component\HttpFoundation\Response;
+use Drupal\mi_monedero\RedsysAPI as RedsysAPI;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
  * Class MonederoController.
@@ -50,18 +50,13 @@ class MonederoController extends ControllerBase implements ContainerInjectionInt
     $instance = parent::create($container);
     $instance->dateFormatter = $container->get('date.formatter');
     $instance->renderer = $container->get('renderer');
-    $instance->factory = $container->get('config.factory');
+    $instance->configFactory = $container->get('config.factory');
     return $instance;
   }
-  /*
-  public function __construct($dateFormatter, $renderer)
-  {
-    $this->dateFormatter = $dateFormatter;
-    $this->renderer = $renderer;
-  }*/
 
   public function monederoUser($user)
   {
+    $config = $this->configFactory->get('mi_monedero.configuracion');
     $monedero = $this->entityTypeManager()->getStorage('monedero');
     $userid = $user->get('uid')->value;
     $mo = reset($monedero->loadByProperties(['user_id' => $userid]));
@@ -70,48 +65,68 @@ class MonederoController extends ControllerBase implements ContainerInjectionInt
     } else {
       $euros = 0;
     }
-    $show_payment = false;
-    if ($this->factory->get('commerce_redsys_payment.configuracion')) {
-      $show_payment = true;
-    }
+
     return array(
       '#theme' => 'monedero_user',
       '#monedero' => $euros,
       '#user' => $user,
-      '#show_payment' => $show_payment
+      '#activate_tpv' => $config->get('activate_tpv')
     );
   }
+  public function depositarBackOkNotificacion(Request $request)
+  {
+    $config = $this->configFactory->get('mi_monedero.configuracion');
+    $red = new RedsysAPI;
+    if ($request->get('Ds_MerchantParameters')) {
+      $version = $request->get('Ds_SignatureVersion');
+      $params = $request->get('Ds_MerchantParameters');
+      $signatureRecibida = $request->get('Ds_Signature');
+      $signature = $config->get('signature');
+      $red->decodeMerchantParameters($params);
+      $codigoRespuesta = $red->getParameter("Ds_Response");
+      $ds_order = $red->getParameter("Ds_Order");
+
+      $signatureCalc = $red->createMerchantSignatureNotif($signature, $params);
+      if ($signatureCalc === $signatureRecibida) {
+        if ($codigoRespuesta == '0000') {
+          
+          $split = explode("-", $ds_order);
+          $userid = (int)$split[0];
+          $total = $red->getParameter('Ds_Amount');
+          if ($userid) {
+            $usere = $this->entityTypeManager()->getStorage('user');
+            $user = reset($usere->loadByProperties(['uid' => $userid]));
+            $price = (float) strval($total / 100);
+            if ($user) {
+              \Drupal::service('mi_monedero.monedero_manager')->masMonedero($user, $price);
+            }
+            \Drupal::logger('mi_monedero')->error('Ds_Response' . $codigoRespuesta . 'Total: ' . $price . 'User:' . $user->id());
+          } else {
+            \Drupal::logger('mi_monedero')->error('No id current' . 'Iserid: ' . $userid . 'Current:' . $this->currentUser()->id());
+          }
+        }
+      } else {
+        \Drupal::logger('mi_monedero')->error(print_r($params, true));
+      }
+      return new Response('');
+    } else return new Response('');
+  }
+
   public function depositarBackOk(Request $request)
   {
+    $this->messenger()->addMessage($this->t('Hemos Recibido el pago y actualizado tu Monedero.'));
     $account = $this->currentUser();
-    //$ds_signature_version = $request->request->get('Ds_SignatureVersion');
-    $ds_merchantparameters = $request->get('Ds_MerchantParameters');
-    //$ds_signature = $request->request->get('Ds_Signature');
-    $red = new RedsysAPI;
-    $decodec = $red->decodeMerchantParameters($ds_merchantparameters);
-
-    $total = $red->getParameter('Ds_Amount');
-    $price = (float) strval($total / 100);
-    //var_dump($price);
-    if ($account) {
-      \Drupal::service('mi_monedero.monedero_manager')->masMonedero($account, $price);
-
-      $this->messenger()->addMessage($this->t('Hemos Recibido y pago y actualizado tu Monedero.'));
-
-      $path = URL::fromRoute('mi_monedero.monedero', ['user' => $account->id()])->toString();
-      \Drupal::service('page_cache_kill_switch')->trigger();
-      $response = new RedirectResponse($path);
-      $response->send();
-    }
+    $path = URL::fromRoute('mi_monedero.monedero', ['user' => $account->id()])->toString();
+    $response = new RedirectResponse($path);
+    return $response->send();
   }
 
   public function depositarBackNoOk(Request $request)
   {
     $this->messenger()->addMessage($this->t('Has cancelado el Pago. Por favor, inténtalo de nuevo o elige una forma de pago diferente'));
-    // Vuelve al Monedero
     $path = URL::fromRoute('mi_monedero.monedero', ['user' => $this->currentUser()->id()])->toString();
     $response = new RedirectResponse($path);
-    $response->send();
+    return $response->send();
   }
   /**
    * Displays a Monedero revision.

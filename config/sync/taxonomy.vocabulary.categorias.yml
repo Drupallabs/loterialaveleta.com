@@ -1,8 +1,0 @@
-uuid: fe4fbacd-b93a-48e9-a055-8fe04ed68a7a
-langcode: es
-status: true
-dependencies: {  }
-name: Categorias
-vid: categorias
-description: 'Categorias Del Blog'
-weight: 0

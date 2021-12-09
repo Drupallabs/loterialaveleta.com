@@ -47,11 +47,19 @@ mi_monedero.depositar_back_ok:
   requirements:
     _access: "TRUE"
 
+mi_monedero.depositar_back_ok.notificacion:
+  path: "/monedero-depositar/back/ok/notificacion"
+  defaults:
+    _controller: '\Drupal\mi_monedero\Controller\MonederoController::depositarBackOkNotificacion'
+  methods: [POST]
+  requirements:
+    _access: "TRUE"
+
 mi_monedero.depositar_back_nook:
   path: "/user/monedero/depositar/back/nook"
   defaults:
     _controller: '\Drupal\mi_monedero\Controller\MonederoController::depositarBackNoOk'
-  methods: [GET]
+  methods: [GET, POST]
   requirements:
     _access: "TRUE"
 
@@ -63,3 +71,5 @@ mi_monedero.tpv_virtual:
   methods: [GET]
   requirements:
     _access: "TRUE"
+
+    

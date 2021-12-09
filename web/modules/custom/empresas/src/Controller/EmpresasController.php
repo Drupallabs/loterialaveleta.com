@@ -33,12 +33,12 @@ class EmpresasController extends ControllerBase
     }*/
     if ($empresa || $numero || $email || $codigo || $ano) {
 
-      $headers = array('Pedido ', 'Codigo TPV', 'Empresa', 'Correo electrónico', 'Nombre', 'DNI', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'Fecha', 'Pago Premio', 'PDF');
+      $headers = array('Pedido ', 'Empresa', 'Correo electrónico', 'Nombre', 'Apellidos', 'DNI', 'Cantidad', 'Numero Decimo', 'Total Linea', 'Total Pedido', 'Fecha', 'Pago Premio', 'PDF');
 
       $query = $this->getQuery($empresa, $numero, $codigo, $email, $ano);
 
       $result = $query->execute();
- 
+
       foreach ($result as $record) {
         $pedidos[] = [
           'pedido' => $record->order_number,
@@ -47,6 +47,7 @@ class EmpresasController extends ControllerBase
           'usuario' => $record->name,
           'email' => $record->mail,
           'nombre' => $record->field_nombre_value,
+          'apellidos' => $record->field_apellidos_value,
           'dni' => $record->field_numero_documento_value,
           'producto_id' => $record->product_id,
           'cantidad' => $record->quantity,
@@ -78,6 +79,7 @@ class EmpresasController extends ControllerBase
 
     $query->join('users_field_data', 'u', 'co.uid = u.uid');
     $query->join('user__field_nombre', 'un', 'u.uid = un.entity_id');
+    $query->join('user__field_apellidos', 'una', 'u.uid = una.entity_id');
     $query->join('user__field_numero_documento', 'und', 'u.uid = und.entity_id');
     $query->join('commerce_order_item', 'coi', 'co.order_id = coi.order_id');
     $query->join('commerce_order__order_items', 'cois', 'coi.order_item_id = cois.order_items_target_id');
@@ -99,6 +101,10 @@ class EmpresasController extends ControllerBase
     $query->fields(
       'un',
       ['field_nombre_value']
+    );
+    $query->fields(
+      'una',
+      ['field_apellidos_value']
     );
     $query->fields(
       'und',

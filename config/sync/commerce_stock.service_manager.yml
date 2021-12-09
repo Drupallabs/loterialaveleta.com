@@ -1,8 +1,0 @@
-default_service_id: local_stock
-_core:
-  default_config_hash: z4CtmoUxBut4Mcj1tjlQENFUSkRGQUNtX6e1z1xDhYU
-langcode: es
-commerce_product_variation_decimo_service_id: local_stock
-commerce_product_variation_default_service_id: local_stock
-stock_events_plugin_id: core_stock_events
-commerce_product_variation_decimo_loteria_service_id: local_stock

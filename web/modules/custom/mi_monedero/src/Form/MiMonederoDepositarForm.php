@@ -104,7 +104,6 @@ class MiMonederoDepositarForm extends FormBase
      */
     public function validateForm(array &$form, FormStateInterface $form_state)
     {
-        $config = $this->factory->get('commerce_redsys.configuracion');
         if ($form_state->getValue('cantidad') < 10) {
             $form_state->setErrorByName('cantidad', $this->t('La cantidad debe ser mayor de 10 euros.'));
         } else {

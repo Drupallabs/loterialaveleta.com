@@ -32,7 +32,7 @@ function mi_monedero_theme()
       'variables' => [
         'monedero' => 0,
         'user' => [],
-        'show_payment' => false   
+        'activate_tpv' => false
       ],
     ],
   ];

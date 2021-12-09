@@ -3,7 +3,6 @@
 namespace Drupal\empresas\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-//use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\File\MimeType\FileinfoMimeTypeGuesser;
@@ -22,7 +21,7 @@ class CSVController extends ControllerBase
 
         $fwp = fopen($file_url, 'a');
 
-        $tempstore = \Drupal::service('user.private_tempstore')->get('empresas');
+        $tempstore = \Drupal::service('tempstore.private')->get('empresas');
         $query = $tempstore->get('empresas_query');
         $result = $query->execute();
 
@@ -30,12 +29,11 @@ class CSVController extends ControllerBase
             foreach ($result as $record) {
                 $fields = array(
                     $record->order_id,
-                    $record->order_number,
                     $record->nombre_empresa,
-                    $record->name,
                     $record->mail,
                     $record->field_nombre_value,
-                    $record->field_dni_value,
+                    $record->field_apellidos_value,
+                    $record->field_numero_documento_value,
                     number_format($record->quantity),
                     $record->field_numero_decimo_value,
                     number_format($record->total_linea, 2, ',', '.'),

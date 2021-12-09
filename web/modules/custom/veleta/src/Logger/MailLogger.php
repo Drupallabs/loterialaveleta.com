@@ -46,6 +46,7 @@ class MailLogger implements LoggerInterface
     $langcode = $this->configFactory->get('system.site')->get('langcode');
     $variables = $this->parser->parseMessagePlaceholders($message, $context);
     $markup = new FormattableMarkup($message, $variables);
+
     \Drupal::service('plugin.manager.mail')->mail('veleta', 'veleta_log', $to, $langcode, ['message' => $markup]);
   }
 }
